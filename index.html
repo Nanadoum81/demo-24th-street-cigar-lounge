@@ -156,20 +156,7 @@
   .c-wide{grid-column:span 2}
   .c-full{grid-column:span 4}
 
-  /* ---------- walk-through ---------- */
-  .wt-view{position:relative;max-width:780px;margin:0 auto;aspect-ratio:1/1;overflow:hidden;background:#0d0d0d;border:1px solid var(--hair)}
-  .wt-view img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .45s ease}
-  .wt-view img.on{opacity:1}
-  .wt-bar{max-width:780px;margin:18px auto 0;display:flex;align-items:center;justify-content:space-between;gap:14px}
-  .wt-cap{font-family:var(--serif);font-size:26px;color:#fff}
-  .wt-count{font-size:12px;letter-spacing:.22em;color:var(--silver-dim);text-transform:uppercase;margin-left:12px;white-space:nowrap}
-  .wt-nav{display:flex;gap:10px}
-  .wt-btn{appearance:none;background:transparent;border:1px solid var(--silver);color:#fff;font:inherit;font-size:13px;letter-spacing:.14em;text-transform:uppercase;padding:11px 18px;cursor:pointer}
-  .wt-btn:hover{background:rgba(182,182,182,.16)}
-  .wt-dots{display:flex;gap:9px;justify-content:center;margin-top:18px}
-  .wt-dots button{width:9px;height:9px;border-radius:50%;border:1px solid var(--silver);background:transparent;padding:0;cursor:pointer}
-  .wt-dots button.on{background:var(--silver)}
-  @media(max-width:760px){.collage{grid-template-columns:repeat(2,1fr);grid-auto-rows:150px}.c-full{grid-column:span 2}.wt-cap{font-size:22px}.wt-btn{padding:10px 13px}}
+  @media(max-width:760px){.collage{grid-template-columns:repeat(2,1fr);grid-auto-rows:150px}.c-full{grid-column:span 2}}
   .ig-line{margin-top:20px;text-align:center;font-size:14.5px;color:var(--silver-dim)}
   .ig-line a{color:#fff;font-weight:600;text-decoration:none;border-bottom:1px solid var(--silver)}
   .ig-line a:hover{color:var(--silver-hi)}
@@ -303,35 +290,6 @@
   </div>
 </section>
 
-<!-- ============ WALK THROUGH ============ -->
-<section id="walkthrough" style="padding-top:0">
-  <div class="wrap">
-    <div class="vhead">
-      <div class="rule"></div>
-      <h2 class="vtitle">Walk Through</h2>
-      <p class="vsub">Step through the room, one photo at a time.</p>
-    </div>
-    <div class="wt-view" id="wtView">
-      <img src="assets/img/google/g-humidor-shelves.jpg" alt="Inside the walk-in humidor at 24th Street Cigar Lounge" class="on">
-      <img src="assets/img/google/g-bar-humidor.jpg" alt="The bar counter and humidor wall at 24th Street Cigar Lounge" loading="lazy">
-      <img src="assets/img/google/g-bottles.jpg" alt="Wine and spirits shelves by the bar at 24th Street Cigar Lounge" loading="lazy">
-      <img src="assets/img/google/g-cigar-square.jpg" alt="A La Aroma de Cuba Mi Amor cigar in hand" loading="lazy">
-    </div>
-    <div class="wt-bar">
-      <div><span class="wt-cap" id="wtCap">The Humidor</span><span class="wt-count" id="wtCount">1 / 4</span></div>
-      <div class="wt-nav">
-        <button class="wt-btn" id="wtPrev" type="button" aria-label="Previous photo">Prev</button>
-        <button class="wt-btn" id="wtNext" type="button" aria-label="Next photo">Next</button>
-      </div>
-    </div>
-    <div class="wt-dots" id="wtDots">
-      <button type="button" class="on" aria-label="Photo 1 — The Humidor"></button>
-      <button type="button" aria-label="Photo 2 — The Bar"></button>
-      <button type="button" aria-label="Photo 3 — The Bottles"></button>
-      <button type="button" aria-label="Photo 4 — The Cigar"></button>
-    </div>
-  </div>
-</section>
 
 <!-- ============ FROM THE BAR ============ -->
 <section id="bar" style="padding-top:0">
@@ -532,32 +490,6 @@
   try{
     var v = document.querySelector(".hero video");
     if(v && window.matchMedia("(prefers-reduced-motion: reduce)").matches){ v.removeAttribute("autoplay"); v.pause(); }
-  }catch(e){}
-  // Walk-through stepper: real photos only; autoplay pauses on any interaction.
-  try{
-    var wImgs = document.querySelectorAll("#wtView img");
-    var wCap = document.getElementById("wtCap"), wCount = document.getElementById("wtCount");
-    var wDots = document.querySelectorAll("#wtDots button");
-    var wNames = ["The Humidor","The Bar","The Bottles","The Cigar"];
-    var wi = 0, wTimer = null;
-    function wShow(n){
-      wi = (n + wImgs.length) % wImgs.length;
-      wImgs.forEach(function(im,k){ im.classList.toggle("on", k===wi); });
-      wDots.forEach(function(d,k){ d.classList.toggle("on", k===wi); });
-      if(wCap) wCap.textContent = wNames[wi];
-      if(wCount) wCount.textContent = (wi+1) + " / " + wImgs.length;
-    }
-    function wStop(){ if(wTimer){ clearInterval(wTimer); wTimer = null; } }
-    if(wImgs.length > 1){
-      document.getElementById("wtNext").addEventListener("click", function(){ wStop(); wShow(wi+1); });
-      document.getElementById("wtPrev").addEventListener("click", function(){ wStop(); wShow(wi-1); });
-      wDots.forEach(function(d,k){ d.addEventListener("click", function(){ wStop(); wShow(k); }); });
-      document.getElementById("wtView").addEventListener("pointerdown", wStop);
-      if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches){
-        wTimer = setInterval(function(){ wShow(wi+1); }, 5000);
-        document.addEventListener("visibilitychange", function(){ if(document.hidden) wStop(); });
-      }
-    }
   }catch(e){}
 })();
 </script>

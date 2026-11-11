@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://demo-24th-street-cigar-lounge.vercel.app/sitemap.xml

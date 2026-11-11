@@ -8,7 +8,7 @@
 <link rel="icon" href="assets/img/logo-white.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -51,13 +51,13 @@
   }
   *{margin:0;padding:0;box-sizing:border-box;border-radius:0!important}
   html{scroll-behavior:smooth}
-  body{background:var(--black);color:var(--bone);font-family:'Archivo',Helvetica,Arial,sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  body{background:var(--black);color:var(--bone);font-family:'Inter',Helvetica,Arial,sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
   img{display:block;max-width:100%}
   a{color:inherit}
   .wrap{max-width:1280px;margin:0 auto;padding:0 20px}
   .kicker{font-size:12px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--red)}
   .kicker .num{color:var(--bone-dim)}
-  h2.sec{font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(44px,7vw,84px);line-height:.95;text-transform:uppercase;margin:10px 0 8px}
+  h2.sec{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:clamp(44px,7vw,84px);line-height:.95;margin:10px 0 8px}
   .sec-sub{color:var(--bone-dim);max-width:560px;font-size:17px}
   section{padding:84px 0}
   .sec-head{border-top:2px solid var(--bone);padding-top:22px;margin-bottom:42px}
@@ -67,7 +67,7 @@
   .bar{display:flex;align-items:center;gap:18px;height:64px}
   .brand{display:flex;align-items:center;gap:12px;text-decoration:none;min-width:0}
   .brand img{width:38px;height:38px;object-fit:contain}
-  .brand .bname{font-family:'Bebas Neue',Impact,sans-serif;font-size:21px;letter-spacing:.06em;white-space:nowrap;line-height:1}
+  .brand .bname{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:22px;letter-spacing:.04em;white-space:nowrap;line-height:1}
   .brand .bsub{font-size:10px;letter-spacing:.3em;color:var(--bone-dim);text-transform:uppercase}
   nav.main{margin-left:auto;display:flex;gap:26px}
   nav.main a{text-decoration:none;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--bone-dim)}
@@ -91,13 +91,13 @@
   .hero .kick{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;background:rgba(11,10,8,.55);border:1px solid var(--line);padding:9px 14px}
   .dot{width:9px;height:9px;background:#57d977;display:inline-block}
   .dot.closed{background:var(--red)}
-  .hero h1{font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(64px,12.5vw,168px);line-height:.9;text-transform:uppercase;margin:22px 0 6px;text-shadow:0 4px 34px rgba(0,0,0,.45)}
+  .hero h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:clamp(60px,11.5vw,150px);line-height:1.0;margin:22px 0 6px;text-shadow:0 4px 34px rgba(0,0,0,.45)}
   .hero h1 .r{color:var(--red)}
   .hero p.lede{font-size:clamp(17px,2.2vw,21px);max-width:600px;color:#efe9da;text-shadow:0 2px 14px rgba(0,0,0,.6)}
   .hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
   .hero-facts{display:flex;flex-wrap:wrap;gap:0;margin-top:44px;border-top:1px solid var(--line);max-width:860px}
   .hero-facts div{padding:14px 26px 2px 0;margin-right:26px}
-  .hero-facts b{font-family:'Bebas Neue',Impact,sans-serif;font-size:34px;font-weight:400;display:block;line-height:1}
+  .hero-facts b{font-family:'Cormorant Garamond',Georgia,serif;font-size:36px;font-weight:600;display:block;line-height:1}
   .hero-facts span{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--bone-dim)}
 
   /* ================= v6 — below the hero =================
@@ -192,7 +192,10 @@
   .btn-outline:hover{background:rgba(182,182,182,.16);color:#fff}
 
   /* ---------- footer ---------- */
-  footer{border-top:1px solid var(--hair);padding:56px 0 118px;background:#080808}
+  footer{border-top:1px solid var(--hair);padding:52px 0 60px;background:#080808}
+  @media(max-width:760px){footer{padding-bottom:118px}}
+  .foot-logo{display:inline-block;margin-bottom:16px}
+  .foot-logo img{width:168px;height:auto;display:block}
   .foot{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:30px}
   .foot h4{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--silver);margin-bottom:14px}
   .foot a{display:block;color:#fff;text-decoration:none;padding:3px 0;font-size:15px}
@@ -430,9 +433,8 @@
   <div class="wrap">
     <div class="foot">
       <div>
-        <a class="brand" href="#top" style="margin-bottom:14px">
-          <img src="assets/img/logo-white.png" alt="24th Street Cigar Lounge logo">
-          <span><span class="bname">24TH STREET</span><br><span class="bsub">Cigar Lounge · Phoenix</span></span>
+        <a class="foot-logo" href="#top" aria-label="24th Street Cigar Lounge — home">
+          <img src="assets/img/logo-footer.png" alt="24th Street Cigar Lounge logo">
         </a>
         <p>A family-run establishment at the corner of 24th Street and Osborn in Phoenix, Arizona. Co-owned by George Janko.</p>
       </div>

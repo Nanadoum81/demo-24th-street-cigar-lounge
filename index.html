@@ -3,23 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>24th Street Cigar Lounge | Cigar Lounge &amp; Full Bar in Phoenix, AZ</title>
-<meta name="description" content="24th Street Cigar Lounge is a family-run cigar lounge and full bar at 3407 N 24th St, Phoenix, AZ — 300+ cigars, 50 premium spirits, craft cocktails, a back patio and game-day TVs. Open seven days.">
-<meta property="og:title" content="24th Street Cigar Lounge — Phoenix, AZ">
-<meta property="og:description" content="Premium cigars, craft cocktails, and nights that take their time. 3407 N 24th St, Phoenix.">
-<meta property="og:image" content="assets/img/hero-lounge.jpg">
-<meta property="og:type" content="website">
+<title>24th Street Cigar Lounge — Cigar Lounge & Full Bar in Phoenix, AZ</title>
+<meta name="description" content="Family-run cigar lounge and full bar at 24th St & Osborn in Phoenix. 300 cigars, 50 premium spirits, back patio. Open 7 days. Call (602) 235-0096.">
 <link rel="icon" href="assets/img/logo-white.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "BarOrPub",
   "name": "24th Street Cigar Lounge",
-  "image": "assets/img/hero-lounge.jpg",
-  "url": "https://24thstreetcigarlounge.co",
   "telephone": "+1-602-235-0096",
   "address": {
     "@type": "PostalAddress",
@@ -31,10 +25,11 @@
   },
   "geo": { "@type": "GeoCoordinates", "latitude": 33.488168, "longitude": -112.029906 },
   "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "12:00", "closes": "20:00" },
     { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday"], "opens": "15:00", "closes": "22:00" },
-    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday","Saturday"], "opens": "15:00", "closes": "00:00" },
-    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "12:00", "closes": "20:00" }
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday","Saturday"], "opens": "15:00", "closes": "00:00" }
   ],
+  "servesCuisine": "Cocktails",
   "sameAs": [
     "https://www.instagram.com/24thstreetcigarlounge",
     "https://www.facebook.com/274634415740737",
@@ -43,497 +38,462 @@
 }
 </script>
 <style>
-:root{
-  --ink:#130c07; --coal:#1a110a; --panel:#221709; --line:rgba(243,234,217,.16);
-  --cream:#f3ead9; --cream2:#e7d9bd; --paper:#f7f1e3; --amber:#d9a441; --amber-d:#b9852e;
-  --txt-dark:#241708; --txt-mut:#6f5c3e;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:'Inter',system-ui,sans-serif;background:var(--ink);color:var(--cream);-webkit-font-smoothing:antialiased}
-img{display:block;max-width:100%}
-a{color:inherit}
-.wrap{max-width:1240px;margin:0 auto;padding:0 24px}
-h1,h2,h3{font-family:'Playfair Display',serif;line-height:1.08}
-.eyebrow{letter-spacing:.32em;text-transform:uppercase;font-size:11px;font-weight:600;color:var(--amber)}
-section{padding:96px 0}
-.sec-head{text-align:center;max-width:640px;margin:0 auto 52px}
-.sec-head h2{font-size:clamp(32px,4.4vw,48px);font-weight:700;margin:14px 0 12px}
-.sec-head p{font-size:16px;line-height:1.65;opacity:.82}
-.on-cream{background:var(--paper);color:var(--txt-dark)}
-.on-cream .sec-head p{color:var(--txt-mut);opacity:1}
-.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 30px;border-radius:999px;font-weight:600;font-size:15px;text-decoration:none;border:1px solid transparent;transition:transform .2s,background .2s;cursor:pointer}
-.btn:active{transform:scale(.98)}
-.btn-amber{background:var(--amber);color:#1d1204}
-.btn-amber:hover{background:var(--amber-d)}
-.btn-ghost{background:rgba(19,12,7,.35);border-color:rgba(243,234,217,.55);color:var(--cream);backdrop-filter:blur(4px)}
-.btn-ghost:hover{border-color:var(--cream)}
-/* ---------- header ---------- */
-header{position:fixed;inset:0 0 auto 0;z-index:60;transition:background .3s,box-shadow .3s}
-header.scrolled{background:rgba(19,12,7,.96);box-shadow:0 1px 0 var(--line)}
-.hd{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px 0}
-.brand{display:flex;align-items:center;gap:13px;text-decoration:none}
-.brand img{width:46px;height:43px;object-fit:contain}
-.brand .bn{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;line-height:1.1}
-.brand .bn small{display:block;font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--amber);font-weight:600;margin-top:3px}
-nav.main{display:flex;gap:30px}
-nav.main a{text-decoration:none;font-size:14px;font-weight:500;opacity:.9}
-nav.main a:hover{opacity:1;color:var(--amber)}
-.hd .btn{padding:11px 22px;font-size:14px;white-space:nowrap}
-@media(max-width:900px){nav.main{display:none}.hd .btn{padding:10px 14px;font-size:12.5px}}
-/* ---------- hero ---------- */
-.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;padding:0}
-.hero-media{position:absolute;inset:0}
-.hero-media .slide{position:absolute;inset:0;opacity:0;transition:opacity 1.6s ease}
-.hero-media .slide.on{opacity:1}
-.hero-media .slide img{width:100%;height:100%;object-fit:cover}
-.hero-media .slide.kb img{animation:kb 9s ease-out forwards}
-.hero-media .slide.kb2 img{animation:kb2 9s ease-out forwards}
-@keyframes kb{from{transform:scale(1.02)}to{transform:scale(1.13) translate(-1.5%,-2%)}}
-@keyframes kb2{from{transform:scale(1.13) translate(1.5%,1%)}to{transform:scale(1.03)}}
-.hero-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(19,12,7,.52) 0%,rgba(19,12,7,.18) 34%,rgba(19,12,7,.30) 62%,rgba(19,12,7,.93) 100%)}
-.hero-in{position:relative;z-index:2;width:100%;padding:150px 0 84px;text-align:center}
-.hero-in .eyebrow{color:var(--cream2)}
-.hero h1{font-size:clamp(42px,7vw,84px);font-weight:800;max-width:940px;margin:20px auto 18px;text-wrap:balance}
-.hero h1 em{font-style:italic;color:var(--amber)}
-.hero .sub{font-size:clamp(16px,2vw,19px);line-height:1.65;max-width:620px;margin:0 auto 34px;opacity:.92}
-.hero-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-.hero-meta{margin-top:38px;display:flex;gap:12px;justify-content:center;align-items:center;flex-wrap:wrap;font-size:13.5px}
-.pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:8px 16px;background:rgba(19,12,7,.45);backdrop-filter:blur(4px)}
-.dot{width:8px;height:8px;border-radius:50%;background:#7dc95f;box-shadow:0 0 0 0 rgba(125,201,95,.5);animation:pulse 2.2s infinite}
-.dot.closed{background:#d96a41;box-shadow:none;animation:none}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(125,201,95,.45)}70%{box-shadow:0 0 0 8px rgba(125,201,95,0)}100%{box-shadow:0 0 0 0 rgba(125,201,95,0)}}
-.rise{opacity:0;transform:translateY(26px);animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards}
-.rise.d1{animation-delay:.15s}.rise.d2{animation-delay:.3s}.rise.d3{animation-delay:.45s}.rise.d4{animation-delay:.6s}
-@keyframes rise{to{opacity:1;transform:none}}
-.scroll-cue{margin:44px auto 0;width:24px;height:40px;border:1.5px solid rgba(243,234,217,.5);border-radius:14px;position:relative}
-.scroll-cue::after{content:"";position:absolute;left:50%;top:8px;width:4px;height:9px;margin-left:-2px;border-radius:3px;background:var(--cream);animation:cue 1.8s ease-in-out infinite}
-@keyframes cue{0%{transform:translateY(0);opacity:1}70%{transform:translateY(12px);opacity:0}100%{opacity:0}}
-@media (prefers-reduced-motion: reduce){
-  .hero-media .slide{transition:none}
-  .hero-media .slide img{animation:none!important}
-  .rise{opacity:1;transform:none;animation:none}
-  .scroll-cue::after,.dot{animation:none}
-}
-/* ---------- stats ---------- */
-.stats{background:var(--coal);border-block:1px solid var(--line);padding:34px 0}
-.stats .row{display:flex;justify-content:center;gap:clamp(28px,7vw,110px);flex-wrap:wrap;text-align:center}
-.stat b{font-family:'Playfair Display',serif;font-size:clamp(30px,4vw,44px);color:var(--amber);display:block;line-height:1}
-.stat span{display:block;margin-top:8px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;opacity:.75}
-/* ---------- cards (Fox pattern) ---------- */
-.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-@media(max-width:1020px){.grid4{grid-template-columns:repeat(2,1fr)}.grid3{grid-template-columns:1fr 1fr}}
-@media(max-width:600px){.grid4,.grid3{grid-template-columns:1fr}}
-.card{background:var(--coal);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column}
-.on-cream .card{background:#fff;border-color:rgba(36,23,8,.1);box-shadow:0 12px 32px rgba(36,23,8,.08)}
-.card .ph{aspect-ratio:4/3;overflow:hidden}
-.card .ph img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
-.card:hover .ph img{transform:scale(1.045)}
-.card .bd{padding:22px 22px 24px;display:flex;flex-direction:column;gap:9px;flex:1}
-.card h3{font-size:23px;font-weight:700}
-.card p{font-size:14.5px;line-height:1.6;opacity:.8}
-.on-cream .card p{color:var(--txt-mut);opacity:1}
-.card .links{margin-top:auto;padding-top:8px;display:flex;gap:16px;font-size:13px;font-weight:600}
-.card .links a{color:var(--amber);text-decoration:none}
-.on-cream .card .links a{color:var(--amber-d)}
-.card .links a:hover{text-decoration:underline}
-.card .when{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--amber)}
-.on-cream .card .when{color:var(--amber-d)}
-/* ---------- life grid ---------- */
-.life-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-@media(max-width:700px){.life-grid{grid-template-columns:repeat(2,1fr)}}
-.life-grid a{border-radius:14px;overflow:hidden;aspect-ratio:1/1;display:block}
-.life-grid img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
-.life-grid a:hover img{transform:scale(1.05)}
-/* ---------- reviews ---------- */
-.rev-wrap{max-width:860px;margin:0 auto;text-align:center}
-.stars{font-size:21px;letter-spacing:5px;color:var(--amber)}
-.rev-badge{font-size:14.5px;opacity:.85;margin-top:10px}
-.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:46px;text-align:left}
-@media(max-width:900px){.quotes{grid-template-columns:1fr}}
-.quote{border:1px solid var(--line);border-radius:16px;padding:26px;background:var(--coal)}
-.quote p{font-family:'Playfair Display',serif;font-size:18.5px;font-style:italic;line-height:1.55}
-.quote footer{margin-top:16px;font-size:13px;opacity:.7;font-style:normal;font-family:'Inter',sans-serif}
-.quote footer b{color:var(--amber);font-weight:600}
-/* ---------- cta band ---------- */
-.band{background:linear-gradient(135deg,#241708,#170f06);border-block:1px solid var(--line);text-align:center;padding:84px 0}
-.band h2{font-size:clamp(30px,4.4vw,46px);margin-bottom:14px}
-.band p{opacity:.85;max-width:560px;margin:0 auto 30px;line-height:1.65;font-size:16px}
-/* ---------- visit ---------- */
-.visit-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:52px;align-items:center}
-@media(max-width:900px){.visit-grid{grid-template-columns:1fr}}
-.visit-grid .ph{border-radius:20px;overflow:hidden}
-.visit-grid .ph img{width:100%;height:auto}
-.visit h2{font-size:clamp(30px,4vw,44px);margin:12px 0 14px}
-.visit .addr{font-size:17px;line-height:1.6}
-.visit .addr a{color:var(--amber-d);font-weight:600;text-decoration:none}
-.hours{width:100%;border-collapse:collapse;margin:26px 0 8px;font-size:15px}
-.hours td{padding:10px 4px;border-bottom:1px solid rgba(36,23,8,.14)}
-.hours td:last-child{text-align:right;font-weight:600}
-.hours tr.today td{color:var(--amber-d);font-weight:700}
-.visit .note{font-size:14px;color:var(--txt-mut);line-height:1.6;margin-top:14px}
-.visit-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
-.btn-outline-d{background:transparent;border-color:rgba(36,23,8,.4);color:var(--txt-dark)}
-.btn-outline-d:hover{border-color:var(--txt-dark)}
-/* ---------- footer ---------- */
-footer.site{background:#0d0805;padding:70px 0 110px;border-top:1px solid var(--line)}
-.ft{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:44px}
-@media(max-width:860px){.ft{grid-template-columns:1fr}}
-.ft .brand img{width:56px;height:52px}
-.ft p{font-size:14.5px;line-height:1.65;opacity:.75;margin-top:16px;max-width:340px}
-.ft h4{font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--amber);margin-bottom:18px;font-family:'Inter',sans-serif}
-.ft ul{list-style:none;display:grid;gap:11px;font-size:14.5px}
-.ft ul a{text-decoration:none;opacity:.85}
-.ft ul a:hover{opacity:1;color:var(--amber)}
-.ft .fine{margin-top:52px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12.5px;opacity:.55}
-/* ---------- sticky mobile bar ---------- */
-.mbar{position:fixed;left:0;right:0;bottom:0;z-index:70;display:none;background:rgba(19,12,7,.97);border-top:1px solid var(--line);padding:10px 12px calc(10px + env(safe-area-inset-bottom))}
-.mbar a{flex:1;text-align:center;text-decoration:none;font-weight:600;font-size:14px;padding:12px 6px;border-radius:999px;border:1px solid var(--line)}
-.mbar a.call{background:var(--amber);color:#1d1204;border-color:var(--amber)}
-@media(max-width:760px){.mbar{display:flex;gap:10px}footer.site{padding-bottom:130px}}
+  :root{
+    --black:#0b0a08;
+    --ink:#14120e;
+    --bone:#f2ecdf;
+    --bone-dim:#c9c0ab;
+    --red:#c8402a;
+    --red-dark:#a02f1e;
+    --line:rgba(242,236,223,.16);
+    --line-dark:rgba(11,10,8,.14);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;border-radius:0!important}
+  html{scroll-behavior:smooth}
+  body{background:var(--black);color:var(--bone);font-family:'Archivo',Helvetica,Arial,sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  img{display:block;max-width:100%}
+  a{color:inherit}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 20px}
+  .kicker{font-size:12px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--red)}
+  .kicker .num{color:var(--bone-dim)}
+  h2.sec{font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(44px,7vw,84px);line-height:.95;text-transform:uppercase;margin:10px 0 8px}
+  .sec-sub{color:var(--bone-dim);max-width:560px;font-size:17px}
+  section{padding:84px 0}
+  .sec-head{border-top:2px solid var(--bone);padding-top:22px;margin-bottom:42px}
+
+  /* ---------- header ---------- */
+  header{position:fixed;inset:0 0 auto 0;z-index:60;background:rgba(11,10,8,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .bar{display:flex;align-items:center;gap:18px;height:64px}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;min-width:0}
+  .brand img{width:38px;height:38px;object-fit:contain}
+  .brand .bname{font-family:'Bebas Neue',Impact,sans-serif;font-size:21px;letter-spacing:.06em;white-space:nowrap;line-height:1}
+  .brand .bsub{font-size:10px;letter-spacing:.3em;color:var(--bone-dim);text-transform:uppercase}
+  nav.main{margin-left:auto;display:flex;gap:26px}
+  nav.main a{text-decoration:none;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--bone-dim)}
+  nav.main a:hover{color:var(--bone)}
+  .btn{display:inline-block;text-decoration:none;font-weight:700;font-size:14px;letter-spacing:.12em;text-transform:uppercase;padding:15px 26px;border:2px solid transparent;transition:background .15s,color .15s}
+  .btn-red{background:var(--red);color:#fff}
+  .btn-red:hover{background:var(--red-dark)}
+  .btn-ghost{border-color:var(--bone);color:var(--bone);background:rgba(11,10,8,.35)}
+  .btn-ghost:hover{background:var(--bone);color:var(--black)}
+  .btn-dark{background:var(--black);color:var(--bone)}
+  .btn-dark:hover{background:var(--ink)}
+  .call-head{margin-left:8px;padding:11px 20px}
+  @media(max-width:900px){nav.main{display:none}}
+  @media(max-width:520px){.brand .bsub{display:none}.brand .bname{font-size:18px}.call-head{padding:10px 14px;font-size:12px}.kick-loc{display:none}}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;background:var(--black)}
+  .hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:62% 38%}
+  .hero .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,10,8,.52) 0%,rgba(11,10,8,.06) 34%,rgba(11,10,8,.18) 58%,rgba(11,10,8,.88) 100%)}
+  .hero-in{position:relative;z-index:2;width:100%;padding:130px 0 108px}
+  .hero .kick{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;background:rgba(11,10,8,.55);border:1px solid var(--line);padding:9px 14px}
+  .dot{width:9px;height:9px;background:#57d977;display:inline-block}
+  .dot.closed{background:var(--red)}
+  .hero h1{font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(64px,12.5vw,168px);line-height:.9;text-transform:uppercase;margin:22px 0 6px;text-shadow:0 4px 34px rgba(0,0,0,.45)}
+  .hero h1 .r{color:var(--red)}
+  .hero p.lede{font-size:clamp(17px,2.2vw,21px);max-width:600px;color:#efe9da;text-shadow:0 2px 14px rgba(0,0,0,.6)}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+  .hero-facts{display:flex;flex-wrap:wrap;gap:0;margin-top:44px;border-top:1px solid var(--line);max-width:860px}
+  .hero-facts div{padding:14px 26px 2px 0;margin-right:26px}
+  .hero-facts b{font-family:'Bebas Neue',Impact,sans-serif;font-size:34px;font-weight:400;display:block;line-height:1}
+  .hero-facts span{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--bone-dim)}
+
+  /* ---------- lounge panels ---------- */
+  .panels{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .panel{background:var(--ink);border:1px solid var(--line)}
+  .panel .ph{aspect-ratio:4/5;overflow:hidden}
+  .panel .ph img{width:100%;height:100%;object-fit:cover}
+  .panel .tx{padding:22px 22px 26px}
+  .panel h3{font-family:'Bebas Neue',Impact,sans-serif;font-size:32px;text-transform:uppercase;line-height:1;margin-bottom:6px}
+  .panel p{color:var(--bone-dim);font-size:15px}
+  @media(max-width:860px){.panels{grid-template-columns:1fr}.panel .ph{aspect-ratio:16/10}}
+
+  /* ---------- events ---------- */
+  .events{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .ev{border:1px solid var(--line);background:var(--ink)}
+  .ev .ph{aspect-ratio:16/10;overflow:hidden}
+  .ev .ph img{width:100%;height:100%;object-fit:cover}
+  .ev .tx{padding:22px}
+  .ev .when{color:var(--red);font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase}
+  .ev h3{font-family:'Bebas Neue',Impact,sans-serif;font-size:30px;line-height:1;text-transform:uppercase;margin:8px 0 6px}
+  .ev p{color:var(--bone-dim);font-size:15px}
+  @media(max-width:860px){.events{grid-template-columns:1fr}}
+
+  /* ---------- drinks (bone section) ---------- */
+  .bone-sec{background:var(--bone);color:var(--black)}
+  .bone-sec .sec-head{border-top-color:var(--black)}
+  .bone-sec .sec-sub{color:#57503f}
+  .bone-sec .kicker .num{color:#57503f}
+  .drinks{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .drink{background:#fff;border:1px solid var(--line-dark)}
+  .drink .ph{aspect-ratio:4/5;overflow:hidden}
+  .drink .ph img{width:100%;height:100%;object-fit:cover}
+  .drink .tx{padding:20px 22px 24px}
+  .drink h3{font-family:'Bebas Neue',Impact,sans-serif;font-size:29px;line-height:1;text-transform:uppercase}
+  .drink p{color:#57503f;font-size:15px;margin-top:4px}
+  @media(max-width:860px){.drinks{grid-template-columns:1fr}.drink .ph{aspect-ratio:16/10}}
+
+  /* ---------- gallery ---------- */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .grid figure{aspect-ratio:1/1;overflow:hidden;background:var(--ink)}
+  .grid img{width:100%;height:100%;object-fit:cover}
+  @media(max-width:640px){.grid{grid-template-columns:repeat(2,1fr)}}
+  .ig-line{margin-top:18px;font-size:14px;color:var(--bone-dim)}
+  .ig-line a{color:var(--bone);font-weight:600}
+
+  /* ---------- words ---------- */
+  .words{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .word{border-left:3px solid var(--red);padding:6px 0 6px 20px}
+  .word p{font-size:18px;line-height:1.5}
+  .word cite{display:block;margin-top:12px;font-style:normal;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--bone-dim)}
+  .rating-line{margin-top:34px;border-top:1px solid var(--line);padding-top:20px;color:var(--bone-dim);font-size:15px}
+  .rating-line b{color:var(--bone);font-family:'Bebas Neue',Impact,sans-serif;font-size:26px;font-weight:400;letter-spacing:.04em;margin-right:8px}
+  @media(max-width:860px){.words{grid-template-columns:1fr}}
+
+  /* ---------- cta band ---------- */
+  .band{background:var(--red);color:#fff;padding:64px 0}
+  .band h2{font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(42px,6.5vw,76px);line-height:.95;text-transform:uppercase}
+  .band p{max-width:520px;margin-top:8px;color:#ffe9e3}
+  .band .row{display:flex;flex-wrap:wrap;gap:26px;align-items:center;justify-content:space-between}
+  .band .cta{display:flex;gap:14px;flex-wrap:wrap}
+  .band .btn-ghost{border-color:#fff;color:#fff;background:transparent}
+  .band .btn-ghost:hover{background:#fff;color:var(--red-dark)}
+
+  /* ---------- visit ---------- */
+  .visit{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:start}
+  .visit .ph{aspect-ratio:16/10;overflow:hidden}
+  .visit .ph img{width:100%;height:100%;object-fit:cover}
+  .visit h3{font-family:'Bebas Neue',Impact,sans-serif;font-size:34px;text-transform:uppercase;line-height:1}
+  .addr{font-size:19px;margin:10px 0 4px}
+  .phone-big{font-family:'Bebas Neue',Impact,sans-serif;font-size:40px;color:var(--red);text-decoration:none;display:inline-block;margin:8px 0 18px}
+  table.hours{width:100%;border-collapse:collapse;margin-top:8px;font-size:15px}
+  table.hours td{padding:9px 4px;border-bottom:1px solid var(--line)}
+  table.hours td:last-child{text-align:right;color:var(--bone-dim)}
+  table.hours tr.today td{color:var(--bone);font-weight:700}
+  table.hours tr.today td:last-child{color:var(--red)}
+  .visit-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+  @media(max-width:860px){.visit{grid-template-columns:1fr}}
+
+  /* ---------- footer ---------- */
+  footer{border-top:1px solid var(--line);padding:52px 0 118px;background:#080706}
+  .foot{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:30px}
+  .foot h4{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--bone-dim);margin-bottom:14px}
+  .foot a{display:block;color:var(--bone);text-decoration:none;padding:3px 0;font-size:15px}
+  .foot a:hover{color:var(--red)}
+  .foot p{color:var(--bone-dim);font-size:15px}
+  .foot .brand{display:inline-flex}
+  .fine{margin-top:36px;border-top:1px solid var(--line);padding-top:18px;font-size:13px;color:#7d7663;display:flex;flex-wrap:wrap;gap:8px 26px}
+  @media(max-width:860px){.foot{grid-template-columns:1fr}}
+
+  /* ---------- sticky mobile bar ---------- */
+  .stickybar{position:fixed;left:0;right:0;bottom:0;z-index:70;display:none;background:rgba(11,10,8,.97);border-top:1px solid var(--line)}
+  .stickybar a{flex:1;text-align:center;text-decoration:none;font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;padding:16px 4px;color:var(--bone)}
+  .stickybar a.call{background:var(--red);color:#fff}
+  @media(max-width:760px){.stickybar{display:flex}}
 </style>
 </head>
 <body>
 
-<header id="hdr">
-  <div class="wrap hd">
+<header>
+  <div class="wrap bar">
     <a class="brand" href="#top" aria-label="24th Street Cigar Lounge — home">
-      <img src="assets/img/logo-white.png" alt="24th Street Cigar Lounge logo" width="46" height="43">
-      <span class="bn">24th Street<small>Cigar Lounge · Phoenix</small></span>
+      <img src="assets/img/logo-white.png" alt="24th Street Cigar Lounge logo">
+      <span><span class="bname">24TH STREET</span><br><span class="bsub">Cigar Lounge · Phoenix</span></span>
     </a>
-    <nav class="main" aria-label="Main">
+    <nav class="main" aria-label="Sections">
       <a href="#lounge">The Lounge</a>
       <a href="#events">Events</a>
-      <a href="#signatures">Signatures</a>
-      <a href="#life">Life</a>
-      <a href="#reviews">Reviews</a>
+      <a href="#bar">The Bar</a>
+      <a href="#gallery">Gallery</a>
       <a href="#visit">Visit</a>
     </nav>
-    <a class="btn btn-amber" href="tel:+16022350096">Call (602) 235-0096</a>
+    <a class="btn btn-red call-head" href="tel:+16022350096">Call</a>
   </div>
 </header>
 
-<!-- HERO — animated slideshow of the lounge's own photos -->
-<section class="hero" id="top">
-  <div class="hero-media" id="heroMedia" aria-hidden="true">
-    <div class="slide on"><img src="assets/img/hero-lounge.jpg" alt="" fetchpriority="high"></div>
-    <div class="slide"><img src="assets/img/about-bar.jpg" alt="" loading="lazy"></div>
-    <div class="slide"><img src="assets/img/patio.jpg" alt="" loading="lazy"></div>
-  </div>
-  <div class="hero-shade"></div>
+<!-- ============ HERO ============ -->
+<div class="hero" id="top">
+  <video autoplay muted loop playsinline preload="auto" poster="assets/img/hero-lounge.jpg" aria-label="Inside the humidor at 24th Street Cigar Lounge">
+    <source src="assets/img/hero-lounge.mp4" type="video/mp4">
+  </video>
+  <div class="shade"></div>
   <div class="wrap hero-in">
-    <p class="eyebrow rise">Family-Run · Cigar Lounge &amp; Full Bar · Phoenix</p>
-    <h1 class="rise d1">Premium cigars. Craft cocktails. <em>Nights that take their time.</em></h1>
-    <p class="sub rise d2">At the corner of 24th &amp; Osborn — 300 cigars from around the globe, 50 premium spirits, and a back patio built for long evenings.</p>
-    <div class="hero-ctas rise d3">
-      <a class="btn btn-amber" href="#lounge">Explore the Lounge</a>
-      <a class="btn btn-ghost" href="#events">Upcoming Events</a>
+    <span class="kick"><span class="dot" id="openDot"></span><span id="openText">Open now</span><span class="kick-loc">&nbsp;·&nbsp;24th St &amp; Osborn, Phoenix</span></span>
+    <h1>Light up.<br><span class="r">Slow down.</span></h1>
+    <p class="lede">A family-run cigar lounge and full bar. Three hundred cigars, fifty premium spirits, and a back patio built for long nights.</p>
+    <div class="hero-cta">
+      <a class="btn btn-red" href="tel:+16022350096">Call the Lounge</a>
+      <a class="btn btn-ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=3407+N+24th+St+Phoenix+AZ+85016" target="_blank" rel="noopener">Get Directions</a>
     </div>
-    <div class="hero-meta rise d4">
-      <span class="pill"><span class="dot" id="statusDot"></span><span id="statusText">Checking hours…</span></span>
-      <span class="pill">3407 N 24th St, Phoenix</span>
-      <a class="pill" href="tel:+16022350096" style="text-decoration:none">(602) 235-0096</a>
+    <div class="hero-facts">
+      <div><b>300</b><span>Cigar options</span></div>
+      <div><b>50</b><span>Premium spirits</span></div>
+      <div><b>4–6 PM</b><span>Weekday happy hour</span></div>
+      <div><b>7 Days</b><span>Open every week</span></div>
     </div>
-    <div class="scroll-cue" aria-hidden="true"></div>
-  </div>
-</section>
-
-<!-- STATS -->
-<div class="stats">
-  <div class="wrap row">
-    <div class="stat"><b>300+</b><span>Cigar Options</span></div>
-    <div class="stat"><b>50</b><span>Premium Spirits</span></div>
-    <div class="stat"><b>4–6 PM</b><span>Weekday Happy Hour</span></div>
-    <div class="stat"><b>7 Days</b><span>Open Every Week</span></div>
   </div>
 </div>
 
-<!-- DISCOVER THE LOUNGE -->
+<!-- ============ 01 THE LOUNGE ============ -->
 <section id="lounge">
   <div class="wrap">
     <div class="sec-head">
-      <p class="eyebrow">Discover</p>
-      <h2>One Lounge, Every Kind of Night</h2>
-      <p>Family-run and Phoenix-proud — what began as a neighborhood liquor market is now the corner's cigar lounge. Pick your room.</p>
+      <p class="kicker"><span class="num">01 —</span> The Lounge</p>
+      <h2 class="sec">One room. Every kind of night.</h2>
+      <p class="sec-sub">It started as a neighborhood liquor market. Now it is Phoenix's cigar room — humidor up front, full bar in the middle, patio out back.</p>
     </div>
-    <div class="grid4">
-      <article class="card">
-        <div class="ph"><img src="assets/img/interior-bottles.jpg" alt="Rows of cigar boxes and bottles inside the 24th Street humidor" loading="lazy"></div>
-        <div class="bd">
+    <div class="panels">
+      <article class="panel">
+        <div class="ph"><img src="assets/img/cigar-hand.jpg" alt="A cigar held in hand at 24th Street Cigar Lounge" loading="lazy"></div>
+        <div class="tx">
           <h3>The Humidor</h3>
-          <p>300 options, from light-bodied to full, sourced from all around the globe — walk in and find your smoke.</p>
-          <div class="links"><a href="#signatures">Signatures</a><a href="#visit">Visit</a></div>
+          <p>300 cigar options, from light bodied to full, from all around the globe. Ask at the counter — the crew will find your smoke.</p>
         </div>
       </article>
-      <article class="card">
-        <div class="ph"><img src="assets/img/taps-tvs.jpg" alt="Beer taps lined up at the 24th Street Cigar Lounge bar" loading="lazy"></div>
-        <div class="bd">
+      <article class="panel">
+        <div class="ph"><img src="assets/img/interior-bottles.jpg" alt="Bottle shelves behind the bar at 24th Street Cigar Lounge" loading="lazy"></div>
+        <div class="tx">
           <h3>The Bar</h3>
-          <p>A full bar pouring 50 premium spirits and craft cocktails — start with the 24th Street Old Fashioned.</p>
-          <div class="links"><a href="#signatures">Signatures</a><a href="#events">Events</a></div>
+          <p>50 different premium spirits and craft cocktails. A full bar, poured right, steps from your chair.</p>
         </div>
       </article>
-      <article class="card">
-        <div class="ph"><img src="assets/img/patio.jpg" alt="The back patio at 24th Street Cigar Lounge with string lights and seating" loading="lazy"></div>
-        <div class="bd">
+      <article class="panel">
+        <div class="ph"><img src="assets/img/patio.jpg" alt="The back patio at 24th Street Cigar Lounge" loading="lazy"></div>
+        <div class="tx">
           <h3>The Patio</h3>
-          <p>Open-air seating out back under the string lights — the seat everyone asks for on a Phoenix evening.</p>
-          <div class="links"><a href="#life">Life</a><a href="#visit">Visit</a></div>
-        </div>
-      </article>
-      <article class="card">
-        <div class="ph"><img src="assets/img/cheers.jpg" alt="A lit cigar and a pour at a patio table at 24th Street Cigar Lounge" loading="lazy"></div>
-        <div class="bd">
-          <h3>The Ritual</h3>
-          <p>A good cigar, a proper pour, smooth music, and no drama — plus every game on the screens, NFL Sunday Ticket included.</p>
-          <div class="links"><a href="#life">Life</a><a href="#reviews">Reviews</a></div>
+          <p>Outdoor seating out back for intimate gatherings and desert evenings. Some nights, it is the best seat in the city.</p>
         </div>
       </article>
     </div>
   </div>
 </section>
 
-<!-- EVENTS -->
-<section id="events" class="on-cream">
+<!-- ============ 02 EVENTS ============ -->
+<section id="events" style="padding-top:0">
   <div class="wrap">
     <div class="sec-head">
-      <p class="eyebrow">Mark the Calendar</p>
-      <h2>Upcoming Events</h2>
-      <p>Brand nights, giveaways, and game days. The lounge announces first on Facebook and Instagram — here is what's on deck.</p>
+      <p class="kicker"><span class="num">02 —</span> Events</p>
+      <h2 class="sec">Upcoming events</h2>
+      <p class="sec-sub">Brand nights, giveaways, and game days — announced first on the lounge's Facebook and Instagram.</p>
     </div>
-    <div class="grid3">
-      <article class="card">
-        <div class="ph"><img src="assets/img/cigar-hand.jpg" alt="A hand holding a premium cigar at 24th Street Cigar Lounge" loading="lazy"></div>
-        <div class="bd">
+    <div class="events">
+      <article class="ev">
+        <div class="ph"><img src="assets/img/cheers.jpg" alt="Guests raising glasses at 24th Street Cigar Lounge" loading="lazy"></div>
+        <div class="tx">
           <p class="when">Thu, Nov 12 · 5–9 PM</p>
-          <h3>Oliva Thanksgiving Giveaway</h3>
-          <p>Buy any box of cigars and get 8 Olivas and a tumbler free — the lounge's Thanksgiving giveaway night.</p>
-          <div class="links"><a href="tel:+16022350096">Call for Details</a></div>
+          <h3>Thanksgiving Giveaway with Oliva</h3>
+          <p>Buy any box of cigars and get 8 Olivias and a tumbler free. One night only, at the lounge.</p>
         </div>
       </article>
-      <article class="card">
-        <div class="ph"><img src="assets/img/bar-drink.jpg" alt="A craft cocktail at the 24th Street bar" loading="lazy"></div>
-        <div class="bd">
+      <article class="ev">
+        <div class="ph"><img src="assets/img/bar-drink.jpg" alt="A cocktail at the bar at 24th Street Cigar Lounge" loading="lazy"></div>
+        <div class="tx">
           <p class="when">Weekdays · 4–6 PM</p>
           <h3>Happy Hour</h3>
-          <p>The after-work pour, every weekday from 4 to 6. Come as you are — the humidor is open.</p>
-          <div class="links"><a href="#visit">Hours &amp; Directions</a></div>
+          <p>Come and join us weekdays from 4 to 6. The easiest two hours of the work week.</p>
         </div>
       </article>
-      <article class="card">
-        <div class="ph"><img src="assets/img/taps-tvs.jpg" alt="The taps at the 24th Street bar on game day" loading="lazy"></div>
-        <div class="bd">
-          <p class="when">Sundays · Doors at Noon</p>
+      <article class="ev">
+        <div class="ph"><img src="assets/img/about-bar.jpg" alt="A pour and a cigar at the bar, game screens glowing behind at 24th Street Cigar Lounge" loading="lazy"></div>
+        <div class="tx">
+          <p class="when">Sundays · From 12 PM</p>
           <h3>NFL Sundays</h3>
-          <p>Sunday Ticket on the screens and a cigar in hand — doors open at noon every Sunday.</p>
-          <div class="links"><a href="#lounge">Game Day</a></div>
+          <p>Games on the screens, a cigar in hand. Sundays run noon to 8 PM.</p>
         </div>
       </article>
     </div>
   </div>
 </section>
 
-<!-- SIGNATURES -->
-<section id="signatures">
+<!-- ============ 03 THE BAR ============ -->
+<section id="bar" class="bone-sec">
   <div class="wrap">
     <div class="sec-head">
-      <p class="eyebrow">From the Bar &amp; the Humidor</p>
-      <h2>House Signatures</h2>
-      <p>The pours and smokes the regulars order by name.</p>
+      <p class="kicker"><span class="num">03 —</span> From the Bar</p>
+      <h2 class="sec">House pours</h2>
+      <p class="sec-sub">The drinks the regulars order by name. No menu online — the full list lives at the bar.</p>
     </div>
-    <div class="grid3">
-      <article class="card">
-        <div class="ph"><img src="assets/img/old-fashioned.jpg" alt="The 24th Street Old Fashioned cocktail" loading="lazy"></div>
-        <div class="bd">
+    <div class="drinks">
+      <article class="drink">
+        <div class="ph"><img src="assets/img/old-fashioned.jpg" alt="The 24th Street Old Fashioned" loading="lazy"></div>
+        <div class="tx">
           <h3>24th Street Old Fashioned</h3>
-          <p>The house pour — named the customer favorite by the lounge itself. Start here.</p>
-          <div class="links"><a href="#visit">Try It Tonight</a></div>
+          <p>Named our customer favorite. The house pour, done the slow way.</p>
         </div>
       </article>
-      <article class="card">
-        <div class="ph"><img src="assets/img/spicy-margarita.jpg" alt="Georgie's Spicy Margarita at 24th Street Cigar Lounge" loading="lazy"></div>
-        <div class="bd">
+      <article class="drink">
+        <div class="ph"><img src="assets/img/spicy-margarita.jpg" alt="Georgie's Spicy Margarita" loading="lazy"></div>
+        <div class="tx">
           <h3>Georgie's Spicy Margarita</h3>
-          <p>A little heat, a lot of balance — the margarita with the owner's family written all over it.</p>
-          <div class="links"><a href="#visit">Try It Tonight</a></div>
+          <p>Named for George himself. Bright first, heat second.</p>
         </div>
       </article>
-      <article class="card">
-        <div class="ph"><img src="assets/img/interior-bottles.jpg" alt="Cigar boxes lined up inside the 24th Street humidor" loading="lazy"></div>
-        <div class="bd">
-          <h3>The Humidor, 300 Deep</h3>
-          <p>Light to full, classics to boutique — tell the crew what you like and they will walk you to it.</p>
-          <div class="links"><a href="#lounge">The Humidor</a></div>
+      <article class="drink">
+        <div class="ph"><img src="assets/img/taps-tvs.jpg" alt="The tap wall at 24th Street Cigar Lounge" loading="lazy"></div>
+        <div class="tx">
+          <h3>One Tap</h3>
+          <p>Ask what is pouring. The taps rotate with the season and the games.</p>
         </div>
       </article>
     </div>
   </div>
 </section>
 
-<!-- LIFE AT 24TH STREET -->
-<section id="life" class="on-cream">
+<!-- ============ 04 GALLERY ============ -->
+<section id="gallery">
   <div class="wrap">
     <div class="sec-head">
-      <p class="eyebrow">Life at 24th Street</p>
-      <h2>Nights at the Lounge</h2>
-      <p>Shot by the lounge and its guests. Follow along at <a href="https://www.instagram.com/24thstreetcigarlounge" style="color:var(--amber-d);font-weight:600;text-decoration:none">@24thstreetcigarlounge</a>.</p>
+      <p class="kicker"><span class="num">04 —</span> Gallery</p>
+      <h2 class="sec">From the floor</h2>
+      <p class="sec-sub">Real nights at 24th Street — the room, the pours, the people.</p>
     </div>
-    <div class="life-grid">
-      <a href="https://www.instagram.com/24thstreetcigarlounge" aria-label="24th Street Cigar Lounge on Instagram"><img src="assets/img/patio.jpg" alt="The patio under string lights" loading="lazy"></a>
-      <a href="https://www.instagram.com/24thstreetcigarlounge" aria-label="24th Street Cigar Lounge on Instagram"><img src="assets/img/cheers.jpg" alt="A cigar and a pour at a patio table" loading="lazy"></a>
-      <a href="https://www.instagram.com/24thstreetcigarlounge" aria-label="24th Street Cigar Lounge on Instagram"><img src="assets/img/bar-drink.jpg" alt="A cocktail at the bar" loading="lazy"></a>
-      <a href="https://www.instagram.com/24thstreetcigarlounge" aria-label="24th Street Cigar Lounge on Instagram"><img src="assets/img/cigar-hand.jpg" alt="Fresh cigars, still in the box" loading="lazy"></a>
-      <a href="https://www.instagram.com/24thstreetcigarlounge" aria-label="24th Street Cigar Lounge on Instagram"><img src="assets/img/old-fashioned.jpg" alt="The 24th Street Old Fashioned" loading="lazy"></a>
-      <a href="https://www.instagram.com/24thstreetcigarlounge" aria-label="24th Street Cigar Lounge on Instagram"><img src="assets/img/about-bar.jpg" alt="A cigar resting by a pour at the bar" loading="lazy"></a>
+    <div class="grid">
+      <figure><img src="assets/img/hero-lounge.jpg" alt="Inside the humidor at 24th Street Cigar Lounge" loading="lazy"></figure>
+      <figure><img src="assets/img/about-bar.jpg" alt="At the bar at 24th Street Cigar Lounge" loading="lazy"></figure>
+      <figure><img src="assets/img/cheers.jpg" alt="Guests toasting at 24th Street Cigar Lounge" loading="lazy"></figure>
+      <figure><img src="assets/img/cigar-hand.jpg" alt="A lit cigar at 24th Street Cigar Lounge" loading="lazy"></figure>
+      <figure><img src="assets/img/interior-bottles.jpg" alt="Spirits shelves at 24th Street Cigar Lounge" loading="lazy"></figure>
+      <figure><img src="assets/img/patio.jpg" alt="The back patio at 24th Street Cigar Lounge" loading="lazy"></figure>
     </div>
+    <p class="ig-line">More nights on Instagram — <a href="https://www.instagram.com/24thstreetcigarlounge" target="_blank" rel="noopener">@24thstreetcigarlounge</a></p>
   </div>
 </section>
 
-<!-- REVIEWS -->
-<section id="reviews">
+<!-- ============ 05 GUEST WORDS ============ -->
+<section id="words" style="padding-top:0">
   <div class="wrap">
-    <div class="rev-wrap">
-      <p class="eyebrow">Word of Mouth</p>
-      <div class="stars" aria-hidden="true" style="margin-top:18px">★★★★☆</div>
-      <p class="rev-badge"><strong>4.1 stars · 21 reviews on Yelp</strong> — and guests saying it in their own words:</p>
+    <div class="sec-head">
+      <p class="kicker"><span class="num">05 —</span> Guest Words</p>
+      <h2 class="sec">Said by the guests</h2>
     </div>
-    <div class="quotes">
-      <blockquote class="quote">
-        <p>"A big thank you to George, the owner at 24th Street Cigar Lounge in Phoenix and his entire staff for making everyone feel welcomed and great hospitality."</p>
-        <footer><b>Scott Johnson</b> · via Facebook</footer>
-      </blockquote>
-      <blockquote class="quote">
+    <div class="words">
+      <blockquote class="word">
         <p>"A good cigar, an Old Fashioned, some smooth music, and absolutely NO DRAMA. Just me, my thoughts, and a little well-deserved relaxation."</p>
-        <footer><b>Shandrika McDowell</b> · guest post</footer>
+        <cite>Shandrika McDowell — Guest post</cite>
       </blockquote>
-      <blockquote class="quote">
+      <blockquote class="word">
+        <p>"A big thank you to George, the owner at 24th Street Cigar Lounge in Phoenix and his entire staff for making everyone feel welcomed and great hospitality."</p>
+        <cite>Scott Johnson — Facebook</cite>
+      </blockquote>
+      <blockquote class="word">
         <p>"What a fabulous cigar bar lounge. Put this on your Phoenix visit list."</p>
-        <footer><b>lisamsigler_</b> · via Instagram</footer>
+        <cite>lisamsigler_ — Instagram</cite>
       </blockquote>
     </div>
+    <p class="rating-line"><b>4.1 / 5</b> from 21 reviews on Yelp</p>
   </div>
 </section>
 
-<!-- CTA BAND -->
+<!-- ============ CTA BAND ============ -->
 <div class="band">
-  <div class="wrap">
-    <h2>Your table is waiting.</h2>
-    <p>Walk-ins welcome every day we're open — or call ahead and the crew will point you to the right cigar and the right seat.</p>
-    <div class="hero-ctas">
-      <a class="btn btn-amber" href="tel:+16022350096">Call (602) 235-0096</a>
-      <a class="btn btn-ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=3407+N+24th+St,+Phoenix,+AZ+85016" target="_blank" rel="noopener">Get Directions</a>
+  <div class="wrap row">
+    <div>
+      <h2>Come see it in person.</h2>
+      <p>Walk-ins welcome during open hours. Groups and brand nights — call ahead and the crew will set the room.</p>
+    </div>
+    <div class="cta">
+      <a class="btn btn-dark" href="tel:+16022350096">Call (602) 235-0096</a>
+      <a class="btn btn-ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=3407+N+24th+St+Phoenix+AZ+85016" target="_blank" rel="noopener">Directions</a>
     </div>
   </div>
 </div>
 
-<!-- VISIT -->
-<section id="visit" class="visit on-cream">
-  <div class="wrap visit-grid">
-    <div class="ph"><img src="assets/img/exterior.jpg" alt="The 24th Street Cigar Lounge storefront at 3407 N 24th St, Phoenix" loading="lazy"></div>
-    <div>
-      <p class="eyebrow">Plan Your Visit</p>
-      <h2>Find the Lounge</h2>
-      <p class="addr">3407 N 24th St, Phoenix, AZ 85016<br>
-      At the corner of 24th Street &amp; Osborn<br>
-      <a href="tel:+16022350096">(602) 235-0096</a></p>
-      <table class="hours" aria-label="Opening hours">
-        <tr data-day="1"><td>Monday</td><td>3:00 PM – 10:00 PM</td></tr>
-        <tr data-day="2"><td>Tuesday</td><td>3:00 PM – 10:00 PM</td></tr>
-        <tr data-day="3"><td>Wednesday</td><td>3:00 PM – 10:00 PM</td></tr>
-        <tr data-day="4"><td>Thursday</td><td>3:00 PM – 10:00 PM</td></tr>
-        <tr data-day="5"><td>Friday</td><td>3:00 PM – 12:00 AM</td></tr>
-        <tr data-day="6"><td>Saturday</td><td>3:00 PM – 12:00 AM</td></tr>
-        <tr data-day="0"><td>Sunday</td><td>12:00 PM – 8:00 PM</td></tr>
-      </table>
-      <p class="note">Happy hour weekdays, 4–6 PM. Lot parking on site. Guests 21+.</p>
-      <div class="visit-ctas">
-        <a class="btn btn-amber" href="https://www.google.com/maps/dir/?api=1&amp;destination=3407+N+24th+St,+Phoenix,+AZ+85016" target="_blank" rel="noopener">Get Directions</a>
-        <a class="btn btn-outline-d" href="tel:+16022350096">Call the Lounge</a>
+<!-- ============ 06 VISIT ============ -->
+<section id="visit">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker"><span class="num">06 —</span> Visit</p>
+      <h2 class="sec">Find the lounge</h2>
+    </div>
+    <div class="visit">
+      <div>
+        <div class="ph"><img src="assets/img/exterior.jpg" alt="24th Street Cigar Lounge storefront at 3407 N 24th St, Phoenix" loading="lazy"></div>
+        <div class="visit-actions">
+          <a class="btn btn-red" href="https://www.google.com/maps/dir/?api=1&amp;destination=3407+N+24th+St+Phoenix+AZ+85016" target="_blank" rel="noopener">Get Directions</a>
+          <a class="btn btn-ghost" href="tel:+16022350096">Call the Lounge</a>
+        </div>
+      </div>
+      <div>
+        <h3>24th Street Cigar Lounge</h3>
+        <p class="addr">3407 N 24th St, Phoenix, AZ 85016<br><span style="color:var(--bone-dim)">At the corner of 24th Street and Osborn. Lot parking, validated.</span></p>
+        <a class="phone-big" href="tel:+16022350096">(602) 235-0096</a>
+        <table class="hours" id="hoursTable" aria-label="Opening hours">
+          <tr data-day="1"><td>Monday</td><td>3:00 PM – 10:00 PM</td></tr>
+          <tr data-day="2"><td>Tuesday</td><td>3:00 PM – 10:00 PM</td></tr>
+          <tr data-day="3"><td>Wednesday</td><td>3:00 PM – 10:00 PM</td></tr>
+          <tr data-day="4"><td>Thursday</td><td>3:00 PM – 10:00 PM</td></tr>
+          <tr data-day="5"><td>Friday</td><td>3:00 PM – 12:00 AM</td></tr>
+          <tr data-day="6"><td>Saturday</td><td>3:00 PM – 12:00 AM</td></tr>
+          <tr data-day="0"><td>Sunday</td><td>12:00 PM – 8:00 PM</td></tr>
+        </table>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer class="site">
+<footer>
   <div class="wrap">
-    <div class="ft">
+    <div class="foot">
       <div>
-        <a class="brand" href="#top">
-          <img src="assets/img/logo-white.png" alt="24th Street Cigar Lounge logo" width="56" height="52">
-          <span class="bn">24th Street<small>Cigar Lounge · Phoenix</small></span>
+        <a class="brand" href="#top" style="margin-bottom:14px">
+          <img src="assets/img/logo-white.png" alt="24th Street Cigar Lounge logo">
+          <span><span class="bname">24TH STREET</span><br><span class="bsub">Cigar Lounge · Phoenix</span></span>
         </a>
-        <p>A family-run cigar lounge and full bar, co-owned by George Janko. From humble beginnings as a liquor market to the corner's place for a good cigar, a proper pour, and an unhurried night.</p>
+        <p>A family-run cigar lounge and full bar, from a neighborhood liquor market to Phoenix's cigar room. Co-owned by George Janko.</p>
       </div>
       <div>
         <h4>Explore</h4>
-        <ul>
-          <li><a href="#lounge">The Lounge</a></li>
-          <li><a href="#events">Events</a></li>
-          <li><a href="#signatures">Signatures</a></li>
-          <li><a href="#life">Life at 24th Street</a></li>
-          <li><a href="#reviews">Reviews</a></li>
-          <li><a href="#visit">Hours &amp; Directions</a></li>
-        </ul>
+        <a href="#lounge">The Lounge</a>
+        <a href="#events">Events</a>
+        <a href="#bar">The Bar</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#visit">Visit</a>
       </div>
       <div>
         <h4>Visit</h4>
-        <ul>
-          <li>3407 N 24th St, Phoenix, AZ 85016</li>
-          <li><a href="tel:+16022350096">(602) 235-0096</a></li>
-          <li>Mon–Thu 3 PM – 10 PM</li>
-          <li>Fri–Sat 3 PM – 12 AM</li>
-          <li>Sun 12 PM – 8 PM</li>
-          <li><a href="https://www.instagram.com/24thstreetcigarlounge" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.facebook.com/274634415740737" target="_blank" rel="noopener">Facebook</a> · <a href="https://www.yelp.com/biz/ukFbQtQiIh6yJv3GcyOx6A" target="_blank" rel="noopener">Yelp</a></li>
-        </ul>
+        <p>3407 N 24th St<br>Phoenix, AZ 85016</p>
+        <a href="tel:+16022350096">(602) 235-0096</a>
+        <a href="https://www.instagram.com/24thstreetcigarlounge" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.facebook.com/274634415740737" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://www.yelp.com/biz/ukFbQtQiIh6yJv3GcyOx6A" target="_blank" rel="noopener">Yelp</a>
       </div>
     </div>
     <div class="fine">
-      <span>© <span id="yr">2026</span> 24th Street Cigar Lounge · Phoenix, Arizona</span>
-      <span>Every photo on this page is the lounge's own. Please enjoy responsibly — 21+.</span>
+      <span>Open 7 days — Mon–Thu 3–10 · Fri–Sat 3–12 · Sun 12–8</span>
+      <span>Happy hour weekdays 4–6 PM</span>
+      <span>Guests 21+</span>
     </div>
   </div>
 </footer>
 
-<!-- sticky mobile action bar -->
-<div class="mbar">
-  <a class="call" href="tel:+16022350096">Call Now</a>
-  <a href="https://www.google.com/maps/dir/?api=1&amp;destination=3407+N+24th+St,+Phoenix,+AZ+85016" target="_blank" rel="noopener">Directions</a>
+<div class="stickybar">
+  <a class="call" href="tel:+16022350096">Call</a>
+  <a href="https://www.google.com/maps/dir/?api=1&amp;destination=3407+N+24th+St+Phoenix+AZ+85016" target="_blank" rel="noopener">Directions</a>
   <a href="#visit">Hours</a>
 </div>
 
 <script>
-// header state
-var hdr=document.getElementById('hdr');
-addEventListener('scroll',function(){hdr.classList.toggle('scrolled',scrollY>40)},{passive:true});
-hdr.classList.toggle('scrolled',scrollY>40);
-
-// hero slideshow — crossfade + Ken Burns, the lounge's real photos only
 (function(){
-  var slides=[].slice.call(document.querySelectorAll('#heroMedia .slide'));
-  if(slides.length<2) return;
-  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var i=0;
-  slides[0].classList.add('kb');
-  setInterval(function(){
-    slides[i].classList.remove('on','kb','kb2');
-    i=(i+1)%slides.length;
-    slides[i].classList.add('on', i%2? 'kb2':'kb');
-  },7000);
-})();
-
-// open-now status + today's hours highlight (Phoenix time)
-(function(){
-  var H={0:[12,20],1:[15,22],2:[15,22],3:[15,22],4:[15,22],5:[15,24],6:[15,24]};
-  var now=new Date(new Date().toLocaleString('en-US',{timeZone:'America/Phoenix'}));
-  var d=now.getDay(), h=now.getHours()+now.getMinutes()/60, t=document.getElementById('statusText'), dot=document.getElementById('statusDot');
-  var o=H[d];
-  function fmt(x){x=x%24;var s=x>=12?'PM':'AM';var hr=x%12;if(hr===0)hr=12;return hr+' '+s;}
-  if(h>=o[0]&&h<o[1]){ t.textContent='Open now · closes '+fmt(o[1]); }
-  else{ dot.classList.add('closed'); t.textContent = h<o[0] ? 'Opens today at '+fmt(o[0]) : 'Opens '+fmt(H[(d+1)%7][0])+' tomorrow'; }
-  var row=document.querySelector('.hours tr[data-day="'+d+'"]'); if(row) row.classList.add('today');
-  document.getElementById('yr').textContent=now.getFullYear();
+  // Open-now state + today's row highlight, America/Phoenix time.
+  var H = {0:[12,20],1:[15,22],2:[15,22],3:[15,22],4:[15,22],5:[15,24],6:[15,24]};
+  function fmt(h){ if(h===24) return "12 AM"; var ap = h>=12 ? "PM":"AM"; var hh = h%12; if(hh===0) hh=12; return hh+" "+ap; }
+  try{
+    var now = new Date(new Date().toLocaleString("en-US",{timeZone:"America/Phoenix"}));
+    var d = now.getDay(), mins = now.getHours()*60 + now.getMinutes();
+    var o = H[d][0]*60, c = H[d][1]*60;
+    var open = mins >= o && mins < c;
+    var t = document.getElementById("openText"), dot = document.getElementById("openDot");
+    if(open){ t.textContent = "Open now · til " + fmt(H[d][1]); }
+    else { dot.classList.add("closed"); if(mins >= c){ t.textContent = "Opens " + fmt(H[(d+1)%7][0]) + " tomorrow"; } else { t.textContent = "Opens " + fmt(H[d][0]) + " today"; } }
+    var rows = document.querySelectorAll("#hoursTable tr");
+    rows.forEach(function(r){ if(parseInt(r.getAttribute("data-day"),10) === d) r.classList.add("today"); });
+  }catch(e){}
+  // Respect reduced-motion: do not autoplay the hero video.
+  try{
+    var v = document.querySelector(".hero video");
+    if(v && window.matchMedia("(prefers-reduced-motion: reduce)").matches){ v.removeAttribute("autoplay"); v.pause(); }
+  }catch(e){}
 })();
 </script>
 </body>

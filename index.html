@@ -17,8 +17,7 @@
 <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css">
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 <style>
-  /* DaisyUI custom theme — CDN path uses [data-theme] CSS variables (per Blair WEB-TOOLKIT.md).
-     @plugin syntax is NOT used: it breaks the Tailwind browser build. */
+  /* Custom DaisyUI theme via [data-theme] CSS variables (CDN path). */
   [data-theme="cigar"]{
     color-scheme: dark;
     --color-base-100:#171009;
@@ -49,29 +48,49 @@
   .card-frame{border:1px solid rgba(243,234,217,.14);background:#211710}
   .paper .card-frame{border-color:rgba(36,23,8,.14);background:#fffaf0}
   img.photo{object-fit:cover;width:100%;height:100%}
+  section{scroll-margin-top:4.5rem}
   .fade-up{opacity:0;transform:translateY(22px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
   .fade-up.in{opacity:1;transform:none}
-  @media (prefers-reduced-motion: reduce){.fade-up{opacity:1;transform:none;transition:none} html{scroll-behavior:auto}}
   .marquee-track{display:flex;gap:0;width:max-content;animation:marquee 36s linear infinite}
   @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-  @media (prefers-reduced-motion: reduce){.marquee-track{animation:none}}
-  /* Hero entrance: real photo settles from a slow zoom while the front plane rises in stagger */
-  .hero-photo{animation:heroSettle 2.6s cubic-bezier(.22,1,.36,1) both}
-  @keyframes heroSettle{from{transform:scale(1.07)}to{transform:scale(1)}}
+  /* ===== HERO SLIDESHOW — continuous crossfade + Ken Burns, always moving =====
+     4 slides, 28s cycle, 7s per slide. Each slide fades in, holds, fades out
+     while its photo slowly zooms/pans (alternating direction per slide). */
+  .hero-slide{position:absolute;inset:0;opacity:0;animation:heroFade 28s linear infinite;will-change:opacity}
+  .hero-slide img{width:100%;height:100%;object-fit:cover;filter:brightness(.8);will-change:transform}
+  .hero-slide .kb-a{animation:kenburnsA 28s linear infinite}
+  .hero-slide .kb-b{animation:kenburnsB 28s linear infinite}
+  @keyframes heroFade{0%{opacity:0}4%{opacity:1}25%{opacity:1}29%{opacity:0}100%{opacity:0}}
+  @keyframes kenburnsA{0%{transform:scale(1.05) translate(0,0)}25%{transform:scale(1.16) translate(-1.6%,1.2%)}30%{transform:scale(1.17) translate(-1.7%,1.3%)}100%{transform:scale(1.05) translate(0,0)}}
+  @keyframes kenburnsB{0%{transform:scale(1.16) translate(1.6%,-1.1%)}25%{transform:scale(1.05) translate(0,0)}30%{transform:scale(1.04) translate(0,0)}100%{transform:scale(1.16) translate(1.6%,-1.1%)}}
+  .hero-dot{width:.55rem;height:.55rem;border-radius:9999px;background:rgba(243,234,217,.35);transition:background .5s ease,transform .5s ease}
+  .hero-dot.active{background:#d9a441;transform:scale(1.35)}
+  /* Headline reveal on load */
   .hero-anim{opacity:0;animation:heroRise .95s cubic-bezier(.22,1,.36,1) forwards}
   @keyframes heroRise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
-  .thread-msg{animation:msgIn .45s cubic-bezier(.22,1,.36,1) both}
-  @keyframes msgIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-  @media (prefers-reduced-motion: reduce){.hero-anim{opacity:1;animation:none}.hero-photo{animation:none}.thread-msg{animation:none}}
-  .thread-msg{max-width:82%;padding:.6rem .85rem;border-radius:1rem;font-size:.86rem;line-height:1.45;text-align:left}
-  .thread-in{background:#2e2013;color:#f3ead9;border-bottom-left-radius:.25rem}
-  .thread-out{background:#d9a441;color:#1c1204;border-bottom-right-radius:.25rem;margin-left:auto}
-  .thread-note{text-align:center;font-size:.7rem;color:#cbbd9d;letter-spacing:.08em;text-transform:uppercase}
+  /* Gallery hover */
+  .g-tile img{transition:transform 1.2s cubic-bezier(.22,1,.36,1)}
+  .g-tile:hover img{transform:scale(1.06)}
+  /* Photo slot — an intentional framed panel awaiting a real photo (see PHOTO-REQUESTS.md) */
+  .photo-slot{border:1px solid rgba(217,164,65,.45);background:radial-gradient(ellipse at center,#2e2013 0%,#1c1204 78%);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:.65rem;padding:1.5rem}
+  .photo-slot img{width:3.2rem;height:3.2rem;object-fit:contain;opacity:.55}
+  .photo-slot .slot-label{letter-spacing:.3em;text-transform:uppercase;font-size:.66rem;font-weight:600;color:#cbbd9d}
+  .photo-slot .slot-title{font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:1.35rem;color:#f3ead9}
   input,select,textarea{color-scheme:dark}
   .faq-body{display:none}
   .faq-item.open .faq-body{display:block}
   .faq-item.open .faq-toggle{transform:rotate(45deg)}
   .faq-toggle{transition:transform .3s cubic-bezier(.22,1,.36,1)}
+  @media (prefers-reduced-motion: reduce){
+    .fade-up{opacity:1;transform:none;transition:none}
+    html{scroll-behavior:auto}
+    .marquee-track{animation:none}
+    .hero-slide{animation:none;opacity:0}
+    .hero-slide:first-child{opacity:1}
+    .hero-slide img{animation:none!important;transform:none}
+    .hero-anim{opacity:1;animation:none}
+    .g-tile img{transition:none}
+  }
 </style>
 <script type="application/ld+json">
 {
@@ -108,10 +127,10 @@
   "mainEntity": [
     { "@type": "Question", "name": "What are the hours at 24th Street Cigar Lounge?", "acceptedAnswer": { "@type": "Answer", "text": "Sunday 12 PM to 8 PM, Monday through Thursday 3 PM to 10 PM, and Friday and Saturday 3 PM to midnight." } },
     { "@type": "Question", "name": "Where is 24th Street Cigar Lounge located, and is there parking?", "acceptedAnswer": { "@type": "Answer", "text": "3407 N 24th St, Phoenix, AZ 85016, at the corner of 24th Street and Osborn. Lot parking is available." } },
-    { "@type": "Question", "name": "What can I expect on a first visit?", "acceptedAnswer": { "@type": "Answer", "text": "A family-run lounge with a humidor of 300 cigar options from light bodied to full, a full bar with 50 premium spirits and craft cocktails, TVs, and a back patio. The staff can help you pick a cigar for your taste." } },
-    { "@type": "Question", "name": "Can I book a private event or group night?", "acceptedAnswer": { "@type": "Answer", "text": "The lounge hosts brand cigar nights and events. Send a private booking inquiry through the reservation form on this page or call (602) 235-0096 and the team will follow up." } },
-    { "@type": "Question", "name": "How do reservations work?", "acceptedAnswer": { "@type": "Answer", "text": "Send a reservation request through the form on this page with your name, phone, date and party size, or call (602) 235-0096 during open hours." } },
-    { "@type": "Question", "name": "What does the lounge carry?", "acceptedAnswer": { "@type": "Answer", "text": "300 cigar options from light bodied to full from around the globe, and 50 premium spirits and craft cocktails, including the 24th Street Old Fashioned and Georgie's Spicy Margarita documented on the lounge's Yelp photos." } }
+    { "@type": "Question", "name": "What can I expect on a first visit?", "acceptedAnswer": { "@type": "Answer", "text": "A family-run lounge with a humidor of 300 cigar options from light bodied to full, a full bar with 50 premium spirits and craft cocktails, TVs, and a back patio." } },
+    { "@type": "Question", "name": "Can I book a private event or group night?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The lounge hosts brand cigar nights and takes private booking inquiries. Call (602) 235-0096 and the team will follow up." } },
+    { "@type": "Question", "name": "Do I need a reservation?", "acceptedAnswer": { "@type": "Answer", "text": "Walk-ins are welcome. For groups, patio nights and private events, call (602) 235-0096 ahead and the team will have things ready." } },
+    { "@type": "Question", "name": "What does the lounge carry?", "acceptedAnswer": { "@type": "Answer", "text": "300 cigar options from light bodied to full from around the globe, and 50 premium spirits and craft cocktails, including the 24th Street Old Fashioned and Georgie's Spicy Margarita." } }
   ]
 }
 </script>
@@ -119,7 +138,7 @@
 <body class="antialiased">
 
 <!-- ============ HEADER ============ -->
-<header class="fixed top-0 inset-x-0 z-50 bg-[#171009]/92 backdrop-blur border-b hairline" style="background:rgba(23,16,9,.93)">
+<header class="fixed top-0 inset-x-0 z-50 border-b hairline" style="background:rgba(23,16,9,.93);backdrop-filter:blur(8px)">
   <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
     <a href="#top" class="flex items-center gap-3 min-w-0">
       <img src="assets/img/logo-white.png" alt="24th Street Cigar Lounge logo" class="h-10 w-10 object-contain shrink-0">
@@ -133,71 +152,78 @@
       <a href="#reviews" class="hover:text-white">Reviews</a>
       <a href="#visit" class="hover:text-white">Visit</a>
     </nav>
-    <div class="flex items-center gap-2 shrink-0">
-      <a href="#reserve" class="btn btn-ghost btn-sm hidden sm:inline-flex border hairline text-[#f3ead9]">Reserve</a>
-      <a href="tel:+16022350096" class="btn btn-primary btn-sm sm:btn-md font-semibold">Call (602) 235-0096</a>
-    </div>
+    <a href="tel:+16022350096" class="btn btn-primary btn-sm sm:btn-md font-semibold shrink-0">Call (602) 235-0096</a>
   </div>
 </header>
 
-<!-- ============ HERO — Three planes: giant type BEHIND, real photo MIDDLE, CTAs FRONT ============ -->
-<section id="top" class="relative min-h-[100svh] flex flex-col overflow-hidden pt-16">
-  <!-- Back plane: oversized typography -->
-  <div class="back-word top-[13%] text-[26vw] lg:text-[19rem]" aria-hidden="true">24TH</div>
-  <!-- Middle plane: the business's real hero photo -->
-  <div class="absolute inset-0 top-16 px-3 sm:px-6 pb-40 sm:pb-44">
-    <img src="assets/img/hero-lounge.jpg" alt="Smoking a cigar in front of the open humidor at 24th Street Cigar Lounge in Phoenix" class="photo rounded-2xl hero-photo" style="filter:brightness(.82)">
-    <div class="absolute inset-0 mx-3 sm:mx-6 mb-40 sm:mb-44 rounded-2xl" style="background:linear-gradient(180deg,rgba(23,16,9,.42),rgba(23,16,9,.06) 38%,rgba(23,16,9,.78))"></div>
+<!-- ============ HERO — animated slideshow: real photos, Ken Burns + crossfade ============ -->
+<section id="top" class="relative min-h-[100svh] flex flex-col overflow-hidden">
+  <!-- Slideshow (back + middle planes) -->
+  <div class="absolute inset-0" aria-hidden="true">
+    <div class="hero-slide" style="animation-delay:0s">
+      <img src="assets/img/hero-lounge.jpg" alt="" class="kb-a" style="animation-delay:0s">
+    </div>
+    <div class="hero-slide" style="animation-delay:7s">
+      <img src="assets/img/interior-bottles.jpg" alt="" class="kb-b" style="animation-delay:7s">
+    </div>
+    <div class="hero-slide" style="animation-delay:14s">
+      <img src="assets/img/patio.jpg" alt="" class="kb-a" style="animation-delay:14s">
+    </div>
+    <div class="hero-slide" style="animation-delay:21s">
+      <img src="assets/img/about-bar.jpg" alt="" class="kb-b" style="animation-delay:21s">
+    </div>
+    <div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(23,16,9,.55),rgba(23,16,9,.18) 40%,rgba(23,16,9,.82))"></div>
+    <div class="back-word top-[11%] text-[26vw] lg:text-[19rem]">24TH</div>
   </div>
-  <!-- Front plane: headline + CTAs overlapping the photo -->
-  <div class="relative z-10 flex-1 flex flex-col items-center justify-end text-center px-4 pb-10 w-full max-w-4xl mx-auto">
-    <p id="openStatus" class="hero-anim inline-flex items-center gap-2 text-xs sm:text-sm font-medium bg-[#171009]/85 border hairline rounded-full px-4 py-2 mb-5" style="animation-delay:.05s">
-      <span id="openDot" class="inline-block w-2 h-2 rounded-full bg-[#d9a441]"></span>
+  <!-- Front plane: headline + one-tap actions -->
+  <div class="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-4 pt-28 pb-32 w-full max-w-4xl mx-auto">
+    <p id="openStatus" class="hero-anim inline-flex items-center gap-2 text-xs sm:text-sm font-medium border hairline rounded-full px-4 py-2 mb-5" style="animation-delay:.05s;background:rgba(23,16,9,.85)">
+      <span id="openDot" class="inline-block w-2 h-2 rounded-full" style="background:#d9a441"></span>
       <span id="openText">At the corner of 24th Street &amp; Osborn, Phoenix</span>
     </p>
     <h1 class="hero-anim font-display font-black leading-[0.98] text-5xl sm:text-7xl lg:text-[5.4rem]" style="animation-delay:.18s">Phoenix&rsquo;s Family-Run<br>Cigar Lounge</h1>
     <p class="hero-anim font-serif-accent italic text-2xl sm:text-3xl mt-4 text-[#e9dfc9]" style="animation-delay:.34s">300 cigars. 50 premium spirits. One long, unhurried evening.</p>
-    <p class="hero-anim mt-4 text-sm sm:text-base text-[#e9dfc9] max-w-xl mx-auto" style="animation-delay:.48s">Co-owned by George Janko and run by family — a humidor, a full bar, and a back patio at 3407 N 24th St.</p>
-    <div class="hero-anim mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 w-full sm:w-auto" style="animation-delay:.62s">
-      <a href="#reserve" class="btn btn-primary btn-lg w-full sm:w-auto font-semibold text-base px-8">Reserve Your Evening</a>
-      <a href="tel:+16022350096" class="btn btn-lg w-full sm:w-auto font-semibold text-base px-8 bg-transparent text-[#f3ead9] border border-[rgba(243,234,217,.55)] hover:bg-[rgba(243,234,217,.08)]">Call (602) 235-0096</a>
+    <div class="hero-anim mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 w-full sm:w-auto" style="animation-delay:.5s">
+      <a href="tel:+16022350096" class="btn btn-primary btn-lg w-full sm:w-auto font-semibold text-base px-8">Call (602) 235-0096</a>
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=3407+N+24th+St+Phoenix+AZ+85016" target="_blank" rel="noopener" class="btn btn-lg w-full sm:w-auto font-semibold text-base px-8 bg-transparent text-[#f3ead9] hover:bg-[rgba(243,234,217,.08)]" style="border:1px solid rgba(243,234,217,.55)">Get Directions</a>
     </div>
-    <p class="hero-anim mt-5 pb-16 sm:pb-0 text-xs tracking-[.22em] uppercase text-[#cbbd9d]" style="animation-delay:.76s">Sun 12–8 &nbsp;·&nbsp; Mon–Thu 3–10 &nbsp;·&nbsp; Fri–Sat 3–12</p>
+    <p class="hero-anim mt-6 text-xs tracking-[.22em] uppercase text-[#cbbd9d]" style="animation-delay:.64s">Sun 12–8 &nbsp;·&nbsp; Mon–Thu 3–10 &nbsp;·&nbsp; Fri–Sat 3–12</p>
+    <div class="hero-anim mt-7 flex items-center gap-2.5" style="animation-delay:.78s" aria-hidden="true">
+      <span class="hero-dot active"></span><span class="hero-dot"></span><span class="hero-dot"></span><span class="hero-dot"></span>
+    </div>
   </div>
 </section>
 
 <!-- ============ MARQUEE ============ -->
-<div class="border-y hairline bg-[#120c07] overflow-hidden py-3" aria-hidden="true">
+<div class="border-y hairline overflow-hidden py-3" style="background:#120c07" aria-hidden="true">
   <div class="marquee-track font-display font-bold text-lg sm:text-xl tracking-wide">
-    <span class="px-4 whitespace-nowrap">300 CIGAR OPTIONS &nbsp;·&nbsp; 50 PREMIUM SPIRITS &nbsp;·&nbsp; FULL BAR &nbsp;·&nbsp; BACK PATIO &nbsp;·&nbsp; CRAFT COCKTAILS &nbsp;·&nbsp; PHOENIX, ARIZONA &nbsp;·&nbsp;</span>
-    <span class="px-4 whitespace-nowrap">300 CIGAR OPTIONS &nbsp;·&nbsp; 50 PREMIUM SPIRITS &nbsp;·&nbsp; FULL BAR &nbsp;·&nbsp; BACK PATIO &nbsp;·&nbsp; CRAFT COCKTAILS &nbsp;·&nbsp; PHOENIX, ARIZONA &nbsp;·&nbsp;</span>
+    <span class="px-4 whitespace-nowrap">300 CIGAR OPTIONS &nbsp;·&nbsp; 50 PREMIUM SPIRITS &nbsp;·&nbsp; FULL BAR &nbsp;·&nbsp; BACK PATIO &nbsp;·&nbsp; PHOENIX, ARIZONA &nbsp;·&nbsp;</span>
+    <span class="px-4 whitespace-nowrap">300 CIGAR OPTIONS &nbsp;·&nbsp; 50 PREMIUM SPIRITS &nbsp;·&nbsp; FULL BAR &nbsp;·&nbsp; BACK PATIO &nbsp;·&nbsp; PHOENIX, ARIZONA &nbsp;·&nbsp;</span>
   </div>
 </div>
 
 <!-- ============ STORY ============ -->
-<section id="story" class="relative overflow-hidden py-24 sm:py-32">
+<section id="story" class="relative overflow-hidden py-24 sm:py-28">
   <div class="back-word top-6 text-[22vw] lg:text-[15rem]" aria-hidden="true">FAMILY</div>
   <div class="relative z-10 max-w-6xl mx-auto px-4 text-center">
     <p class="eyebrow fade-up">Our Story</p>
     <h2 class="font-display font-bold text-4xl sm:text-5xl mt-4 fade-up">From a Liquor Market<br>to Phoenix&rsquo;s Lounge</h2>
-    <div class="grid md:grid-cols-2 gap-10 items-center mt-14 text-center md:text-left">
-      <div class="relative fade-up">
-        <img src="assets/img/about-bar.jpg" alt="A cigar and a pour resting on the bar at 24th Street Cigar Lounge, TVs glowing behind" class="rounded-2xl w-full max-h-[560px] object-cover">
-        <a href="#reserve" class="btn btn-primary font-semibold absolute -bottom-5 left-1/2 -translate-x-1/2 md:left-auto md:right-6 md:translate-x-0 shadow-xl">Plan a Visit</a>
+    <div class="grid md:grid-cols-2 gap-10 items-center mt-12">
+      <div class="fade-up">
+        <img src="assets/img/about-bar.jpg" alt="A cigar and a pour resting on the bar at 24th Street Cigar Lounge" class="rounded-2xl w-full max-h-[520px] object-cover">
       </div>
-      <div class="fade-up pt-4 md:pt-0">
-        <p class="text-base sm:text-lg leading-relaxed text-[#e9dfc9]">24th Street Cigar Lounge began with humble beginnings as a liquor market — and grew, stick by stick and pour by pour, into a premier lounge at the corner of 24th Street and Osborn.</p>
-        <p class="text-base sm:text-lg leading-relaxed text-[#e9dfc9] mt-5">Co-owned by George Janko, the lounge is proudly family-run. That is the whole idea here: walk in as a guest, settle in like family, and let the evening take its time.</p>
+      <div class="fade-up text-center md:text-left">
+        <p class="text-base sm:text-lg leading-relaxed text-[#e9dfc9]">It began as a humble liquor market and grew, stick by stick and pour by pour, into a premier lounge — co-owned by George Janko and proudly family-run. Walk in as a guest, settle in like family.</p>
         <p class="font-serif-accent italic text-2xl mt-7 text-[#f3ead9]">&ldquo;Here, George Janko welcomes you to be a part of our tapestry.&rdquo;</p>
-        <p class="text-xs tracking-[.22em] uppercase text-[#cbbd9d] mt-2">— From the lounge&rsquo;s own story</p>
-        <div class="grid grid-cols-2 gap-4 mt-9 text-center">
-          <div class="card-frame rounded-xl py-6 px-3">
-            <p class="font-display font-black text-4xl sm:text-5xl">300</p>
-            <p class="text-xs tracking-[.18em] uppercase text-[#cbbd9d] mt-2">Cigar options, light bodied to full, from around the globe</p>
+        <p class="text-xs tracking-[.22em] uppercase text-[#cbbd9d] mt-2">— The lounge&rsquo;s own story</p>
+        <div class="flex items-stretch justify-center md:justify-start gap-4 mt-9 text-center">
+          <div class="card-frame rounded-xl py-5 px-6">
+            <p class="font-display font-black text-4xl">300</p>
+            <p class="text-[.65rem] tracking-[.18em] uppercase text-[#cbbd9d] mt-1.5">Cigar options</p>
           </div>
-          <div class="card-frame rounded-xl py-6 px-3">
-            <p class="font-display font-black text-4xl sm:text-5xl">50</p>
-            <p class="text-xs tracking-[.18em] uppercase text-[#cbbd9d] mt-2">Premium spirits &amp; craft cocktails to satisfy your palate</p>
+          <div class="card-frame rounded-xl py-5 px-6">
+            <p class="font-display font-black text-4xl">50</p>
+            <p class="text-[.65rem] tracking-[.18em] uppercase text-[#cbbd9d] mt-1.5">Premium spirits</p>
           </div>
         </div>
       </div>
@@ -205,121 +231,137 @@
   </div>
 </section>
 
-<!-- ============ THE LOUNGE EXPERIENCE ============ -->
-<section id="lounge" class="paper py-24 sm:py-32 relative overflow-hidden">
+<!-- ============ THE LOUNGE ============ -->
+<section id="lounge" class="paper py-24 sm:py-28 relative overflow-hidden">
   <div class="max-w-6xl mx-auto px-4 text-center relative z-10">
     <p class="eyebrow fade-up">The Lounge</p>
     <h2 class="font-display font-bold text-4xl sm:text-5xl mt-4 fade-up">Settle In. Stay Awhile.</h2>
-    <p class="mt-5 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed fade-up">A spacious indoor lounge and a back patio made for unhurried nights — the game on, a good cigar lit, and a proper pour in hand.</p>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-14 text-center">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-12 text-center">
       <article class="card-frame rounded-2xl overflow-hidden fade-up">
         <div class="h-64"><img src="assets/img/patio.jpg" alt="The back patio at 24th Street Cigar Lounge with string lights and lounge seating" class="photo" loading="lazy"></div>
         <div class="p-6">
           <h3 class="font-display font-bold text-xl">The Back Patio</h3>
-          <p class="text-sm leading-relaxed mt-2 opacity-80">Outdoor seating under the string lights — built for intimate gatherings and desert evenings.</p>
+          <p class="text-sm leading-relaxed mt-2 opacity-80">String lights, open air, desert evenings.</p>
         </div>
       </article>
       <article class="card-frame rounded-2xl overflow-hidden fade-up">
         <div class="h-64"><img src="assets/img/taps-tvs.jpg" alt="Beer taps under the TVs at 24th Street Cigar Lounge" class="photo" loading="lazy"></div>
         <div class="p-6">
           <h3 class="font-display font-bold text-xl">The Game, On</h3>
-          <p class="text-sm leading-relaxed mt-2 opacity-80">TVs throughout the lounge and a full tap row — catch the game without giving up the cigar.</p>
+          <p class="text-sm leading-relaxed mt-2 opacity-80">TVs throughout, a full tap row, your cigar in hand.</p>
         </div>
       </article>
       <article class="card-frame rounded-2xl overflow-hidden fade-up">
         <div class="h-64"><img src="assets/img/interior-bottles.jpg" alt="Inside 24th Street Cigar Lounge — humidor case, bottle shelves and bar stools" class="photo" loading="lazy"></div>
         <div class="p-6">
           <h3 class="font-display font-bold text-xl">The Room Itself</h3>
-          <p class="text-sm leading-relaxed mt-2 opacity-80">Humidor cases, deep bottle shelves and a long bar — a room built by people who love this ritual.</p>
+          <p class="text-sm leading-relaxed mt-2 opacity-80">Humidor cases, deep shelves, a long bar.</p>
         </div>
       </article>
       <article class="card-frame rounded-2xl overflow-hidden fade-up">
         <div class="h-64"><img src="assets/img/exterior.jpg" alt="The storefront of 24th Street Cigar Lounge at 3407 N 24th St, Phoenix" class="photo" loading="lazy"></div>
         <div class="p-6">
-          <h3 class="font-display font-bold text-xl">Easy to Find, Easy to Park</h3>
-          <p class="text-sm leading-relaxed mt-2 opacity-80">On the corner of 24th Street &amp; Osborn, with lot parking right at the door.</p>
+          <h3 class="font-display font-bold text-xl">Easy to Find</h3>
+          <p class="text-sm leading-relaxed mt-2 opacity-80">Corner of 24th Street &amp; Osborn, lot parking at the door.</p>
         </div>
       </article>
     </div>
-    <div class="mt-12 fade-up">
-      <a href="tel:+16022350096" class="btn btn-primary btn-lg font-semibold px-8">Call the Lounge — (602) 235-0096</a>
+  </div>
+</section>
+
+<!-- ============ GALLERY — the lounge in pictures ============ -->
+<section id="gallery" class="py-24 sm:py-28 relative overflow-hidden">
+  <div class="max-w-6xl mx-auto px-4 text-center relative z-10">
+    <p class="eyebrow fade-up">Gallery</p>
+    <h2 class="font-display font-bold text-4xl sm:text-5xl mt-4 fade-up">The Room, the Pour, the Night</h2>
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mt-12">
+      <figure class="g-tile rounded-2xl overflow-hidden h-64 sm:h-80 fade-up"><img src="assets/img/bar-drink.jpg" alt="A pour and a cigar resting at the bar" class="photo" loading="lazy"></figure>
+      <figure class="g-tile rounded-2xl overflow-hidden h-64 sm:h-80 fade-up"><img src="assets/img/cheers.jpg" alt="Raising a glass at 24th Street Cigar Lounge" class="photo" loading="lazy"></figure>
+      <figure class="g-tile rounded-2xl overflow-hidden h-64 sm:h-80 fade-up"><img src="assets/img/cigar-hand.jpg" alt="Tonight's pick — a cigar in hand at the lounge" class="photo" loading="lazy"></figure>
+      <figure class="g-tile rounded-2xl overflow-hidden h-64 sm:h-80 fade-up"><img src="assets/img/old-fashioned.jpg" alt="The 24th Street Old Fashioned on the bar" class="photo" loading="lazy"></figure>
+      <figure class="g-tile rounded-2xl overflow-hidden h-64 sm:h-80 col-span-2 fade-up"><img src="assets/img/patio.jpg" alt="The back patio under string lights" class="photo" loading="lazy"></figure>
+      <figure class="g-tile rounded-2xl overflow-hidden h-64 sm:h-80 fade-up"><img src="assets/img/spicy-margarita.jpg" alt="Georgie's Spicy Margarita at the bar" class="photo" loading="lazy"></figure>
+      <figure class="g-tile rounded-2xl overflow-hidden h-64 sm:h-80 fade-up"><img src="assets/img/taps-tvs.jpg" alt="Taps and TVs inside the lounge" class="photo" loading="lazy"></figure>
     </div>
   </div>
 </section>
 
 <!-- ============ HUMIDOR & BAR ============ -->
-<section id="humidor" class="relative overflow-hidden py-24 sm:py-32">
+<section id="humidor" class="relative overflow-hidden py-24 sm:py-28">
   <div class="back-word top-6 text-[20vw] lg:text-[13rem]" aria-hidden="true">HUMIDOR</div>
   <div class="relative z-10 max-w-6xl mx-auto px-4 text-center">
     <p class="eyebrow fade-up">Humidor &amp; Bar</p>
     <h2 class="font-display font-bold text-4xl sm:text-5xl mt-4 fade-up">Three Hundred Ways<br>to Start the Night</h2>
-    <p class="mt-5 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed text-[#e9dfc9] fade-up">From light bodied to full, from all around the globe — 300 cigar options in the humidor, and 50 premium spirits and craft cocktails behind the bar to pair with them.</p>
-    <div class="grid sm:grid-cols-3 gap-5 mt-14">
+    <p class="mt-5 max-w-xl mx-auto text-base sm:text-lg leading-relaxed text-[#e9dfc9] fade-up">Light bodied to full, from around the globe — with 50 premium spirits behind the bar.</p>
+    <div class="grid sm:grid-cols-3 gap-5 mt-12">
       <figure class="card-frame rounded-2xl overflow-hidden fade-up">
         <div class="h-80"><img src="assets/img/cigar-hand.jpg" alt="Tonight's pick — a cigar held in hand at 24th Street Cigar Lounge" class="photo" loading="lazy"></div>
         <figcaption class="p-5">
           <p class="font-display font-bold text-lg">Tonight&rsquo;s Pick</p>
-          <p class="text-sm text-[#cbbd9d] mt-1">Straight from the humidor — ask the staff what is smoking well.</p>
+          <p class="text-sm text-[#cbbd9d] mt-1">Ask the staff what is smoking well.</p>
         </figcaption>
       </figure>
       <figure class="card-frame rounded-2xl overflow-hidden fade-up">
         <div class="h-80"><img src="assets/img/old-fashioned.jpg" alt="The 24th Street Old Fashioned cocktail on the bar" class="photo" loading="lazy"></div>
         <figcaption class="p-5">
           <p class="font-display font-bold text-lg">24th Street Old Fashioned</p>
-          <p class="text-sm text-[#cbbd9d] mt-1">The house classic, documented on the lounge&rsquo;s own Yelp photos.</p>
+          <p class="text-sm text-[#cbbd9d] mt-1">The house classic — a customer favorite.</p>
         </figcaption>
       </figure>
       <figure class="card-frame rounded-2xl overflow-hidden fade-up">
         <div class="h-80"><img src="assets/img/spicy-margarita.jpg" alt="Georgie's Spicy Margarita at 24th Street Cigar Lounge" class="photo" loading="lazy"></div>
         <figcaption class="p-5">
           <p class="font-display font-bold text-lg">Georgie&rsquo;s Spicy Margarita</p>
-          <p class="text-sm text-[#cbbd9d] mt-1">Named for the owner himself — a house pour with a kick.</p>
+          <p class="text-sm text-[#cbbd9d] mt-1">Named for the owner, with a kick.</p>
         </figcaption>
       </figure>
     </div>
-    <div class="grid sm:grid-cols-2 gap-5 mt-5 max-w-3xl mx-auto">
-      <div class="rounded-2xl overflow-hidden h-72 fade-up"><img src="assets/img/bar-drink.jpg" alt="A pour and a cigar resting at the bar of 24th Street Cigar Lounge" class="photo" loading="lazy"></div>
-      <div class="rounded-2xl overflow-hidden h-72 fade-up"><img src="assets/img/cheers.jpg" alt="Raising a glass at 24th Street Cigar Lounge" class="photo" loading="lazy"></div>
-    </div>
-    <p class="mt-10 text-sm text-[#cbbd9d] fade-up">Full bar · Bourbon · Craft beer · Wine · Espresso drinks — poured steps from the humidor.</p>
-    <div class="mt-8 fade-up">
-      <a href="#reserve" class="btn btn-primary btn-lg font-semibold px-8">Reserve a Night at the Bar</a>
+    <!-- PHOTO SLOT: humidor wall close-up (see PHOTO-REQUESTS.md #1) -->
+    <div class="photo-slot rounded-2xl h-52 sm:h-60 mt-5 fade-up" role="img" aria-label="Photo of the humidor wall — coming soon">
+      <img src="assets/img/logo-white.png" alt="">
+      <p class="slot-title">The Humidor Wall</p>
+      <p class="slot-label">300 cigars, floor to ceiling</p>
     </div>
   </div>
 </section>
 
-<!-- ============ EVENTS & PRIVATE BOOKINGS ============ -->
-<section id="events" class="paper py-24 sm:py-32 relative overflow-hidden">
+<!-- ============ EVENTS ============ -->
+<section id="events" class="paper py-24 sm:py-28 relative overflow-hidden">
   <div class="max-w-6xl mx-auto px-4 text-center relative z-10">
     <p class="eyebrow fade-up">Events &amp; Private Bookings</p>
-    <h2 class="font-display font-bold text-4xl sm:text-5xl mt-4 fade-up">Cigar Nights, Brand Events,<br>Your Night on the Patio</h2>
-    <p class="mt-5 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed fade-up">The lounge regularly hosts the cigar world — brand nights, release events and giveaways — and the room and patio are made for private gatherings.</p>
-    <div class="grid md:grid-cols-3 gap-5 mt-14 text-center">
+    <h2 class="font-display font-bold text-4xl sm:text-5xl mt-4 fade-up">Nights Worth Showing Up For</h2>
+    <!-- PHOTO SLOT: event night crowd (see PHOTO-REQUESTS.md #2) -->
+    <div class="photo-slot rounded-2xl h-56 sm:h-72 mt-12 fade-up" role="img" aria-label="Photo of an event night at the lounge — coming soon">
+      <img src="assets/img/logo-white.png" alt="">
+      <p class="slot-title">Event Nights at the Lounge</p>
+      <p class="slot-label">Brand nights · Giveaways · Full rooms</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-5 mt-5 text-center">
       <article class="card-frame rounded-2xl p-8 fade-up">
         <p class="eyebrow">Brand Cigar Nights</p>
         <h3 class="font-display font-bold text-2xl mt-3">Meet the Makers</h3>
-        <p class="text-sm leading-relaxed mt-3 opacity-80">Recent example from the lounge&rsquo;s Facebook page: a Gurkha Cigars event night, October 8, 6–10 PM — reps, specials and a room full of smoke.</p>
+        <p class="text-sm leading-relaxed mt-3 opacity-80">Like the Gurkha Cigars night hosted here October 8.</p>
       </article>
       <article class="card-frame rounded-2xl p-8 fade-up">
         <p class="eyebrow">Giveaways &amp; Releases</p>
         <h3 class="font-display font-bold text-2xl mt-3">Oliva Thanksgiving Giveaway</h3>
-        <p class="text-sm leading-relaxed mt-3 opacity-80">From the lounge&rsquo;s Facebook page: the Thanksgiving Giveaway with Oliva, November 12, 5–9 PM. Follow the lounge so the next one does not pass you by.</p>
+        <p class="text-sm leading-relaxed mt-3 opacity-80">November 12, 5–9 PM, with Oliva — follow along for the next one.</p>
       </article>
       <article class="card-frame rounded-2xl p-8 fade-up">
         <p class="eyebrow">Private Bookings</p>
         <h3 class="font-display font-bold text-2xl mt-3">Your Group, Our Room</h3>
-        <p class="text-sm leading-relaxed mt-3 opacity-80">Birthdays, client nights, celebrations — send a private booking inquiry and the team will follow up with options for the lounge or patio.</p>
+        <p class="text-sm leading-relaxed mt-3 opacity-80">Birthdays, client nights, celebrations — call to set up the lounge or patio.</p>
       </article>
     </div>
-    <div class="mt-12 flex flex-col sm:flex-row items-center justify-center gap-3 fade-up">
-      <a href="#reserve" class="btn btn-primary btn-lg font-semibold px-8">Send a Booking Inquiry</a>
-      <a href="https://www.facebook.com/274634415740737" target="_blank" rel="noopener" class="btn btn-lg font-semibold px-8 bg-transparent border" style="border-color:rgba(36,23,8,.4);color:#241708">Follow Events on Facebook</a>
+    <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 fade-up">
+      <a href="tel:+16022350096" class="btn btn-primary btn-lg font-semibold px-8">Book Your Night — Call</a>
+      <a href="https://www.facebook.com/274634415740737" target="_blank" rel="noopener" class="btn btn-lg font-semibold px-8 bg-transparent" style="border:1px solid rgba(36,23,8,.4);color:#241708">Follow Events on Facebook</a>
     </div>
   </div>
 </section>
 
 <!-- ============ REVIEWS ============ -->
-<section id="reviews" class="relative overflow-hidden py-24 sm:py-32">
+<section id="reviews" class="relative overflow-hidden py-24 sm:py-28">
   <div class="back-word top-6 text-[20vw] lg:text-[13rem]" aria-hidden="true">WORD</div>
   <div class="relative z-10 max-w-6xl mx-auto px-4 text-center">
     <p class="eyebrow fade-up">Reviews</p>
@@ -333,9 +375,8 @@
         <svg width="22" height="22" viewBox="0 0 24 24" fill="rgba(243,234,217,.28)" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
       </span>
       <p class="font-display font-bold text-2xl">4.1 stars · 21 reviews on Yelp</p>
-      <p class="text-xs tracking-[.18em] uppercase text-[#cbbd9d]">Yelp rating, checked November 2026</p>
     </div>
-    <div class="grid md:grid-cols-2 gap-5 mt-12 text-center max-w-4xl mx-auto">
+    <div class="grid md:grid-cols-2 gap-5 mt-10 text-center max-w-4xl mx-auto">
       <blockquote class="card-frame rounded-2xl p-8 fade-up">
         <p class="font-serif-accent italic text-xl leading-relaxed">&ldquo;A big thank you to George, the owner at 24th Street Cigar Lounge in Phoenix and his entire staff for making everyone feel welcomed and great hospitality.&rdquo;</p>
         <footer class="mt-5 text-xs tracking-[.2em] uppercase text-[#cbbd9d]">Scott Johnson · Facebook</footer>
@@ -353,145 +394,51 @@
         <footer class="mt-5 text-xs tracking-[.2em] uppercase text-[#cbbd9d]">baronwarren313 · Instagram</footer>
       </blockquote>
     </div>
-    <p class="mt-8 text-xs text-[#cbbd9d] fade-up">Guest words above are quoted from the lounge&rsquo;s social and listing presence. Rating shown is the lounge&rsquo;s Yelp rating.</p>
-    <div class="mt-8 fade-up">
+    <div class="mt-9 fade-up">
       <a href="https://www.yelp.com/biz/ukFbQtQiIh6yJv3GcyOx6A" target="_blank" rel="noopener" class="btn btn-primary btn-lg font-semibold px-8">Read Reviews on Yelp</a>
     </div>
   </div>
 </section>
 
-<!-- ============ THE LEAK / AFTER-HOURS ============ -->
-<section id="afterhours" class="paper py-24 sm:py-32 relative overflow-hidden">
-  <div class="max-w-6xl mx-auto px-4 text-center relative z-10">
-    <p class="eyebrow fade-up">After Hours</p>
-    <h2 class="font-display font-bold text-4xl sm:text-5xl mt-4 fade-up">The Lounge Closes.<br>Interest Doesn&rsquo;t.</h2>
-    <p class="mt-5 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed fade-up">The lounge is open 54 hours a week — which means for 114 hours a week, 67.9% of the week, there is no one here to answer. Every morning before 3 PM, and every night after close, a guest planning a night out, a group booking or a private event has had exactly one path: call, get no answer, and move on.</p>
-    <div class="grid grid-cols-3 gap-3 sm:gap-5 mt-12 max-w-3xl mx-auto">
-      <div class="card-frame rounded-2xl py-7 px-2 fade-up">
-        <p class="font-display font-black text-4xl sm:text-6xl">54</p>
-        <p class="text-[.65rem] sm:text-xs tracking-[.16em] uppercase mt-2 opacity-70">Hours open<br>per week</p>
-      </div>
-      <div class="card-frame rounded-2xl py-7 px-2 fade-up">
-        <p class="font-display font-black text-4xl sm:text-6xl">114</p>
-        <p class="text-[.65rem] sm:text-xs tracking-[.16em] uppercase mt-2 opacity-70">Hours closed<br>per week</p>
-      </div>
-      <div class="card-frame rounded-2xl py-7 px-2 fade-up">
-        <p class="font-display font-black text-4xl sm:text-6xl">67.9%</p>
-        <p class="text-[.65rem] sm:text-xs tracking-[.16em] uppercase mt-2 opacity-70">Of the week<br>uncovered</p>
-      </div>
-    </div>
-
-    <div class="grid md:grid-cols-2 gap-6 mt-14 items-stretch text-center max-w-4xl mx-auto">
-      <div class="card-frame rounded-2xl p-8 fade-up flex flex-col">
-        <p class="eyebrow">Tonight, the Old Way</p>
-        <h3 class="font-display font-bold text-2xl mt-3">Tuesday, 10:47 PM</h3>
-        <p class="text-sm sm:text-base leading-relaxed mt-4 opacity-85 flex-1">The lounge closed at 10. A guest who just heard about the patio calls to book Friday night for six. The phone rings out. There is no form, no text-back, no second chance on the old website — its booking page was never connected to a real scheduler. By morning, Friday is planned somewhere else.</p>
-        <p class="mt-6 text-xs tracking-[.18em] uppercase opacity-60">Result: a booking that never happened</p>
-      </div>
-      <div class="rounded-2xl p-2 fade-up" style="background:#241708">
-        <div class="rounded-xl overflow-hidden" style="background:#171009">
-          <p class="thread-note py-3 border-b hairline" style="color:#cbbd9d">Demonstration — Missed-Call Text-Back</p>
-          <div class="p-4 flex flex-col gap-2">
-            <p class="thread-msg thread-in">Missed call — 10:47 PM, Tuesday (after close)</p>
-            <p class="thread-msg thread-out">Sorry we missed your call — this is 24th Street Cigar Lounge. Want us to hold a table or the patio? Reply with your night and party size.</p>
-            <p class="thread-msg thread-in">Friday, 8 PM, party of 6 please</p>
-            <p class="thread-msg thread-out">Done — you are on the book for Friday at 8 PM for 6. We will confirm by text. See you at 3407 N 24th St.</p>
-          </div>
-          <p class="thread-note pb-3">The guest is captured — even at 10:47 PM</p>
-        </div>
-      </div>
-    </div>
-    <p class="mt-10 max-w-2xl mx-auto text-sm leading-relaxed opacity-75 fade-up">The thread above is a demonstration of the after-hours capture system — the same system the reservation form below previews. It answers in seconds, at any hour, so a closed sign never costs the lounge a guest again.</p>
-  </div>
-</section>
-
-<!-- ============ RESERVATION DEMO ============ -->
-<section id="reserve" class="relative overflow-hidden py-24 sm:py-32">
-  <div class="back-word top-6 text-[19vw] lg:text-[12rem]" aria-hidden="true">RESERVE</div>
+<!-- ============ PLAN YOUR VISIT — one tap to everything ============ -->
+<section id="reserve" class="relative overflow-hidden py-24 sm:py-28">
+  <img src="assets/img/patio.jpg" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover" style="filter:brightness(.38)" loading="lazy">
   <div class="relative z-10 max-w-6xl mx-auto px-4 text-center">
-    <p class="eyebrow fade-up">Reservations &amp; Inquiries</p>
-    <h2 class="font-display font-bold text-4xl sm:text-5xl mt-4 fade-up">Book the Night Before<br>Someone Else Does</h2>
-    <p class="mt-5 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed text-[#e9dfc9] fade-up">Send a request any time — day or night. This is how the lounge&rsquo;s new online reservations work: your details land instantly, and a confirmation text follows right away.</p>
-    <span class="badge mt-6 font-semibold tracking-wide" style="background:#2e2013;color:#f3ead9;border:1px solid rgba(243,234,217,.25)">Demonstration — try the full flow below</span>
-
-    <div class="grid md:grid-cols-2 gap-6 mt-10 max-w-4xl mx-auto items-start text-left">
-      <form id="resForm" class="card-frame rounded-2xl p-6 sm:p-8 fade-up" novalidate>
-        <div class="flex flex-col gap-4">
-          <label class="block">
-            <span class="text-xs tracking-[.16em] uppercase text-[#cbbd9d]">Your name</span>
-            <input id="fName" type="text" required autocomplete="name" placeholder="Full name" class="input w-full mt-2 bg-[#171009] border-[rgba(243,234,217,.25)] text-[#f3ead9]">
-          </label>
-          <label class="block">
-            <span class="text-xs tracking-[.16em] uppercase text-[#cbbd9d]">Mobile phone (for the confirmation text)</span>
-            <input id="fPhone" type="tel" required autocomplete="tel" placeholder="(602) 555-0100" class="input w-full mt-2 bg-[#171009] border-[rgba(243,234,217,.25)] text-[#f3ead9]">
-          </label>
-          <div class="grid grid-cols-2 gap-4">
-            <label class="block">
-              <span class="text-xs tracking-[.16em] uppercase text-[#cbbd9d]">Date</span>
-              <input id="fDate" type="date" required class="input w-full mt-2 bg-[#171009] border-[rgba(243,234,217,.25)] text-[#f3ead9]">
-            </label>
-            <label class="block">
-              <span class="text-xs tracking-[.16em] uppercase text-[#cbbd9d]">Party size</span>
-              <select id="fParty" class="select w-full mt-2 bg-[#171009] border-[rgba(243,234,217,.25)] text-[#f3ead9]">
-                <option>2 guests</option>
-                <option>3 guests</option>
-                <option>4 guests</option>
-                <option>5 guests</option>
-                <option selected>6 guests</option>
-                <option>7 guests</option>
-                <option>8 guests</option>
-                <option>9+ guests / private event</option>
-              </select>
-            </label>
-          </div>
-          <label class="block">
-            <span class="text-xs tracking-[.16em] uppercase text-[#cbbd9d]">Request type</span>
-            <select id="fType" class="select w-full mt-2 bg-[#171009] border-[rgba(243,234,217,.25)] text-[#f3ead9]">
-              <option selected>Table reservation</option>
-              <option>Patio seating</option>
-              <option>Private event / group booking</option>
-              <option>Brand event question</option>
-              <option>General question</option>
-            </select>
-          </label>
-          <label class="block">
-            <span class="text-xs tracking-[.16em] uppercase text-[#cbbd9d]">Notes (optional)</span>
-            <textarea id="fNotes" rows="3" placeholder="Occasion, preferred time, favorite cigars..." class="textarea w-full mt-2 bg-[#171009] border-[rgba(243,234,217,.25)] text-[#f3ead9]"></textarea>
-          </label>
-          <p id="formError" class="hidden text-sm font-medium" style="color:#e8a0a0">Please add your name, a phone number, and a date so the lounge can confirm.</p>
-          <button type="submit" class="btn btn-primary btn-lg w-full font-semibold">Send Reservation Request</button>
-          <p class="text-xs text-center text-[#cbbd9d] leading-relaxed">Demonstration form: nothing is sent or stored. On the live system, this request texts the lounge instantly and starts the confirmation thread shown here.</p>
-        </div>
-      </form>
-
-      <div class="rounded-2xl p-2 fade-up" style="background:#0f0a06;border:1px solid rgba(243,234,217,.16)">
-        <div class="rounded-xl overflow-hidden" style="background:#120c07">
-          <p class="thread-note py-3 border-b hairline">Your phone — simulated confirmation</p>
-          <div id="demoThread" class="p-4 flex flex-col gap-2 min-h-[340px]">
-            <p class="thread-msg thread-in mx-auto text-center" style="background:transparent;color:#cbbd9d;max-width:100%">Submit the form and watch the instant text-back confirmation appear here — the same flow a guest gets at 2 PM or 2 AM.</p>
-          </div>
-        </div>
-        <p id="resSuccess" class="hidden text-center font-display font-bold text-xl py-5 px-3">Request received. Check the thread — you are on the book.</p>
-      </div>
+    <p class="eyebrow fade-up">Plan Your Visit</p>
+    <h2 class="font-display font-bold text-4xl sm:text-5xl mt-4 fade-up">One Tap. You&rsquo;re Set.</h2>
+    <div class="grid sm:grid-cols-3 gap-5 mt-12 max-w-4xl mx-auto">
+      <a href="tel:+16022350096" class="card-frame rounded-2xl p-8 fade-up block hover:border-[rgba(217,164,65,.6)] transition-colors" style="background:rgba(23,16,9,.88)">
+        <p class="eyebrow">Call</p>
+        <p class="font-display font-bold text-2xl mt-3">(602) 235-0096</p>
+        <p class="text-sm text-[#cbbd9d] mt-2">Tables, groups &amp; private nights</p>
+      </a>
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=3407+N+24th+St+Phoenix+AZ+85016" target="_blank" rel="noopener" class="card-frame rounded-2xl p-8 fade-up block hover:border-[rgba(217,164,65,.6)] transition-colors" style="background:rgba(23,16,9,.88)">
+        <p class="eyebrow">Directions</p>
+        <p class="font-display font-bold text-2xl mt-3">3407 N 24th St</p>
+        <p class="text-sm text-[#cbbd9d] mt-2">Corner of 24th &amp; Osborn · Lot parking</p>
+      </a>
+      <a href="#visit" class="card-frame rounded-2xl p-8 fade-up block hover:border-[rgba(217,164,65,.6)] transition-colors" style="background:rgba(23,16,9,.88)">
+        <p class="eyebrow">Hours</p>
+        <p class="font-display font-bold text-2xl mt-3" id="todayHours">Today&rsquo;s Hours</p>
+        <p class="text-sm text-[#cbbd9d] mt-2" id="todayStatus">See the full week below</p>
+      </a>
     </div>
-
-    <p class="mt-10 text-sm text-[#cbbd9d] fade-up">Prefer to talk? <a href="tel:+16022350096" class="font-semibold underline underline-offset-4" style="color:#d9a441">Call (602) 235-0096</a> during open hours.</p>
   </div>
 </section>
 
 <!-- ============ VISIT ============ -->
-<section id="visit" class="paper py-24 sm:py-32 relative overflow-hidden">
+<section id="visit" class="paper py-24 sm:py-28 relative overflow-hidden">
   <div class="max-w-6xl mx-auto px-4 text-center relative z-10">
     <p class="eyebrow fade-up">Visit</p>
     <h2 class="font-display font-bold text-4xl sm:text-5xl mt-4 fade-up">Find the Lounge</h2>
-    <div class="grid md:grid-cols-2 gap-8 mt-14 items-stretch max-w-4xl mx-auto">
+    <div class="grid md:grid-cols-2 gap-8 mt-12 items-stretch max-w-4xl mx-auto">
       <div class="rounded-2xl overflow-hidden fade-up min-h-[320px]">
         <img src="assets/img/exterior.jpg" alt="The 24th Street Cigar Lounge storefront at 3407 N 24th St, Phoenix" class="photo" loading="lazy">
       </div>
       <div class="card-frame rounded-2xl p-8 text-center fade-up flex flex-col">
         <p class="font-display font-bold text-2xl">3407 N 24th St<br>Phoenix, AZ 85016</p>
-        <p class="text-sm mt-2 opacity-75">At the corner of 24th Street &amp; Osborn · Lot parking</p>
-        <div class="divider" style="border-color:rgba(36,23,8,.15)"></div>
+        <p class="text-sm mt-2 opacity-75">Lot parking at the door</p>
+        <div class="my-5" style="border-top:1px solid rgba(36,23,8,.15)"></div>
         <table class="w-full text-sm sm:text-base">
           <tbody>
             <tr class="border-b" style="border-color:rgba(36,23,8,.1)"><td class="py-2.5 text-left font-medium">Sunday</td><td class="py-2.5 text-right">12:00 PM – 8:00 PM</td></tr>
@@ -505,7 +452,7 @@
         </table>
         <div class="mt-auto pt-7 flex flex-col sm:flex-row gap-3 justify-center">
           <a href="https://www.google.com/maps/search/?api=1&amp;query=3407+N+24th+St+Phoenix+AZ+85016" target="_blank" rel="noopener" class="btn btn-primary font-semibold flex-1">Get Directions</a>
-          <a href="tel:+16022350096" class="btn font-semibold flex-1 bg-transparent border" style="border-color:rgba(36,23,8,.4);color:#241708">Call (602) 235-0096</a>
+          <a href="tel:+16022350096" class="btn font-semibold flex-1 bg-transparent" style="border:1px solid rgba(36,23,8,.4);color:#241708">Call (602) 235-0096</a>
         </div>
       </div>
     </div>
@@ -513,52 +460,52 @@
 </section>
 
 <!-- ============ FAQ ============ -->
-<section id="faq" class="relative overflow-hidden py-24 sm:py-32">
+<section id="faq" class="relative overflow-hidden py-24 sm:py-28">
   <div class="relative z-10 max-w-3xl mx-auto px-4 text-center">
     <p class="eyebrow fade-up">Good to Know</p>
     <h2 class="font-display font-bold text-4xl sm:text-5xl mt-4 fade-up">Questions, Answered</h2>
     <div class="mt-12 flex flex-col gap-3 text-left">
       <div class="faq-item card-frame rounded-xl fade-up">
         <button type="button" class="faq-head w-full flex items-center justify-between gap-4 p-5 font-display font-bold text-lg text-left">What are your hours?<span class="faq-toggle text-2xl leading-none shrink-0" aria-hidden="true">+</span></button>
-        <div class="faq-body px-5 pb-5 text-sm sm:text-base leading-relaxed text-[#e9dfc9]">Sunday 12 PM – 8 PM · Monday to Thursday 3 PM – 10 PM · Friday and Saturday 3 PM – midnight. Reservation requests can be sent through this page at any hour.</div>
+        <div class="faq-body px-5 pb-5 text-sm sm:text-base leading-relaxed text-[#e9dfc9]">Sunday 12 PM – 8 PM · Monday to Thursday 3 PM – 10 PM · Friday and Saturday 3 PM – midnight.</div>
       </div>
       <div class="faq-item card-frame rounded-xl fade-up">
         <button type="button" class="faq-head w-full flex items-center justify-between gap-4 p-5 font-display font-bold text-lg text-left">Where are you, and is there parking?<span class="faq-toggle text-2xl leading-none shrink-0" aria-hidden="true">+</span></button>
-        <div class="faq-body px-5 pb-5 text-sm sm:text-base leading-relaxed text-[#e9dfc9]">3407 N 24th St, Phoenix, AZ 85016 — at the corner of 24th Street and Osborn. Lot parking is available right at the lounge.</div>
+        <div class="faq-body px-5 pb-5 text-sm sm:text-base leading-relaxed text-[#e9dfc9]">3407 N 24th St, Phoenix, AZ 85016 — corner of 24th Street and Osborn, with lot parking at the door.</div>
       </div>
       <div class="faq-item card-frame rounded-xl fade-up">
         <button type="button" class="faq-head w-full flex items-center justify-between gap-4 p-5 font-display font-bold text-lg text-left">What should I expect on a first visit?<span class="faq-toggle text-2xl leading-none shrink-0" aria-hidden="true">+</span></button>
-        <div class="faq-body px-5 pb-5 text-sm sm:text-base leading-relaxed text-[#e9dfc9]">A family-run room, a humidor with 300 cigar options from light bodied to full, a full bar pouring 50 premium spirits and craft cocktails, TVs for the game, and a back patio when the desert evening calls. Tell the staff what you usually enjoy and they will point you to the right stick.</div>
+        <div class="faq-body px-5 pb-5 text-sm sm:text-base leading-relaxed text-[#e9dfc9]">A family-run room: 300 cigars from light to full, 50 premium spirits, craft cocktails, TVs, and a back patio.</div>
       </div>
       <div class="faq-item card-frame rounded-xl fade-up">
         <button type="button" class="faq-head w-full flex items-center justify-between gap-4 p-5 font-display font-bold text-lg text-left">Can I book a private event or group night?<span class="faq-toggle text-2xl leading-none shrink-0" aria-hidden="true">+</span></button>
-        <div class="faq-body px-5 pb-5 text-sm sm:text-base leading-relaxed text-[#e9dfc9]">Yes — the lounge hosts brand cigar nights and giveaways, and takes private booking inquiries for groups. Choose &ldquo;Private event / group booking&rdquo; in the reservation form, or call (602) 235-0096, and the team will follow up.</div>
+        <div class="faq-body px-5 pb-5 text-sm sm:text-base leading-relaxed text-[#e9dfc9]">Yes — call (602) 235-0096 and the team will set it up.</div>
       </div>
       <div class="faq-item card-frame rounded-xl fade-up">
-        <button type="button" class="faq-head w-full flex items-center justify-between gap-4 p-5 font-display font-bold text-lg text-left">How do reservations work?<span class="faq-toggle text-2xl leading-none shrink-0" aria-hidden="true">+</span></button>
-        <div class="faq-body px-5 pb-5 text-sm sm:text-base leading-relaxed text-[#e9dfc9]">Send the form on this page with your name, phone, date and party size — or call (602) 235-0096 during open hours. The form above is a demonstration of the lounge&rsquo;s new online reservation flow, including the instant confirmation text.</div>
+        <button type="button" class="faq-head w-full flex items-center justify-between gap-4 p-5 font-display font-bold text-lg text-left">Do I need a reservation?<span class="faq-toggle text-2xl leading-none shrink-0" aria-hidden="true">+</span></button>
+        <div class="faq-body px-5 pb-5 text-sm sm:text-base leading-relaxed text-[#e9dfc9]">Walk-ins are welcome. For groups and patio nights, call ahead and the team will have things ready.</div>
       </div>
       <div class="faq-item card-frame rounded-xl fade-up">
         <button type="button" class="faq-head w-full flex items-center justify-between gap-4 p-5 font-display font-bold text-lg text-left">What does the lounge carry?<span class="faq-toggle text-2xl leading-none shrink-0" aria-hidden="true">+</span></button>
-        <div class="faq-body px-5 pb-5 text-sm sm:text-base leading-relaxed text-[#e9dfc9]">300 cigar options from all around the globe, and 50 premium spirits and craft cocktails — including the 24th Street Old Fashioned and Georgie&rsquo;s Spicy Margarita shown in the lounge&rsquo;s own photos.</div>
+        <div class="faq-body px-5 pb-5 text-sm sm:text-base leading-relaxed text-[#e9dfc9]">300 cigar options from around the globe, and 50 premium spirits and craft cocktails — including the 24th Street Old Fashioned and Georgie&rsquo;s Spicy Margarita.</div>
       </div>
     </div>
-    <p class="mt-10 text-sm text-[#cbbd9d] fade-up">Still unsure? <a href="tel:+16022350096" class="font-semibold underline underline-offset-4" style="color:#d9a441">Just call (602) 235-0096</a>.</p>
+    <p class="mt-10 text-sm text-[#cbbd9d] fade-up">Questions? <a href="tel:+16022350096" class="font-semibold underline underline-offset-4" style="color:#d9a441">Call (602) 235-0096</a>.</p>
   </div>
 </section>
 
 <!-- ============ FINAL CTA BAND ============ -->
 <section class="py-16 sm:py-20 text-center" style="background:#d9a441;color:#1c1204">
-  <p class="text-xs tracking-[.3em] uppercase font-semibold">Tonight, Tomorrow, Whenever the Mood Strikes</p>
+  <p class="text-xs tracking-[.3em] uppercase font-semibold">Whenever the Mood Strikes</p>
   <p class="font-display font-black text-4xl sm:text-6xl mt-4">Your Table Is Waiting.</p>
   <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 px-4">
-    <a href="#reserve" class="btn btn-lg font-bold px-9" style="background:#1c1204;color:#f3ead9;border-color:#1c1204">Reserve Now</a>
-    <a href="tel:+16022350096" class="btn btn-lg font-bold px-9 bg-transparent" style="border:2px solid #1c1204;color:#1c1204">Call (602) 235-0096</a>
+    <a href="tel:+16022350096" class="btn btn-lg font-bold px-9" style="background:#1c1204;color:#f3ead9;border-color:#1c1204">Call (602) 235-0096</a>
+    <a href="https://www.google.com/maps/search/?api=1&amp;query=3407+N+24th+St+Phoenix+AZ+85016" target="_blank" rel="noopener" class="btn btn-lg font-bold px-9 bg-transparent" style="border:2px solid #1c1204;color:#1c1204">Get Directions</a>
   </div>
 </section>
 
 <!-- ============ FOOTER ============ -->
-<footer class="bg-[#120c07] border-t hairline pt-16 pb-28 sm:pb-12">
+<footer class="border-t hairline pt-16 pb-24 sm:pb-28" style="background:#120c07">
   <div class="max-w-6xl mx-auto px-4 text-center">
     <img src="assets/img/logo-white.png" alt="24th Street Cigar Lounge logo" class="h-16 w-16 object-contain mx-auto">
     <p class="font-display font-bold text-xl mt-4">24th Street Cigar Lounge</p>
@@ -571,26 +518,28 @@
       <a href="https://www.instagram.com/24thstreetcigarlounge" target="_blank" rel="noopener" class="btn btn-sm font-semibold bg-transparent text-[#f3ead9] border hairline">Instagram</a>
       <a href="https://www.yelp.com/biz/ukFbQtQiIh6yJv3GcyOx6A" target="_blank" rel="noopener" class="btn btn-sm font-semibold bg-transparent text-[#f3ead9] border hairline">Yelp</a>
     </div>
-    <div class="divider max-w-md mx-auto" style="border-color:rgba(243,234,217,.12)"></div>
-    <p class="text-xs text-[#cbbd9d] leading-relaxed max-w-xl mx-auto">All photography on this page is real photography of 24th Street Cigar Lounge from its own website and listings. The reservation form and text-back thread are demonstrations of the lounge&rsquo;s new system.</p>
-    <p class="text-xs text-[#cbbd9d] mt-3">Demo website built by Blair Digital Studios</p>
+    <p class="text-xs text-[#cbbd9d] mt-8">Every photo here is a real photo of the lounge.</p>
   </div>
 </footer>
 
-<!-- ============ STICKY MOBILE ACTION BAR ============ -->
+<!-- ============ STICKY ONE-TAP BAR — Call · Directions · Hours, from anywhere ============ -->
 <nav class="sm:hidden fixed bottom-0 inset-x-0 z-50 border-t hairline" style="background:rgba(18,12,7,.97)" aria-label="Quick actions">
   <div class="grid grid-cols-3">
     <a href="tel:+16022350096" class="py-3.5 text-center font-semibold text-sm" style="background:#d9a441;color:#1c1204">Call Now</a>
-    <a href="#reserve" class="py-3.5 text-center font-semibold text-sm text-[#f3ead9]">Reserve</a>
     <a href="https://www.google.com/maps/search/?api=1&amp;query=3407+N+24th+St+Phoenix+AZ+85016" target="_blank" rel="noopener" class="py-3.5 text-center font-semibold text-sm text-[#f3ead9]">Directions</a>
+    <a href="#visit" class="py-3.5 text-center font-semibold text-sm text-[#f3ead9]">Hours</a>
   </div>
+</nav>
+<nav class="hidden sm:flex fixed bottom-5 left-1/2 -translate-x-1/2 z-50 items-center gap-1 rounded-full border hairline p-1.5 shadow-2xl" style="background:rgba(18,12,7,.95)" aria-label="Quick actions">
+  <a href="tel:+16022350096" class="rounded-full px-6 py-2.5 font-semibold text-sm" style="background:#d9a441;color:#1c1204">Call (602) 235-0096</a>
+  <a href="https://www.google.com/maps/search/?api=1&amp;query=3407+N+24th+St+Phoenix+AZ+85016" target="_blank" rel="noopener" class="rounded-full px-6 py-2.5 font-semibold text-sm text-[#f3ead9] hover:bg-[rgba(243,234,217,.08)]">Directions</a>
+  <a href="#visit" class="rounded-full px-6 py-2.5 font-semibold text-sm text-[#f3ead9] hover:bg-[rgba(243,234,217,.08)]">Hours</a>
 </nav>
 
 <script>
 (function(){
   "use strict";
-  /* ---- Open-now status, computed from verified hours in America/Phoenix ---- */
-  // Hours by weekday (0=Sunday): [open, close] in 24h Phoenix time; close 24 = midnight.
+  /* ---- Open-now status + today's hours, from verified hours in America/Phoenix ---- */
   var HOURS = {0:[12,20],1:[15,22],2:[15,22],3:[15,22],4:[15,22],5:[15,24],6:[15,24]};
   var DAYNAMES = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
   function fmt(h){
@@ -614,17 +563,38 @@
   }
   var now = phoenixNow();
   var today = HOURS[now.day];
+  var open = now.hour>=today[0] && now.hour<today[1];
   var statusEl = document.getElementById("openText");
   var dotEl = document.getElementById("openDot");
-  if(now.hour>=today[0] && now.hour<today[1]){
-    statusEl.textContent = "Open now — until " + fmt(today[1]) + " tonight · 3407 N 24th St, Phoenix";
-  }else if(now.hour<today[0]){
-    statusEl.textContent = "Opens today at " + fmt(today[0]) + " — reserve ahead · 3407 N 24th St, Phoenix";
-    dotEl.style.background = "#cbbd9d";
-  }else{
-    var nd=(now.day+1)%7, nh=HOURS[nd];
-    statusEl.textContent = "Closed now — opens " + DAYNAMES[nd] + " at " + fmt(nh[0]) + " · Reservations open 24/7 below";
-    dotEl.style.background = "#cbbd9d";
+  if(statusEl){
+    if(open){
+      statusEl.textContent = "Open now — until " + fmt(today[1]) + " tonight · 3407 N 24th St, Phoenix";
+    }else if(now.hour<today[0]){
+      statusEl.textContent = "Opens today at " + fmt(today[0]) + " · 3407 N 24th St, Phoenix";
+      dotEl.style.background = "#cbbd9d";
+    }else{
+      var nd=(now.day+1)%7, nh=HOURS[nd];
+      statusEl.textContent = "Closed now — opens " + DAYNAMES[nd] + " at " + fmt(nh[0]) + " · 3407 N 24th St, Phoenix";
+      dotEl.style.background = "#cbbd9d";
+    }
+  }
+  var th = document.getElementById("todayHours");
+  var ts = document.getElementById("todayStatus");
+  if(th && ts){
+    th.textContent = fmt(today[0]) + " – " + fmt(today[1]);
+    ts.textContent = open ? ("Open now · " + DAYNAMES[now.day]) : ("Closed right now · " + DAYNAMES[now.day]);
+  }
+
+  /* ---- Hero slideshow dots (sync with the 7s CSS cycle) ---- */
+  var dots = document.querySelectorAll(".hero-dot");
+  var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(dots.length && !reduced){
+    var cur = 0;
+    setInterval(function(){
+      dots[cur].classList.remove("active");
+      cur = (cur+1) % dots.length;
+      dots[cur].classList.add("active");
+    }, 7000);
   }
 
   /* ---- Scroll reveal ---- */
@@ -636,50 +606,6 @@
   /* ---- FAQ accordion ---- */
   document.querySelectorAll(".faq-head").forEach(function(btn){
     btn.addEventListener("click", function(){ btn.closest(".faq-item").classList.toggle("open"); });
-  });
-
-  /* ---- Reservation demonstration: simulated instant text-back ---- */
-  var form = document.getElementById("resForm");
-  var thread = document.getElementById("demoThread");
-  var success = document.getElementById("resSuccess");
-  var errBox = document.getElementById("formError");
-  function bubble(text, out){
-    var p=document.createElement("p");
-    p.className = "thread-msg " + (out ? "thread-out" : "thread-in");
-    p.textContent = text;
-    thread.appendChild(p);
-    return p;
-  }
-  function prettyDate(v){
-    var p=v.split("-");
-    if(p.length!==3) return v;
-    var d=new Date(parseInt(p[0],10), parseInt(p[1],10)-1, parseInt(p[2],10));
-    return d.toLocaleDateString("en-US",{weekday:"long",month:"long",day:"numeric"});
-  }
-  form.addEventListener("submit", function(ev){
-    ev.preventDefault();
-    var name=document.getElementById("fName").value.trim();
-    var phone=document.getElementById("fPhone").value.trim();
-    var date=document.getElementById("fDate").value;
-    var party=document.getElementById("fParty").value;
-    var type=document.getElementById("fType").value;
-    var notes=document.getElementById("fNotes").value.trim();
-    if(!name || !phone || !date){ errBox.classList.remove("hidden"); return; }
-    errBox.classList.add("hidden");
-    thread.innerHTML="";
-    var first = name.split(" ")[0];
-    var when = prettyDate(date);
-    bubble("Hi, this is " + name + " — " + type.toLowerCase() + " for " + when + ", " + party + "." + (notes ? " " + notes : ""), false);
-    setTimeout(function(){ bubble("Texting 24th Street Cigar Lounge...", true); thread.lastChild.className="thread-note"; thread.lastChild.textContent="Sending to the lounge now"; }, 500);
-    setTimeout(function(){
-      thread.lastChild.remove();
-      bubble("Hi " + first + " — this is 24th Street Cigar Lounge. We have your " + type.toLowerCase() + " request for " + when + " (" + party + "). You are on the book — we will confirm right here by text.", true);
-    }, 1300);
-    setTimeout(function(){
-      bubble("We are at 3407 N 24th St, corner of 24th & Osborn. Lot parking at the door. Humidor is stocked — 300 options waiting.", true);
-      success.classList.remove("hidden");
-      success.scrollIntoView({behavior:"smooth", block:"nearest"});
-    }, 2300);
   });
 })();
 </script>

@@ -154,7 +154,22 @@
   .c-a{grid-column:span 2;grid-row:span 2}
   .c-b{grid-row:span 2}
   .c-wide{grid-column:span 2}
-  @media(max-width:760px){.collage{grid-template-columns:repeat(2,1fr);grid-auto-rows:150px}}
+  .c-full{grid-column:span 4}
+
+  /* ---------- walk-through ---------- */
+  .wt-view{position:relative;max-width:780px;margin:0 auto;aspect-ratio:1/1;overflow:hidden;background:#0d0d0d;border:1px solid var(--hair)}
+  .wt-view img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .45s ease}
+  .wt-view img.on{opacity:1}
+  .wt-bar{max-width:780px;margin:18px auto 0;display:flex;align-items:center;justify-content:space-between;gap:14px}
+  .wt-cap{font-family:var(--serif);font-size:26px;color:#fff}
+  .wt-count{font-size:12px;letter-spacing:.22em;color:var(--silver-dim);text-transform:uppercase;margin-left:12px;white-space:nowrap}
+  .wt-nav{display:flex;gap:10px}
+  .wt-btn{appearance:none;background:transparent;border:1px solid var(--silver);color:#fff;font:inherit;font-size:13px;letter-spacing:.14em;text-transform:uppercase;padding:11px 18px;cursor:pointer}
+  .wt-btn:hover{background:rgba(182,182,182,.16)}
+  .wt-dots{display:flex;gap:9px;justify-content:center;margin-top:18px}
+  .wt-dots button{width:9px;height:9px;border-radius:50%;border:1px solid var(--silver);background:transparent;padding:0;cursor:pointer}
+  .wt-dots button.on{background:var(--silver)}
+  @media(max-width:760px){.collage{grid-template-columns:repeat(2,1fr);grid-auto-rows:150px}.c-full{grid-column:span 2}.wt-cap{font-size:22px}.wt-btn{padding:10px 13px}}
   .ig-line{margin-top:20px;text-align:center;font-size:14.5px;color:var(--silver-dim)}
   .ig-line a{color:#fff;font-weight:600;text-decoration:none;border-bottom:1px solid var(--silver)}
   .ig-line a:hover{color:var(--silver-hi)}
@@ -265,14 +280,14 @@
       <p class="vsub">A family-run establishment at the corner of 24th Street and Osborn in Phoenix, Arizona.</p>
     </div>
     <div class="lrow">
-      <div class="lph"><img src="assets/img/humidor-room.jpg" alt="The walk-in humidor at 24th Street Cigar Lounge, seen from the bar" loading="lazy"></div>
+      <div class="lph"><img src="assets/img/google/g-humidor-shelves.jpg" alt="Cigar shelves inside the walk-in humidor at 24th Street Cigar Lounge" loading="lazy"></div>
       <div class="ltx">
         <h3>The Humidor</h3>
         <p>300 cigar options, from light bodied to full, from all around the globe.</p>
       </div>
     </div>
     <div class="lrow rev">
-      <div class="lph"><img src="assets/img/interior-bottles.jpg" alt="Bottle shelves behind the bar at 24th Street Cigar Lounge" loading="lazy"></div>
+      <div class="lph"><img src="assets/img/google/g-bar.jpg" alt="The bar at 24th Street Cigar Lounge — counter, stools, and the humidor wall behind" loading="lazy"></div>
       <div class="ltx">
         <h3>The Bar</h3>
         <p>50 premium spirits and craft cocktails, plus bourbon, craft beer, wine, and espresso drinks.</p>
@@ -284,6 +299,36 @@
         <h3>The Patio</h3>
         <p>Outdoor seating out back — a back patio for intimate gatherings.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WALK THROUGH ============ -->
+<section id="walkthrough" style="padding-top:0">
+  <div class="wrap">
+    <div class="vhead">
+      <div class="rule"></div>
+      <h2 class="vtitle">Walk Through</h2>
+      <p class="vsub">Step through the room, one photo at a time.</p>
+    </div>
+    <div class="wt-view" id="wtView">
+      <img src="assets/img/google/g-humidor-shelves.jpg" alt="Inside the walk-in humidor at 24th Street Cigar Lounge" class="on">
+      <img src="assets/img/google/g-bar-humidor.jpg" alt="The bar counter and humidor wall at 24th Street Cigar Lounge" loading="lazy">
+      <img src="assets/img/google/g-bottles.jpg" alt="Wine and spirits shelves by the bar at 24th Street Cigar Lounge" loading="lazy">
+      <img src="assets/img/google/g-cigar-square.jpg" alt="A La Aroma de Cuba Mi Amor cigar in hand" loading="lazy">
+    </div>
+    <div class="wt-bar">
+      <div><span class="wt-cap" id="wtCap">The Humidor</span><span class="wt-count" id="wtCount">1 / 4</span></div>
+      <div class="wt-nav">
+        <button class="wt-btn" id="wtPrev" type="button" aria-label="Previous photo">Prev</button>
+        <button class="wt-btn" id="wtNext" type="button" aria-label="Next photo">Next</button>
+      </div>
+    </div>
+    <div class="wt-dots" id="wtDots">
+      <button type="button" class="on" aria-label="Photo 1 — The Humidor"></button>
+      <button type="button" aria-label="Photo 2 — The Bar"></button>
+      <button type="button" aria-label="Photo 3 — The Bottles"></button>
+      <button type="button" aria-label="Photo 4 — The Cigar"></button>
     </div>
   </div>
 </section>
@@ -356,16 +401,14 @@
       <h2 class="vtitle">Gallery</h2>
     </div>
     <div class="collage">
-      <figure class="c-a"><img src="assets/img/hero-lounge.jpg" alt="Inside the humidor at 24th Street Cigar Lounge"></figure>
-      <figure class="c-b"><img src="assets/img/humidor-shelves.jpg" alt="Cigar boxes on the humidor shelves at 24th Street Cigar Lounge"></figure>
-      <figure><img src="assets/img/mi-amor-cigar.jpg" alt="A lit La Aroma de Cuba Mi Amor cigar in hand"></figure>
-      <figure><img src="assets/img/cheers.jpg" alt="Guests toasting at 24th Street Cigar Lounge"></figure>
-      <figure class="c-wide"><img src="assets/img/exterior.jpg" alt="24th Street Cigar Lounge storefront at 3407 N 24th St, Phoenix"></figure>
-      <figure><img src="assets/img/cigar-hand.jpg" alt="A lit cigar at 24th Street Cigar Lounge"></figure>
-      <figure><img src="assets/img/interior-bottles.jpg" alt="Spirits shelves at 24th Street Cigar Lounge"></figure>
-      <figure class="c-wide"><img src="assets/img/patio.jpg" alt="The back patio at 24th Street Cigar Lounge"></figure>
-      <figure><img src="assets/img/bar-drink.jpg" alt="A cocktail at the bar at 24th Street Cigar Lounge"></figure>
-      <figure><img src="assets/img/taps-tvs.jpg" alt="A pour at the bar at 24th Street Cigar Lounge"></figure>
+      <figure class="c-a"><img src="assets/img/google/g-bar-humidor.jpg" alt="The bar counter and walk-in humidor at 24th Street Cigar Lounge"></figure>
+      <figure class="c-b"><img src="assets/img/google/g-cigar-hand.jpg" alt="A La Aroma de Cuba Mi Amor cigar in hand" loading="lazy"></figure>
+      <figure><img src="assets/img/google/g-humidor-shelves.jpg" alt="Cigar shelves inside the humidor at 24th Street Cigar Lounge" loading="lazy"></figure>
+      <figure><img src="assets/img/google/g-bottles.jpg" alt="Wine and spirits shelves by the bar at 24th Street Cigar Lounge" loading="lazy"></figure>
+      <figure class="c-wide"><img src="assets/img/google/g-fuente-boxes.jpg" alt="Open boxes of Arturo Fuente cigars in the humidor" loading="lazy"></figure>
+      <figure><img src="assets/img/google/g-perdomo.jpg" alt="Perdomo cigars by the humidor door at 24th Street Cigar Lounge" loading="lazy"></figure>
+      <figure><img src="assets/img/google/g-cigar-band.jpg" alt="Close-up of a Mi Amor cigar band" loading="lazy"></figure>
+      <figure class="c-full"><img src="assets/img/google/g-shelves-wide.jpg" alt="Rows of cigar boxes in the humidor at 24th Street Cigar Lounge" loading="lazy"></figure>
     </div>
     <p class="ig-line">More photos on Instagram — <a href="https://www.instagram.com/24thstreetcigarlounge" target="_blank" rel="noopener">@24thstreetcigarlounge</a></p>
   </div>
@@ -489,6 +532,32 @@
   try{
     var v = document.querySelector(".hero video");
     if(v && window.matchMedia("(prefers-reduced-motion: reduce)").matches){ v.removeAttribute("autoplay"); v.pause(); }
+  }catch(e){}
+  // Walk-through stepper: real photos only; autoplay pauses on any interaction.
+  try{
+    var wImgs = document.querySelectorAll("#wtView img");
+    var wCap = document.getElementById("wtCap"), wCount = document.getElementById("wtCount");
+    var wDots = document.querySelectorAll("#wtDots button");
+    var wNames = ["The Humidor","The Bar","The Bottles","The Cigar"];
+    var wi = 0, wTimer = null;
+    function wShow(n){
+      wi = (n + wImgs.length) % wImgs.length;
+      wImgs.forEach(function(im,k){ im.classList.toggle("on", k===wi); });
+      wDots.forEach(function(d,k){ d.classList.toggle("on", k===wi); });
+      if(wCap) wCap.textContent = wNames[wi];
+      if(wCount) wCount.textContent = (wi+1) + " / " + wImgs.length;
+    }
+    function wStop(){ if(wTimer){ clearInterval(wTimer); wTimer = null; } }
+    if(wImgs.length > 1){
+      document.getElementById("wtNext").addEventListener("click", function(){ wStop(); wShow(wi+1); });
+      document.getElementById("wtPrev").addEventListener("click", function(){ wStop(); wShow(wi-1); });
+      wDots.forEach(function(d,k){ d.addEventListener("click", function(){ wStop(); wShow(k); }); });
+      document.getElementById("wtView").addEventListener("pointerdown", wStop);
+      if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+        wTimer = setInterval(function(){ wShow(wi+1); }, 5000);
+        document.addEventListener("visibilitychange", function(){ if(document.hidden) wStop(); });
+      }
+    }
   }catch(e){}
 })();
 </script>

@@ -55,8 +55,6 @@
   img{display:block;max-width:100%}
   a{color:inherit}
   .wrap{max-width:1280px;margin:0 auto;padding:0 20px}
-  .kicker{font-size:12px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--red)}
-  .kicker .num{color:var(--bone-dim)}
   h2.sec{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:clamp(44px,7vw,84px);line-height:.95;margin:10px 0 8px}
   .sec-sub{color:var(--bone-dim);max-width:560px;font-size:17px}
   section{padding:84px 0}
@@ -81,24 +79,17 @@
   .btn-dark:hover{background:var(--ink)}
   .call-head{margin-left:8px;padding:11px 20px}
   @media(max-width:900px){nav.main{display:none}}
-  @media(max-width:520px){.brand .bsub{display:none}.brand .bname{font-size:18px}.call-head{padding:10px 14px;font-size:12px}.kick-loc{display:none}}
+  @media(max-width:520px){.brand .bsub{display:none}.brand .bname{font-size:18px}.call-head{padding:10px 14px;font-size:12px}}
 
   /* ---------- hero ---------- */
   .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;background:var(--black)}
   .hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:62% 38%}
   .hero .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,10,8,.52) 0%,rgba(11,10,8,.06) 34%,rgba(11,10,8,.18) 58%,rgba(11,10,8,.88) 100%)}
   .hero-in{position:relative;z-index:2;width:100%;padding:130px 0 108px}
-  .hero .kick{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;background:rgba(11,10,8,.55);border:1px solid var(--line);padding:9px 14px}
-  .dot{width:9px;height:9px;background:#57d977;display:inline-block}
-  .dot.closed{background:var(--red)}
   .hero h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:clamp(60px,11.5vw,150px);line-height:1.0;margin:22px 0 6px;text-shadow:0 4px 34px rgba(0,0,0,.45)}
   .hero h1 .r{color:var(--red)}
   .hero p.lede{font-size:clamp(17px,2.2vw,21px);max-width:600px;color:#efe9da;text-shadow:0 2px 14px rgba(0,0,0,.6)}
   .hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
-  .hero-facts{display:flex;flex-wrap:wrap;gap:0;margin-top:44px;border-top:1px solid var(--line);max-width:860px}
-  .hero-facts div{padding:14px 26px 2px 0;margin-right:26px}
-  .hero-facts b{font-family:'Cormorant Garamond',Georgia,serif;font-size:36px;font-weight:600;display:block;line-height:1}
-  .hero-facts span{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--bone-dim)}
 
   /* ================= v6 — below the hero =================
      Brand palette from the lounge's own logo art (24th Street Vector Logo-02,
@@ -147,16 +138,43 @@
   .ev p{color:var(--paper-txt);font-size:15.5px;line-height:1.55;max-width:300px;margin:0 auto}
   @media(max-width:860px){.events{grid-template-columns:1fr;max-width:420px;margin:0 auto}}
 
-  /* ---------- gallery collage ---------- */
-  .collage{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:196px;gap:10px}
-  .collage figure{overflow:hidden;background:#141414}
-  .collage img{width:100%;height:100%;object-fit:cover}
-  .c-a{grid-column:span 2;grid-row:span 2}
-  .c-b{grid-row:span 2}
-  .c-wide{grid-column:span 2}
-  .c-full{grid-column:span 4}
+  /* ---------- gallery: full-bleed scrolling band + lightbox ---------- */
+  .sgal{position:relative;width:100vw;margin-left:calc(50% - 50vw);padding:6px 0}
+  .sgal-outer{overflow:hidden;height:clamp(64vh,78vh,86vh);background:#0e0d0a}
+  .sgal-track{display:flex;width:400%;height:100%;will-change:transform;animation:sgal-scroll 45s linear infinite}
+  .sgal-outer:hover .sgal-track,.sgal-outer:focus-within .sgal-track,.sgal-track.paused{animation-play-state:paused}
+  @keyframes sgal-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .sgal-panel{flex:0 0 25%;height:100%;display:flex;flex-direction:column;gap:3px}
+  .sgal-row{display:flex;gap:3px;overflow:hidden;min-height:0}
+  .sg-item{position:relative;overflow:hidden;border:none;padding:0;margin:0;background:#161511;cursor:pointer;min-width:0;font:inherit;text-align:left}
+  .sg-item img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .7s ease,filter .5s ease}
+  .sg-item:hover img,.sg-item:focus-visible img{transform:scale(1.05);filter:brightness(.85)}
+  .sg-item .ovl{position:absolute;inset:0;background:rgba(10,9,7,0);transition:background .45s ease;pointer-events:none}
+  .sg-item:hover .ovl{background:rgba(10,9,7,.22)}
+  .sg-item:focus-visible{outline:2px solid var(--silver);outline-offset:-2px}
+  .sgal-fade{position:absolute;pointer-events:none;z-index:2}
+  .sgal-fade.left{top:0;bottom:0;left:0;width:clamp(2rem,5vw,4rem);background:linear-gradient(to right,var(--black),transparent)}
+  .sgal-fade.right{top:0;bottom:0;right:0;width:clamp(2rem,5vw,4rem);background:linear-gradient(to left,var(--black),transparent)}
+  .sgal-fade.top{left:0;right:0;top:0;height:8rem;background:linear-gradient(to bottom,var(--black),transparent)}
+  .sgal-fade.bottom{left:0;right:0;bottom:0;height:8rem;background:linear-gradient(to top,var(--black),transparent)}
+  @media(prefers-reduced-motion:reduce){.sgal-track{animation:none}.sg-item img{transition:none}}
+  /* ---------- lightbox ---------- */
+  .slb{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;background:rgba(8,7,6,.96);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+  .slb[hidden]{display:none}
+  .slb-back{position:absolute;inset:0}
+  .slb-box{position:relative;z-index:2;max-width:min(92vw,1200px);max-height:92vh;display:flex;flex-direction:column;align-items:center;gap:12px;margin:0}
+  .slb-img{display:block;max-width:100%;max-height:84vh;object-fit:contain;background:#111}
+  .slb-cap{font-family:var(--serif);font-size:19px;font-weight:500;color:var(--silver-hi);text-align:center;letter-spacing:.02em}
+  .slb-cap .n{color:var(--silver-dim);font-size:14px;margin-left:10px;letter-spacing:.18em}
+  .slb-x{position:absolute;top:18px;right:18px;z-index:3;width:46px;height:46px;display:flex;align-items:center;justify-content:center;background:none;border:1px solid var(--hair);color:var(--silver);cursor:pointer}
+  .slb-x:hover{color:#fff;border-color:var(--silver)}
+  .slb-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:50px;height:50px;display:flex;align-items:center;justify-content:center;background:none;border:1px solid var(--hair);color:var(--silver);cursor:pointer}
+  .slb-nav:hover{color:#fff;border-color:var(--silver)}
+  .slb-nav.prev{left:18px}
+  .slb-nav.next{right:18px}
+  .slb-x svg,.slb-nav svg{display:block}
+  @media(max-width:760px){.slb-nav{width:44px;height:44px}.slb-nav.prev{left:8px}.slb-nav.next{right:8px}.slb-x{top:10px;right:10px}}
 
-  @media(max-width:760px){.collage{grid-template-columns:repeat(2,1fr);grid-auto-rows:150px}.c-full{grid-column:span 2}}
   .ig-line{margin-top:20px;text-align:center;font-size:14.5px;color:var(--silver-dim)}
   .ig-line a{color:#fff;font-weight:600;text-decoration:none;border-bottom:1px solid var(--silver)}
   .ig-line a:hover{color:var(--silver-hi)}
@@ -242,18 +260,11 @@
   </video>
   <div class="shade"></div>
   <div class="wrap hero-in">
-    <span class="kick"><span class="dot" id="openDot"></span><span id="openText">Open now</span><span class="kick-loc">&nbsp;·&nbsp;24th St &amp; Osborn, Phoenix</span></span>
     <h1>Light up.<br><span class="r">Slow down.</span></h1>
-    <p class="lede">A family-run cigar lounge and full bar. Three hundred cigars, fifty premium spirits, and a back patio built for long nights.</p>
+    <p class="lede">A family-run cigar lounge and full bar, with a back patio built for long nights.</p>
     <div class="hero-cta">
       <a class="btn btn-red" href="tel:+16022350096">Call the Lounge</a>
       <a class="btn btn-ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=3407+N+24th+St+Phoenix+AZ+85016" target="_blank" rel="noopener">Get Directions</a>
-    </div>
-    <div class="hero-facts">
-      <div><b>300</b><span>Cigar options</span></div>
-      <div><b>50</b><span>Premium spirits</span></div>
-      <div><b>4–6 PM</b><span>Weekday happy hour</span></div>
-      <div><b>7 Days</b><span>Open every week</span></div>
     </div>
   </div>
 </div>
@@ -358,15 +369,79 @@
       <div class="rule"></div>
       <h2 class="vtitle">Gallery</h2>
     </div>
-    <div class="collage">
-      <figure class="c-a"><img src="assets/img/google/g-bar-humidor.jpg" alt="The bar counter and walk-in humidor at 24th Street Cigar Lounge"></figure>
-      <figure class="c-b"><img src="assets/img/google/g-cigar-hand.jpg" alt="A La Aroma de Cuba Mi Amor cigar in hand" loading="lazy"></figure>
-      <figure><img src="assets/img/google/g-humidor-shelves.jpg" alt="Cigar shelves inside the humidor at 24th Street Cigar Lounge" loading="lazy"></figure>
-      <figure><img src="assets/img/google/g-bottles.jpg" alt="Wine and spirits shelves by the bar at 24th Street Cigar Lounge" loading="lazy"></figure>
-      <figure class="c-wide"><img src="assets/img/google/g-fuente-boxes.jpg" alt="Open boxes of Arturo Fuente cigars in the humidor" loading="lazy"></figure>
-      <figure><img src="assets/img/google/g-perdomo.jpg" alt="Perdomo cigars by the humidor door at 24th Street Cigar Lounge" loading="lazy"></figure>
-      <figure><img src="assets/img/google/g-cigar-band.jpg" alt="Close-up of a Mi Amor cigar band" loading="lazy"></figure>
-      <figure class="c-full"><img src="assets/img/google/g-shelves-wide.jpg" alt="Rows of cigar boxes in the humidor at 24th Street Cigar Lounge" loading="lazy"></figure>
+    <div class="sgal" id="sgal">
+      <div class="sgal-outer" id="sgalOuter">
+        <div class="sgal-track" id="sgalTrack">
+      <div class="sgal-panel">
+        <div class="sgal-row" style="flex:1">
+                <button type="button" class="sg-item" style="flex:1" data-idx="0" aria-label="Enlarge photo: the bar counter and walk-in humidor"><img src="assets/img/google/g-bar-humidor.jpg" alt="The bar counter and walk-in humidor at 24th Street Cigar Lounge" loading="eager" decoding="async"><span class="ovl"></span></button>
+                <button type="button" class="sg-item" style="flex:1.38" data-idx="4" aria-label="Enlarge photo: open boxes of Arturo Fuente cigars"><img src="assets/img/google/g-fuente-boxes.jpg" alt="Open boxes of Arturo Fuente cigars in the humidor" loading="eager" decoding="async"><span class="ovl"></span></button>
+                <button type="button" class="sg-item" style="flex:0.75" data-idx="1" aria-label="Enlarge photo: a Mi Amor cigar in hand"><img src="assets/img/google/g-cigar-hand.jpg" alt="A La Aroma de Cuba Mi Amor cigar in hand" loading="eager" decoding="async"><span class="ovl"></span></button>
+        </div>
+        <div class="sgal-row" style="flex:1.42">
+                <button type="button" class="sg-item" style="flex:2.5" data-idx="7" aria-label="Enlarge photo: rows of cigar boxes in the humidor"><img src="assets/img/google/g-shelves-wide.jpg" alt="Rows of cigar boxes in the humidor at 24th Street Cigar Lounge" loading="eager" decoding="async"><span class="ovl"></span></button>
+                <button type="button" class="sg-item" style="flex:1" data-idx="2" aria-label="Enlarge photo: cigar shelves inside the humidor"><img src="assets/img/google/g-humidor-shelves.jpg" alt="Cigar shelves inside the humidor at 24th Street Cigar Lounge" loading="eager" decoding="async"><span class="ovl"></span></button>
+                <button type="button" class="sg-item" style="flex:0.72" data-idx="6" aria-label="Enlarge photo: close-up of a Mi Amor cigar band"><img src="assets/img/google/g-cigar-band.jpg" alt="Close-up of a Mi Amor cigar band" loading="eager" decoding="async"><span class="ovl"></span></button>
+        </div>
+        <div class="sgal-row" style="flex:0.64">
+                <button type="button" class="sg-item" style="flex:1" data-idx="3" aria-label="Enlarge photo: wine and spirits shelves by the bar"><img src="assets/img/google/g-bottles.jpg" alt="Wine and spirits shelves by the bar at 24th Street Cigar Lounge" loading="eager" decoding="async"><span class="ovl"></span></button>
+                <button type="button" class="sg-item" style="flex:1" data-idx="5" aria-label="Enlarge photo: Perdomo cigars by the humidor door"><img src="assets/img/google/g-perdomo.jpg" alt="Perdomo cigars by the humidor door at 24th Street Cigar Lounge" loading="eager" decoding="async"><span class="ovl"></span></button>
+        </div>
+      </div>
+      <div class="sgal-panel">
+        <div class="sgal-row" style="flex:1">
+                <button type="button" class="sg-item" style="flex:1" data-idx="2" aria-label="Enlarge photo: cigar shelves inside the humidor"><img src="assets/img/google/g-humidor-shelves.jpg" alt="Cigar shelves inside the humidor at 24th Street Cigar Lounge" loading="eager" decoding="async"><span class="ovl"></span></button>
+                <button type="button" class="sg-item" style="flex:0.72" data-idx="6" aria-label="Enlarge photo: close-up of a Mi Amor cigar band"><img src="assets/img/google/g-cigar-band.jpg" alt="Close-up of a Mi Amor cigar band" loading="eager" decoding="async"><span class="ovl"></span></button>
+                <button type="button" class="sg-item" style="flex:2.5" data-idx="7" aria-label="Enlarge photo: rows of cigar boxes in the humidor"><img src="assets/img/google/g-shelves-wide.jpg" alt="Rows of cigar boxes in the humidor at 24th Street Cigar Lounge" loading="eager" decoding="async"><span class="ovl"></span></button>
+        </div>
+        <div class="sgal-row" style="flex:1.42">
+                <button type="button" class="sg-item" style="flex:0.75" data-idx="1" aria-label="Enlarge photo: a Mi Amor cigar in hand"><img src="assets/img/google/g-cigar-hand.jpg" alt="A La Aroma de Cuba Mi Amor cigar in hand" loading="eager" decoding="async"><span class="ovl"></span></button>
+                <button type="button" class="sg-item" style="flex:1" data-idx="0" aria-label="Enlarge photo: the bar counter and walk-in humidor"><img src="assets/img/google/g-bar-humidor.jpg" alt="The bar counter and walk-in humidor at 24th Street Cigar Lounge" loading="eager" decoding="async"><span class="ovl"></span></button>
+                <button type="button" class="sg-item" style="flex:1" data-idx="3" aria-label="Enlarge photo: wine and spirits shelves by the bar"><img src="assets/img/google/g-bottles.jpg" alt="Wine and spirits shelves by the bar at 24th Street Cigar Lounge" loading="eager" decoding="async"><span class="ovl"></span></button>
+        </div>
+        <div class="sgal-row" style="flex:0.64">
+                <button type="button" class="sg-item" style="flex:1.38" data-idx="4" aria-label="Enlarge photo: open boxes of Arturo Fuente cigars"><img src="assets/img/google/g-fuente-boxes.jpg" alt="Open boxes of Arturo Fuente cigars in the humidor" loading="eager" decoding="async"><span class="ovl"></span></button>
+                <button type="button" class="sg-item" style="flex:1" data-idx="5" aria-label="Enlarge photo: Perdomo cigars by the humidor door"><img src="assets/img/google/g-perdomo.jpg" alt="Perdomo cigars by the humidor door at 24th Street Cigar Lounge" loading="eager" decoding="async"><span class="ovl"></span></button>
+        </div>
+      </div>
+      <div class="sgal-panel" aria-hidden="true">
+        <div class="sgal-row" style="flex:1">
+                <button type="button" class="sg-item" style="flex:1" data-idx="0" tabindex="-1" aria-label="Enlarge photo: the bar counter and walk-in humidor"><img src="assets/img/google/g-bar-humidor.jpg" alt="The bar counter and walk-in humidor at 24th Street Cigar Lounge" loading="eager" decoding="async"><span class="ovl"></span></button>
+                <button type="button" class="sg-item" style="flex:1.38" data-idx="4" tabindex="-1" aria-label="Enlarge photo: open boxes of Arturo Fuente cigars"><img src="assets/img/google/g-fuente-boxes.jpg" alt="Open boxes of Arturo Fuente cigars in the humidor" loading="eager" decoding="async"><span class="ovl"></span></button>
+                <button type="button" class="sg-item" style="flex:0.75" data-idx="1" tabindex="-1" aria-label="Enlarge photo: a Mi Amor cigar in hand"><img src="assets/img/google/g-cigar-hand.jpg" alt="A La Aroma de Cuba Mi Amor cigar in hand" loading="eager" decoding="async"><span class="ovl"></span></button>
+        </div>
+        <div class="sgal-row" style="flex:1.42">
+                <button type="button" class="sg-item" style="flex:2.5" data-idx="7" tabindex="-1" aria-label="Enlarge photo: rows of cigar boxes in the humidor"><img src="assets/img/google/g-shelves-wide.jpg" alt="Rows of cigar boxes in the humidor at 24th Street Cigar Lounge" loading="eager" decoding="async"><span class="ovl"></span></button>
+                <button type="button" class="sg-item" style="flex:1" data-idx="2" tabindex="-1" aria-label="Enlarge photo: cigar shelves inside the humidor"><img src="assets/img/google/g-humidor-shelves.jpg" alt="Cigar shelves inside the humidor at 24th Street Cigar Lounge" loading="eager" decoding="async"><span class="ovl"></span></button>
+                <button type="button" class="sg-item" style="flex:0.72" data-idx="6" tabindex="-1" aria-label="Enlarge photo: close-up of a Mi Amor cigar band"><img src="assets/img/google/g-cigar-band.jpg" alt="Close-up of a Mi Amor cigar band" loading="eager" decoding="async"><span class="ovl"></span></button>
+        </div>
+        <div class="sgal-row" style="flex:0.64">
+                <button type="button" class="sg-item" style="flex:1" data-idx="3" tabindex="-1" aria-label="Enlarge photo: wine and spirits shelves by the bar"><img src="assets/img/google/g-bottles.jpg" alt="Wine and spirits shelves by the bar at 24th Street Cigar Lounge" loading="eager" decoding="async"><span class="ovl"></span></button>
+                <button type="button" class="sg-item" style="flex:1" data-idx="5" tabindex="-1" aria-label="Enlarge photo: Perdomo cigars by the humidor door"><img src="assets/img/google/g-perdomo.jpg" alt="Perdomo cigars by the humidor door at 24th Street Cigar Lounge" loading="eager" decoding="async"><span class="ovl"></span></button>
+        </div>
+      </div>
+      <div class="sgal-panel" aria-hidden="true">
+        <div class="sgal-row" style="flex:1">
+                <button type="button" class="sg-item" style="flex:1" data-idx="2" tabindex="-1" aria-label="Enlarge photo: cigar shelves inside the humidor"><img src="assets/img/google/g-humidor-shelves.jpg" alt="Cigar shelves inside the humidor at 24th Street Cigar Lounge" loading="eager" decoding="async"><span class="ovl"></span></button>
+                <button type="button" class="sg-item" style="flex:0.72" data-idx="6" tabindex="-1" aria-label="Enlarge photo: close-up of a Mi Amor cigar band"><img src="assets/img/google/g-cigar-band.jpg" alt="Close-up of a Mi Amor cigar band" loading="eager" decoding="async"><span class="ovl"></span></button>
+                <button type="button" class="sg-item" style="flex:2.5" data-idx="7" tabindex="-1" aria-label="Enlarge photo: rows of cigar boxes in the humidor"><img src="assets/img/google/g-shelves-wide.jpg" alt="Rows of cigar boxes in the humidor at 24th Street Cigar Lounge" loading="eager" decoding="async"><span class="ovl"></span></button>
+        </div>
+        <div class="sgal-row" style="flex:1.42">
+                <button type="button" class="sg-item" style="flex:0.75" data-idx="1" tabindex="-1" aria-label="Enlarge photo: a Mi Amor cigar in hand"><img src="assets/img/google/g-cigar-hand.jpg" alt="A La Aroma de Cuba Mi Amor cigar in hand" loading="eager" decoding="async"><span class="ovl"></span></button>
+                <button type="button" class="sg-item" style="flex:1" data-idx="0" tabindex="-1" aria-label="Enlarge photo: the bar counter and walk-in humidor"><img src="assets/img/google/g-bar-humidor.jpg" alt="The bar counter and walk-in humidor at 24th Street Cigar Lounge" loading="eager" decoding="async"><span class="ovl"></span></button>
+                <button type="button" class="sg-item" style="flex:1" data-idx="3" tabindex="-1" aria-label="Enlarge photo: wine and spirits shelves by the bar"><img src="assets/img/google/g-bottles.jpg" alt="Wine and spirits shelves by the bar at 24th Street Cigar Lounge" loading="eager" decoding="async"><span class="ovl"></span></button>
+        </div>
+        <div class="sgal-row" style="flex:0.64">
+                <button type="button" class="sg-item" style="flex:1.38" data-idx="4" tabindex="-1" aria-label="Enlarge photo: open boxes of Arturo Fuente cigars"><img src="assets/img/google/g-fuente-boxes.jpg" alt="Open boxes of Arturo Fuente cigars in the humidor" loading="eager" decoding="async"><span class="ovl"></span></button>
+                <button type="button" class="sg-item" style="flex:1" data-idx="5" tabindex="-1" aria-label="Enlarge photo: Perdomo cigars by the humidor door"><img src="assets/img/google/g-perdomo.jpg" alt="Perdomo cigars by the humidor door at 24th Street Cigar Lounge" loading="eager" decoding="async"><span class="ovl"></span></button>
+        </div>
+      </div>
+        </div>
+      </div>
+      <div class="sgal-fade top" aria-hidden="true"></div>
+      <div class="sgal-fade bottom" aria-hidden="true"></div>
+      <div class="sgal-fade left" aria-hidden="true"></div>
+      <div class="sgal-fade right" aria-hidden="true"></div>
     </div>
     <p class="ig-line">More photos on Instagram — <a href="https://www.instagram.com/24thstreetcigarlounge" target="_blank" rel="noopener">@24thstreetcigarlounge</a></p>
   </div>
@@ -470,19 +545,22 @@
   <a href="#visit">Hours</a>
 </div>
 
+<div class="slb" id="slb" hidden role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <div class="slb-back" id="slbBack"></div>
+  <figure class="slb-box">
+    <img class="slb-img" id="slbImg" src="" alt="">
+    <figcaption class="slb-cap"><span id="slbCap"></span><span class="n" id="slbNum"></span></figcaption>
+  </figure>
+  <button type="button" class="slb-x" id="slbClose" aria-label="Close photo viewer"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2 2l14 14M16 2L2 16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+  <button type="button" class="slb-nav prev" id="slbPrev" aria-label="Previous photo"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M13 3L6 10l7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  <button type="button" class="slb-nav next" id="slbNext" aria-label="Next photo"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M7 3l7 7-7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</div>
+
 <script>
 (function(){
-  // Open-now state + today's row highlight, America/Phoenix time.
-  var H = {0:[12,20],1:[15,22],2:[15,22],3:[15,22],4:[15,22],5:[15,24],6:[15,24]};
-  function fmt(h){ if(h===24) return "12 AM"; var ap = h>=12 ? "PM":"AM"; var hh = h%12; if(hh===0) hh=12; return hh+" "+ap; }
+  // Today's row highlight in the Visit hours table, America/Phoenix time.
   try{
-    var now = new Date(new Date().toLocaleString("en-US",{timeZone:"America/Phoenix"}));
-    var d = now.getDay(), mins = now.getHours()*60 + now.getMinutes();
-    var o = H[d][0]*60, c = H[d][1]*60;
-    var open = mins >= o && mins < c;
-    var t = document.getElementById("openText"), dot = document.getElementById("openDot");
-    if(open){ t.textContent = "Open now · til " + fmt(H[d][1]); }
-    else { dot.classList.add("closed"); if(mins >= c){ t.textContent = "Opens " + fmt(H[(d+1)%7][0]) + " tomorrow"; } else { t.textContent = "Opens " + fmt(H[d][0]) + " today"; } }
+    var d = new Date(new Date().toLocaleString("en-US",{timeZone:"America/Phoenix"})).getDay();
     var rows = document.querySelectorAll("#hoursTable tr");
     rows.forEach(function(r){ if(parseInt(r.getAttribute("data-day"),10) === d) r.classList.add("today"); });
   }catch(e){}
@@ -491,6 +569,85 @@
     var v = document.querySelector(".hero video");
     if(v && window.matchMedia("(prefers-reduced-motion: reduce)").matches){ v.removeAttribute("autoplay"); v.pause(); }
   }catch(e){}
+})();
+</script>
+<script>
+(function(){
+  // Gallery lightbox: each tile opens its largest existing version.
+  var SLIDES = [
+    {src:"assets/img/google/XH1xohxAve.jpeg", cap:"The Bar & Humidor", alt:"The bar counter and walk-in humidor at 24th Street Cigar Lounge"},
+    {src:"assets/img/google/MMOqHvm1mK.jpg", cap:"Mi Amor in Hand", alt:"A La Aroma de Cuba Mi Amor cigar in hand"},
+    {src:"assets/img/google/kjWxPqsdAK.jpg", cap:"Humidor Shelves", alt:"Cigar shelves inside the humidor at 24th Street Cigar Lounge"},
+    {src:"assets/img/google/g-bottles.jpg", cap:"Wine & Spirits", alt:"Wine and spirits shelves by the bar at 24th Street Cigar Lounge"},
+    {src:"assets/img/google/g-fuente-boxes.jpg", cap:"Arturo Fuente Boxes", alt:"Open boxes of Arturo Fuente cigars in the humidor"},
+    {src:"assets/img/google/g-perdomo.jpg", cap:"Perdomo Cigars", alt:"Perdomo cigars by the humidor door at 24th Street Cigar Lounge"},
+    {src:"assets/img/google/g-cigar-band.jpg", cap:"Mi Amor Band", alt:"Close-up of a Mi Amor cigar band"},
+    {src:"assets/img/google/g-shelves-wide.jpg", cap:"Humidor Rows", alt:"Rows of cigar boxes in the humidor at 24th Street Cigar Lounge"}
+  ];
+  var lb = document.getElementById("slb"),
+      img = document.getElementById("slbImg"),
+      cap = document.getElementById("slbCap"),
+      num = document.getElementById("slbNum"),
+      btnClose = document.getElementById("slbClose"),
+      btnPrev = document.getElementById("slbPrev"),
+      btnNext = document.getElementById("slbNext"),
+      track = document.getElementById("sgalTrack"),
+      outer = document.getElementById("sgalOuter"),
+      cur = 0, lastFocus = null, prevHtmlOverflow = "", prevBodyOverflow = "";
+  if(!lb || !track) return;
+  function show(i){
+    cur = (i + SLIDES.length) % SLIDES.length;
+    img.src = SLIDES[cur].src;
+    img.alt = SLIDES[cur].alt;
+    cap.textContent = SLIDES[cur].cap;
+    num.textContent = (cur + 1) + " / " + SLIDES.length;
+    [ (cur + 1) % SLIDES.length, (cur + SLIDES.length - 1) % SLIDES.length ].forEach(function(k){
+      var p = new Image(); p.src = SLIDES[k].src;
+    });
+  }
+  function openLb(i){
+    lastFocus = document.activeElement;
+    prevHtmlOverflow = document.documentElement.style.overflow;
+    prevBodyOverflow = document.body.style.overflow;
+    show(i);
+    lb.hidden = false;
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+    track.classList.add("paused");
+    btnClose.focus();
+  }
+  function closeLb(){
+    lb.hidden = true;
+    document.documentElement.style.overflow = prevHtmlOverflow;
+    document.body.style.overflow = prevBodyOverflow;
+    track.classList.remove("paused");
+    img.src = "";
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  track.addEventListener("click", function(e){
+    var b = e.target.closest ? e.target.closest(".sg-item") : null;
+    if(b) openLb(parseInt(b.getAttribute("data-idx"), 10) || 0);
+  });
+  btnClose.addEventListener("click", closeLb);
+  document.getElementById("slbBack").addEventListener("click", closeLb);
+  btnPrev.addEventListener("click", function(){ show(cur - 1); });
+  btnNext.addEventListener("click", function(){ show(cur + 1); });
+  document.addEventListener("keydown", function(e){
+    if(lb.hidden) return;
+    if(e.key === "Escape"){ closeLb(); }
+    else if(e.key === "ArrowLeft"){ show(cur - 1); }
+    else if(e.key === "ArrowRight"){ show(cur + 1); }
+    else if(e.key === "Tab"){
+      var f = [btnClose, btnPrev, btnNext], i = f.indexOf(document.activeElement);
+      if(e.shiftKey){ if(i <= 0){ e.preventDefault(); f[f.length - 1].focus(); } }
+      else if(i === f.length - 1 || i === -1){ e.preventDefault(); f[0].focus(); }
+    }
+  });
+  // Touch / press-and-hold pauses the scroll (hover + focus handled in CSS).
+  outer.addEventListener("pointerdown", function(){ track.classList.add("paused"); });
+  ["pointerup","pointercancel","pointerleave"].forEach(function(ev){
+    outer.addEventListener(ev, function(){ if(lb.hidden) track.classList.remove("paused"); });
+  });
 })();
 </script>
 </body>

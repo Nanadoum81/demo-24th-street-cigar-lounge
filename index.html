@@ -125,6 +125,9 @@
   .drinks{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
   .drink .ph{aspect-ratio:3/4;overflow:hidden;background:#141414}
   .drink .ph img,.drink .ph video{width:100%;height:100%;object-fit:cover;display:block}
+  .drink .ph img.zoomimg{animation:kbz2 14s ease-in-out infinite alternate}
+  @keyframes kbz2{from{transform:scale(1.02)}to{transform:scale(1.11)}}
+  @media (prefers-reduced-motion: reduce){.drink .ph img.zoomimg{animation:none}}
   .drink h3{font-family:var(--serif);font-weight:600;font-size:27px;color:#fff;text-align:center;margin-top:16px;line-height:1.15}
   @media(max-width:860px){.drinks{grid-template-columns:1fr;max-width:420px;margin:0 auto}}
 
@@ -312,7 +315,7 @@
     </div>
     <div class="drinks">
       <article class="drink">
-        <div class="ph"><video autoplay muted loop playsinline preload="metadata" poster="assets/img/old-fashioned.jpg" aria-label="A smoked 24th Street Old Fashioned, smoke rising off the glass"><source src="assets/img/old-fashioned-smoke.mp4" type="video/mp4"></video></div>
+        <div class="ph"><img class="zoomimg" src="assets/img/old-fashioned.jpg" alt="24th Street Old Fashioned" loading="lazy"></div>
         <h3>24th Street Old Fashioned</h3>
       </article>
       <article class="drink">

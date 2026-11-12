@@ -62,7 +62,7 @@
 
   /* ---------- header ---------- */
   header{position:fixed;inset:0 0 auto 0;z-index:60;background:rgba(11,10,8,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-  .bar{display:flex;align-items:center;gap:18px;height:64px}
+  .bar{display:flex;align-items:center;gap:18px;height:64px;width:100%;padding:0 28px}
   .brand{display:flex;align-items:center;gap:12px;text-decoration:none;min-width:0}
   .brand img{width:38px;height:38px;object-fit:contain}
   .brand .bname{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:22px;letter-spacing:.04em;white-space:nowrap;line-height:1}
@@ -85,7 +85,7 @@
   .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;background:var(--black)}
   .hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:62% 38%}
   .hero .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,10,8,.52) 0%,rgba(11,10,8,.06) 34%,rgba(11,10,8,.18) 58%,rgba(11,10,8,.88) 100%)}
-  .hero-in{position:relative;z-index:2;width:100%;padding:130px 0 108px}
+  .hero-in{position:relative;z-index:2;width:100%;padding:130px 20px 108px}
   .hero h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;font-size:clamp(60px,11.5vw,150px);line-height:1.0;margin:22px 0 6px;text-shadow:0 4px 34px rgba(0,0,0,.45)}
   .hero h1 .r{color:var(--red)}
   .hero p.lede{font-size:clamp(17px,2.2vw,21px);max-width:600px;color:#efe9da;text-shadow:0 2px 14px rgba(0,0,0,.6)}
@@ -242,7 +242,7 @@
 
 
 <header>
-  <div class="wrap bar">
+  <div class="bar">
     <a class="brand" href="#top" aria-label="24th Street Cigar Lounge — home">
       <img src="assets/img/logo-white.png" alt="24th Street Cigar Lounge logo">
       <span><span class="bname">24TH STREET</span><br><span class="bsub">Cigar Lounge · Phoenix</span></span>
@@ -265,7 +265,7 @@
   </video>
   <div class="shade"></div>
   <div class="wrap hero-in">
-    <h1>Light up.<br><span class="r">Slow down.</span></h1>
+    <h1>Slow down.<br><span class="r">Light up.</span></h1>
     <p class="lede">A family-run cigar lounge and full bar, with a back patio built for long nights.</p>
     <div class="hero-cta">
       <a class="btn btn-red" href="tel:+16022350096">Call the Lounge</a>

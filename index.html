@@ -215,15 +215,16 @@
   footer{border-top:1px solid var(--hair);padding:52px 0 60px;background:#080808}
   @media(max-width:760px){footer{padding-bottom:118px}}
   .foot-logo{display:inline-block;margin-bottom:16px}
-  .foot-logo img{width:168px;height:auto;display:block}
-  .foot{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:30px}
+  .foot-logo img{width:168px;height:auto;display:block;margin:0 auto}
+  .foot{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:30px;text-align:center;align-items:start}
+  .foot .fbrand{display:flex;flex-direction:column;align-items:center}
   .foot h4{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--silver);margin-bottom:14px}
   .foot a{display:block;color:#fff;text-decoration:none;padding:3px 0;font-size:15px}
   .foot a:hover{color:var(--silver)}
   .foot p{color:var(--silver-dim);font-size:15px;line-height:1.6}
   .foot .brand{display:inline-flex}
-  .fine{margin-top:36px;border-top:1px solid var(--hair);padding-top:18px;font-size:13px;color:#7a7a7a;display:flex;flex-wrap:wrap;gap:8px 26px}
-  @media(max-width:860px){.foot{grid-template-columns:1fr}}
+  .fine{margin-top:36px;border-top:1px solid var(--hair);padding-top:18px;font-size:13px;color:#7a7a7a;display:flex;flex-wrap:wrap;gap:8px 26px;justify-content:center;text-align:center}
+  @media(max-width:860px){.foot{grid-template-columns:1fr}.foot .fbrand{order:-1}}
 
   /* ---------- sticky mobile bar (silver call) ---------- */
   .stickybar{position:fixed;left:0;right:0;bottom:0;z-index:70;display:none;background:rgba(10,10,10,.97);border-top:1px solid var(--hair)}
@@ -509,18 +510,18 @@
   <div class="wrap">
     <div class="foot">
       <div>
-        <a class="foot-logo" href="#top" aria-label="24th Street Cigar Lounge — home">
-          <img src="assets/img/logo-footer.png" alt="24th Street Cigar Lounge logo">
-        </a>
-        <p>A family-run establishment at the corner of 24th Street and Osborn in Phoenix, Arizona. Co-owned by George Janko.</p>
-      </div>
-      <div>
         <h4>Explore</h4>
         <a href="#lounge">The Lounge</a>
         <a href="#events">Events</a>
         <a href="#bar">The Bar</a>
         <a href="#gallery">Gallery</a>
         <a href="#visit">Visit</a>
+      </div>
+      <div class="fbrand">
+        <a class="foot-logo" href="#top" aria-label="24th Street Cigar Lounge — home">
+          <img src="assets/img/logo-footer.png" alt="24th Street Cigar Lounge logo">
+        </a>
+        <p>A family-run establishment at the corner of 24th Street and Osborn in Phoenix, Arizona. Co-owned by George Janko.</p>
       </div>
       <div>
         <h4>Visit</h4>

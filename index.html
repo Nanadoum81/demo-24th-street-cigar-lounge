@@ -239,9 +239,14 @@
 .lvid{margin-top:48px;text-align:center}
 .lvid h3{font-family:var(--serif);font-size:30px;font-weight:600;color:var(--silver-hi);margin:0 0 8px}
 .lvid p{color:var(--silver-dim);margin:0 0 20px}
-.igframe{display:flex;justify-content:center}
-.igframe iframe{width:min(400px,94vw);height:600px;border:1px solid var(--hair);background:#0e0d0a}
-@media(max-width:760px){.igframe iframe{height:540px}}
+.vidcard{position:relative;display:block;width:min(400px,94vw);margin:0 auto;text-decoration:none}
+.vidcard img{width:100%;display:block;border:1px solid var(--hair)}
+.vplay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.vplay i{width:72px;height:72px;border-radius:50%;background:rgba(10,9,7,.55);border:1px solid rgba(255,255,255,.4);position:relative;display:block}
+.vplay i:after{content:'';position:absolute;top:50%;left:55%;transform:translate(-50%,-50%);border-left:22px solid #fff;border-top:13px solid transparent;border-bottom:13px solid transparent}
+.vcap{position:absolute;left:0;right:0;bottom:0;padding:26px 10px 10px;background:linear-gradient(transparent,rgba(0,0,0,.72));color:#fff;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;text-align:center}
+.vlink{display:block;text-decoration:none;color:inherit;position:relative}
+.drink .ph,.ev .ph{position:relative}
 </style>
 </head>
 <body>
@@ -313,7 +318,7 @@
     <div class="lvid">
       <h3>Rolled by Hand</h3>
       <p>Hand-rolling at the bar, filmed at the lounge — from their Instagram.</p>
-      <div class="igframe"><iframe src="https://www.instagram.com/reel/DWFrk0pjZLI/embed" title="Hand-rolling cigars at 24th Street Cigar Lounge" loading="lazy" allowfullscreen scrolling="no"></iframe></div>
+      <a class="vidcard" href="https://www.instagram.com/reel/DWFrk0pjZLI/" target="_blank" rel="noopener"><img src="assets/img/rolling-cover.jpg" alt="Hand-rolling cigars at the bar at 24th Street Cigar Lounge" loading="lazy"><span class="vplay"><i></i></span><span class="vcap">Watch on Instagram</span></a>
     </div>
   </div>
 </section>
@@ -339,6 +344,10 @@
         <div class="ph"><img src="assets/img/taps-tvs.jpg" alt="One Tap at 24th Street Cigar Lounge" loading="lazy"></div>
         <h3>One Tap</h3>
       </article>
+      <article class="drink">
+        <a class="vlink" href="https://www.instagram.com/reel/C6NGFKCPbCp/" target="_blank" rel="noopener"><div class="ph"><img src="assets/img/martini-cover.jpg" alt="George making an espresso martini at the bar at 24th Street Cigar Lounge" loading="lazy"><span class="vplay"><i></i></span><span class="vcap">Watch on Instagram</span></div>
+        <h3>Espresso Martini, Made by George</h3></a>
+      </article>
     </div>
   </div>
 </section>
@@ -351,6 +360,14 @@
       <h2 class="vtitle">Events</h2>
     </div>
     <div class="events">
+      <article class="ev">
+        <div class="ph"><img class="flyer" src="assets/img/flyer-thanksgiving.jpg" alt="Thanksgiving Giveaway with Oliva flyer — November 12, 5 to 9 PM at 24th Street Cigar Lounge" loading="lazy"></div>
+        <div class="tx">
+          <p class="when">Thu, Nov 12 · 5–9 PM</p>
+          <h3>Thanksgiving Giveaway with Oliva</h3>
+          <p>Buy any box of cigars and get 8 Olivas and a tumbler free — from the lounge's Instagram.</p>
+        </div>
+      </article>
       <article class="ev">
         <div class="ph"><img class="flyer" src="assets/img/flyer-tatuaje.jpg" alt="Tatuaje Cut and Light event flyer, 24th Street Cigar Lounge" loading="lazy"></div>
         <div class="tx">
@@ -459,6 +476,9 @@
       <div class="sgal-fade bottom" aria-hidden="true"></div>
       <div class="sgal-fade left" aria-hidden="true"></div>
       <div class="sgal-fade right" aria-hidden="true"></div>
+    </div>
+    <div style="margin-top:26px">
+      <a class="vidcard" href="https://www.instagram.com/reel/DQSEQP1ki2d/" target="_blank" rel="noopener"><img src="assets/img/guinness-cover.jpg" alt="A freshly poured Guinness held up at 24th Street Cigar Lounge" loading="lazy"><span class="vplay"><i></i></span><span class="vcap">The Guinness Pour — Watch on Instagram</span></a>
     </div>
     <p class="ig-line">More photos on Instagram — <a href="https://www.instagram.com/24thstreetcigarlounge" target="_blank" rel="noopener">@24thstreetcigarlounge</a></p>
   </div>

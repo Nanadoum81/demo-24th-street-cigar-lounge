@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://demo-24th-street-cigar-lounge.vercel.app/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
+  <url><loc>https://demo-24th-street-cigar-lounge.vercel.app/</loc></url>
+  <url><loc>https://demo-24th-street-cigar-lounge.vercel.app/lounge.html</loc></url>
+  <url><loc>https://demo-24th-street-cigar-lounge.vercel.app/bar.html</loc></url>
+  <url><loc>https://demo-24th-street-cigar-lounge.vercel.app/events.html</loc></url>
+  <url><loc>https://demo-24th-street-cigar-lounge.vercel.app/gallery.html</loc></url>
+  <url><loc>https://demo-24th-street-cigar-lounge.vercel.app/guest-words.html</loc></url>
+  <url><loc>https://demo-24th-street-cigar-lounge.vercel.app/visit.html</loc></url>
 </urlset>

@@ -247,29 +247,51 @@
   .vcap{position:absolute;left:0;right:0;bottom:0;padding:26px 10px 10px;background:linear-gradient(transparent,rgba(0,0,0,.72));color:#fff;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;text-align:center}
   .vlink{display:block;text-decoration:none;color:inherit;position:relative}
   .drink .ph,.ev .ph{position:relative}
+
+  /* ---------- multi-page additions 2026-11-19 ---------- */
+  .pagehero{position:relative;padding:150px 0 64px;text-align:center;border-bottom:1px solid var(--hair);overflow:hidden}
+  .pagehero .rule{width:46px;height:1px;background:var(--silver);margin:0 auto 22px}
+  .pagehero h1{font-family:var(--serif);font-weight:500;font-size:clamp(46px,7vw,76px);line-height:1.02;color:#fff}
+  .pagehero p{font-family:var(--serif);font-style:italic;font-size:21px;color:var(--silver);max-width:640px;margin:14px auto 0;line-height:1.45}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media(max-width:960px){.cards{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:620px){.cards{grid-template-columns:1fr;max-width:420px;margin:0 auto}}
+  .card{display:block;text-decoration:none;background:var(--ink);border:1px solid var(--line)}
+  .card .ph{aspect-ratio:4/3;overflow:hidden;background:#141414}
+  .card .ph img{width:100%;height:100%;object-fit:cover}
+  .card .tx{padding:20px 18px 24px;text-align:center}
+  .card h3{font-family:var(--serif);font-weight:600;font-size:28px;color:#fff;line-height:1.1}
+  .card p{color:var(--paper-txt);font-size:15px;line-height:1.55;margin-top:8px}
+  .card .go{display:inline-block;margin-top:14px;font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--silver-hi);border-bottom:1px solid var(--silver);padding-bottom:3px}
+  .cta-strip{text-align:center;padding:10px 0 4px}
+  .cta-strip .row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:18px}
+  /* improved visit */
+  .visit-photo{aspect-ratio:21/9;overflow:hidden;background:#141414;border:1px solid var(--line);margin-bottom:26px}
+  .visit-photo img{width:100%;height:100%;object-fit:cover;object-position:center 38%}
+  @media(max-width:700px){.visit-photo{aspect-ratio:4/3}}
+  .visit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+  @media(max-width:960px){.visit-grid{grid-template-columns:1fr;max-width:520px;margin:0 auto}}
+  .vcard{background:var(--ink);border:1px solid var(--line);padding:28px 24px;text-align:center;display:flex;flex-direction:column}
+  .vcard h3{font-family:var(--serif);font-weight:600;font-size:27px;color:#fff;margin-bottom:12px}
+  .vcard p{color:var(--paper-txt);font-size:15.5px;line-height:1.6}
+  .vcard .phone-big{font-size:31px;margin:4px 0 8px}
+  .vcard table.hours{margin-top:0}
+  .visit-big-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:28px}
+  .visit-big-actions .btn{padding:18px 34px;font-size:15px}
+  nav.main a.active{color:#fff;border-bottom:1px solid var(--silver);padding-bottom:3px}
 </style>
 </head>
 <body>
-
-
-
 <header>
   <div class="bar">
-    <a class="brand" href="#top" aria-label="24th Street Cigar Lounge — home">
+    <a class="brand" href="index.html" aria-label="24th Street Cigar Lounge — home">
       <img src="assets/img/logo-white.png" alt="24th Street Cigar Lounge logo">
       <span><span class="bname">24TH STREET</span><br><span class="bsub">Cigar Lounge · Phoenix</span></span>
     </a>
-    <nav class="main" aria-label="Sections">
-      <a href="#lounge">The Lounge</a>
-      <a href="#bar">The Bar</a>
-      <a href="#events">Events</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#visit">Visit</a>
-    </nav>
+    <nav class="main" aria-label="Pages"><a href="lounge.html">The Lounge</a><a href="bar.html">The Bar</a><a href="events.html">Events</a><a href="gallery.html">Gallery</a><a href="guest-words.html">Guest Words</a><a href="visit.html">Visit</a></nav>
     <a class="btn btn-red call-head" href="tel:+16022350096">Call</a>
   </div>
 </header>
-
 <!-- ============ HERO ============ -->
 <div class="hero" id="top">
   <video autoplay muted loop playsinline preload="auto" poster="assets/img/hero-lounge.jpg" aria-label="Inside the humidor at 24th Street Cigar Lounge">
@@ -286,205 +308,17 @@
   </div>
 </div>
 
-<!-- ============ THE LOUNGE ============ -->
-<section id="lounge">
+
+<section id="explore">
   <div class="wrap">
     <div class="vhead">
       <div class="rule"></div>
-      <h2 class="vtitle">The Lounge</h2>
+      <h2 class="vtitle">Explore 24th Street</h2>
       <p class="vsub">A family-run establishment at the corner of 24th Street and Osborn in Phoenix, Arizona.</p>
     </div>
-    <div class="lrow">
-      <div class="lph"><img src="assets/img/google/g-humidor-shelves.jpg" alt="Cigar shelves inside the walk-in humidor at 24th Street Cigar Lounge" loading="lazy"></div>
-      <div class="ltx">
-        <h3>The Humidor</h3>
-        <p>300 cigar options, from light bodied to full, from all around the globe.</p>
-      </div>
-    </div>
-    <div class="lrow rev">
-      <div class="lph"><img src="assets/img/google/g-bar.jpg" alt="The bar at 24th Street Cigar Lounge — counter, stools, and the humidor wall behind" loading="lazy"></div>
-      <div class="ltx">
-        <h3>The Bar</h3>
-        <p>50 premium spirits and craft cocktails, plus bourbon, craft beer, wine, and espresso drinks.</p>
-      </div>
-    </div>
-    <div class="lrow">
-      <div class="lph"><img src="assets/img/google/g-patio-night.jpg" alt="The back patio at 24th Street Cigar Lounge" loading="lazy"></div>
-      <div class="ltx">
-        <h3>The Patio</h3>
-        <p>Outdoor seating out back — a back patio for intimate gatherings.</p>
-      </div>
-    </div>
-    <div class="lvid">
-      <h3>Rolled by Hand</h3>
-      <p>Hand-rolling at the bar, filmed at the lounge — from their Instagram.</p>
-      <a class="vidcard vidcard--wide" href="https://www.instagram.com/reel/DWFrk0pjZLI/" target="_blank" rel="noopener"><img src="assets/img/rolling-cover.jpg" alt="Hand-rolling cigars at the bar at 24th Street Cigar Lounge" loading="lazy"><span class="vplay"><i></i></span><span class="vcap">Watch on Instagram</span></a>
-    </div>
+    <div class="cards"><a class="card" href="lounge.html"><div class="ph"><img src="assets/img/google/g-humidor-shelves.jpg" alt="Cigar shelves inside the walk-in humidor at 24th Street Cigar Lounge" loading="lazy"></div><div class="tx"><h3>The Lounge</h3><p>The humidor, the bar, and the back patio — plus hand-rolling at the bar.</p><span class="go">See the Lounge</span></div></a><a class="card" href="bar.html"><div class="ph"><img src="assets/img/martini-cover.jpg" alt="George making an espresso martini at the bar at 24th Street Cigar Lounge" loading="lazy"></div><div class="tx"><h3>The Bar</h3><p>George making an espresso martini, the Old Fashioned, and Georgie's Spicy Margarita.</p><span class="go">See the Bar</span></div></a><a class="card" href="events.html"><div class="ph"><img src="assets/img/flyer-thanksgiving.jpg" alt="Thanksgiving Giveaway with Oliva flyer at 24th Street Cigar Lounge" loading="lazy"></div><div class="tx"><h3>Events</h3><p>Cigar nights, giveaways, happy hour, and Sundays at the lounge.</p><span class="go">See Events</span></div></a><a class="card" href="gallery.html"><div class="ph"><img src="assets/img/ig/guests-bar.jpg" alt="Guests smiling at the bar at 24th Street Cigar Lounge" loading="lazy"></div><div class="tx"><h3>Gallery</h3><p>Real nights at 24th Street, in the lounge's own photos.</p><span class="go">See the Gallery</span></div></a><a class="card" href="guest-words.html"><div class="ph"><img src="assets/img/cheers.jpg" alt="Guests raising a toast at 24th Street Cigar Lounge" loading="lazy"></div><div class="tx"><h3>Guest Words</h3><p>From our guests, in their own words.</p><span class="go">Read Guest Words</span></div></a><a class="card" href="visit.html"><div class="ph"><img src="assets/img/visit-guests.jpg" alt="Guests smiling around the bar inside 24th Street Cigar Lounge" loading="lazy"></div><div class="tx"><h3>Visit</h3><p>3407 N 24th St, Phoenix. Hours, directions, and the number to call.</p><span class="go">Plan a Visit</span></div></a></div>
   </div>
 </section>
-
-
-<!-- ============ FROM THE BAR ============ -->
-<section id="bar" style="padding-top:0">
-  <div class="wrap">
-    <div class="vhead">
-      <div class="rule"></div>
-      <h2 class="vtitle">From the Bar</h2>
-    </div>
-    <div class="drinks">
-      <article class="drink">
-        <a class="vlink vlink--wide" href="https://www.instagram.com/reel/C6NGFKCPbCp/" target="_blank" rel="noopener"><div class="ph"><img src="assets/img/martini-cover.jpg" alt="George making an espresso martini at the bar at 24th Street Cigar Lounge" loading="lazy"><span class="vplay"><i></i></span><span class="vcap">Watch on Instagram</span></div>
-        <h3>Espresso Martini, Made by George</h3></a>
-      </article>
-      <article class="drink">
-        <div class="ph"><img class="zoomimg" src="assets/img/old-fashioned.jpg" alt="24th Street Old Fashioned" loading="lazy"></div>
-        <h3>24th Street Old Fashioned</h3>
-      </article>
-      <article class="drink">
-        <div class="ph"><img src="assets/img/spicy-margarita.jpg" alt="Georgie's Spicy Margarita" loading="lazy"></div>
-        <h3>Georgie's Spicy Margarita</h3>
-      </article>
-      <article class="drink">
-        <div class="ph"><img src="assets/img/taps-tvs.jpg" alt="One Tap at 24th Street Cigar Lounge" loading="lazy"></div>
-        <h3>One Tap</h3>
-      </article>
-  </div>
-    </div>
-</section>
-
-<!-- ============ EVENTS ============ -->
-<section id="events" style="padding-top:0">
-  <div class="wrap">
-    <div class="vhead">
-      <div class="rule"></div>
-      <h2 class="vtitle">Events</h2>
-    </div>
-    <div class="events">
-      <article class="ev">
-        <div class="ph"><img class="flyer" src="assets/img/flyer-thanksgiving.jpg" alt="Thanksgiving Giveaway with Oliva flyer — November 12, 5 to 9 PM at 24th Street Cigar Lounge" loading="lazy"></div>
-        <div class="tx">
-          <p class="when">Thu, Nov 12 · 5–9 PM</p>
-          <h3>Thanksgiving Giveaway with Oliva</h3>
-          <p>Buy any box of cigars and get 8 Olivas and a tumbler free — from the lounge's Instagram.</p>
-        </div>
-      </article>
-      <article class="ev">
-        <div class="ph"><img class="flyer" src="assets/img/flyer-tatuaje.jpg" alt="Tatuaje Cut and Light event flyer, 24th Street Cigar Lounge" loading="lazy"></div>
-        <div class="tx">
-          <p class="when">Fri, Aug 7 · 6–9 PM</p>
-          <h3>Tatuaje Cut &amp; Light</h3>
-          <p>The lounge's latest posted event, from their Instagram.</p>
-        </div>
-      </article>
-      <article class="ev">
-        <div class="ph"><img src="assets/img/bar-drink.jpg" alt="A cocktail at the bar at 24th Street Cigar Lounge" loading="lazy"></div>
-        <div class="tx">
-          <p class="when">Weekdays · 4–6 PM</p>
-          <h3>Happy Hour</h3>
-          <p>Every weekday, 4 to 6 PM.</p>
-        </div>
-      </article>
-      <article class="ev">
-        <div class="ph"><img src="assets/img/about-bar.jpg" alt="A pour and a cigar at the bar, game screens behind at 24th Street Cigar Lounge" loading="lazy"></div>
-        <div class="tx">
-          <p class="when">Sundays · 12–8 PM</p>
-          <h3>Sundays</h3>
-          <p>Games on the screens. Open noon to 8.</p>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ============ GALLERY ============ -->
-<section id="gallery" style="padding-top:0">
-  <div class="wrap">
-    <div class="vhead">
-      <div class="rule"></div>
-      <h2 class="vtitle">Gallery</h2>
-    </div>
-    <div class="sgal" id="sgal">
-      <div class="sgal-outer" id="sgalOuter">
-        <div class="sgal-track" id="sgalTrack">
-      <div class="sgal-panel">
-        <div class="sgal-row" style="flex:1">
-                <button type="button" class="sg-item" style="flex:1.33" data-idx="0" aria-label="Enlarge photo: guests at the bar"><img src="assets/img/ig/guests-bar.jpg" alt="Guests smiling at the L-shaped bar at 24th Street Cigar Lounge" loading="eager" decoding="async"><span class="ovl"></span></button>
-                <button type="button" class="sg-item" style="flex:1" data-idx="4" aria-label="Enlarge photo: NEFT Vodka and Punch cigars"><img src="assets/img/ig/neft.jpg" alt="NEFT Vodka with a cocktail and Punch Clasico cigars" loading="eager" decoding="async"><span class="ovl"></span></button>
-                <button type="button" class="sg-item" style="flex:0.75" data-idx="1" aria-label="Enlarge photo: a Mi Amor cigar in hand"><img src="assets/img/ig/miamor.jpg" alt="A La Aroma de Cuba Mi Amor cigar in hand" loading="eager" decoding="async"><span class="ovl"></span></button>
-        </div>
-        <div class="sgal-row" style="flex:1.42">
-                <button type="button" class="sg-item" style="flex:1" data-idx="7" aria-label="Enlarge photo: a Plasencia Alma Fuerte cigar in hand"><img src="assets/img/ig/plasencia.jpg" alt="A Plasencia Alma Fuerte cigar in hand" loading="eager" decoding="async"><span class="ovl"></span></button>
-                <button type="button" class="sg-item" style="flex:1.33" data-idx="2" aria-label="Enlarge photo: a big group behind the bar"><img src="assets/img/ig/kappa-group.jpg" alt="A big group gathered behind the bar at 24th Street Cigar Lounge" loading="eager" decoding="async"><span class="ovl"></span></button>
-                <button type="button" class="sg-item" style="flex:0.75" data-idx="6" aria-label="Enlarge photo: a Perdomo gift box"><img src="assets/img/ig/perdomo-box.jpg" alt="A Perdomo cigar gift box with a red ribbon on the bar" loading="eager" decoding="async"><span class="ovl"></span></button>
-        </div>
-        <div class="sgal-row" style="flex:0.64">
-                <button type="button" class="sg-item" style="flex:0.8" data-idx="3" aria-label="Enlarge photo: a La Gloria Cubana cigar on its stand"><img src="assets/img/ig/lagloria.jpg" alt="A La Gloria Cubana cigar resting on its engraved stand" loading="eager" decoding="async"><span class="ovl"></span></button>
-                <button type="button" class="sg-item" style="flex:0.75" data-idx="5" aria-label="Enlarge photo: a Java Mint cigar at sunset"><img src="assets/img/ig/javamint.jpg" alt="A Drew Estate Java Mint cigar in hand at sunset" loading="eager" decoding="async"><span class="ovl"></span></button>
-        </div>
-      </div>
-      <div class="sgal-panel">
-        <div class="sgal-row" style="flex:1">
-                <button type="button" class="sg-item" style="flex:1.33" data-idx="0" aria-label="Enlarge photo: guests at the bar"><img src="assets/img/ig/guests-bar.jpg" alt="Guests smiling at the L-shaped bar at 24th Street Cigar Lounge" loading="eager" decoding="async"><span class="ovl"></span></button>
-                <button type="button" class="sg-item" style="flex:1" data-idx="4" aria-label="Enlarge photo: NEFT Vodka and Punch cigars"><img src="assets/img/ig/neft.jpg" alt="NEFT Vodka with a cocktail and Punch Clasico cigars" loading="eager" decoding="async"><span class="ovl"></span></button>
-                <button type="button" class="sg-item" style="flex:0.75" data-idx="1" aria-label="Enlarge photo: a Mi Amor cigar in hand"><img src="assets/img/ig/miamor.jpg" alt="A La Aroma de Cuba Mi Amor cigar in hand" loading="eager" decoding="async"><span class="ovl"></span></button>
-        </div>
-        <div class="sgal-row" style="flex:1.42">
-                <button type="button" class="sg-item" style="flex:1" data-idx="7" aria-label="Enlarge photo: a Plasencia Alma Fuerte cigar in hand"><img src="assets/img/ig/plasencia.jpg" alt="A Plasencia Alma Fuerte cigar in hand" loading="eager" decoding="async"><span class="ovl"></span></button>
-                <button type="button" class="sg-item" style="flex:1.33" data-idx="2" aria-label="Enlarge photo: a big group behind the bar"><img src="assets/img/ig/kappa-group.jpg" alt="A big group gathered behind the bar at 24th Street Cigar Lounge" loading="eager" decoding="async"><span class="ovl"></span></button>
-                <button type="button" class="sg-item" style="flex:0.75" data-idx="6" aria-label="Enlarge photo: a Perdomo gift box"><img src="assets/img/ig/perdomo-box.jpg" alt="A Perdomo cigar gift box with a red ribbon on the bar" loading="eager" decoding="async"><span class="ovl"></span></button>
-        </div>
-        <div class="sgal-row" style="flex:0.64">
-                <button type="button" class="sg-item" style="flex:0.8" data-idx="3" aria-label="Enlarge photo: a La Gloria Cubana cigar on its stand"><img src="assets/img/ig/lagloria.jpg" alt="A La Gloria Cubana cigar resting on its engraved stand" loading="eager" decoding="async"><span class="ovl"></span></button>
-                <button type="button" class="sg-item" style="flex:0.75" data-idx="5" aria-label="Enlarge photo: a Java Mint cigar at sunset"><img src="assets/img/ig/javamint.jpg" alt="A Drew Estate Java Mint cigar in hand at sunset" loading="eager" decoding="async"><span class="ovl"></span></button>
-        </div>
-      </div>
-      <div class="sgal-panel" aria-hidden="true">
-        <div class="sgal-row" style="flex:1">
-                <button type="button" class="sg-item" style="flex:1.33" data-idx="0" tabindex="-1" aria-label="Enlarge photo: guests at the bar"><img src="assets/img/ig/guests-bar.jpg" alt="Guests smiling at the L-shaped bar at 24th Street Cigar Lounge" loading="eager" decoding="async"><span class="ovl"></span></button>
-                <button type="button" class="sg-item" style="flex:1" data-idx="4" tabindex="-1" aria-label="Enlarge photo: NEFT Vodka and Punch cigars"><img src="assets/img/ig/neft.jpg" alt="NEFT Vodka with a cocktail and Punch Clasico cigars" loading="eager" decoding="async"><span class="ovl"></span></button>
-                <button type="button" class="sg-item" style="flex:0.75" data-idx="1" tabindex="-1" aria-label="Enlarge photo: a Mi Amor cigar in hand"><img src="assets/img/ig/miamor.jpg" alt="A La Aroma de Cuba Mi Amor cigar in hand" loading="eager" decoding="async"><span class="ovl"></span></button>
-        </div>
-        <div class="sgal-row" style="flex:1.42">
-                <button type="button" class="sg-item" style="flex:1" data-idx="7" tabindex="-1" aria-label="Enlarge photo: a Plasencia Alma Fuerte cigar in hand"><img src="assets/img/ig/plasencia.jpg" alt="A Plasencia Alma Fuerte cigar in hand" loading="eager" decoding="async"><span class="ovl"></span></button>
-                <button type="button" class="sg-item" style="flex:1.33" data-idx="2" tabindex="-1" aria-label="Enlarge photo: a big group behind the bar"><img src="assets/img/ig/kappa-group.jpg" alt="A big group gathered behind the bar at 24th Street Cigar Lounge" loading="eager" decoding="async"><span class="ovl"></span></button>
-                <button type="button" class="sg-item" style="flex:0.75" data-idx="6" tabindex="-1" aria-label="Enlarge photo: a Perdomo gift box"><img src="assets/img/ig/perdomo-box.jpg" alt="A Perdomo cigar gift box with a red ribbon on the bar" loading="eager" decoding="async"><span class="ovl"></span></button>
-        </div>
-        <div class="sgal-row" style="flex:0.64">
-                <button type="button" class="sg-item" style="flex:0.8" data-idx="3" tabindex="-1" aria-label="Enlarge photo: a La Gloria Cubana cigar on its stand"><img src="assets/img/ig/lagloria.jpg" alt="A La Gloria Cubana cigar resting on its engraved stand" loading="eager" decoding="async"><span class="ovl"></span></button>
-                <button type="button" class="sg-item" style="flex:0.75" data-idx="5" tabindex="-1" aria-label="Enlarge photo: a Java Mint cigar at sunset"><img src="assets/img/ig/javamint.jpg" alt="A Drew Estate Java Mint cigar in hand at sunset" loading="eager" decoding="async"><span class="ovl"></span></button>
-        </div>
-      </div>
-      <div class="sgal-panel" aria-hidden="true">
-        <div class="sgal-row" style="flex:1">
-                <button type="button" class="sg-item" style="flex:1.33" data-idx="0" tabindex="-1" aria-label="Enlarge photo: guests at the bar"><img src="assets/img/ig/guests-bar.jpg" alt="Guests smiling at the L-shaped bar at 24th Street Cigar Lounge" loading="eager" decoding="async"><span class="ovl"></span></button>
-                <button type="button" class="sg-item" style="flex:1" data-idx="4" tabindex="-1" aria-label="Enlarge photo: NEFT Vodka and Punch cigars"><img src="assets/img/ig/neft.jpg" alt="NEFT Vodka with a cocktail and Punch Clasico cigars" loading="eager" decoding="async"><span class="ovl"></span></button>
-                <button type="button" class="sg-item" style="flex:0.75" data-idx="1" tabindex="-1" aria-label="Enlarge photo: a Mi Amor cigar in hand"><img src="assets/img/ig/miamor.jpg" alt="A La Aroma de Cuba Mi Amor cigar in hand" loading="eager" decoding="async"><span class="ovl"></span></button>
-        </div>
-        <div class="sgal-row" style="flex:1.42">
-                <button type="button" class="sg-item" style="flex:1" data-idx="7" tabindex="-1" aria-label="Enlarge photo: a Plasencia Alma Fuerte cigar in hand"><img src="assets/img/ig/plasencia.jpg" alt="A Plasencia Alma Fuerte cigar in hand" loading="eager" decoding="async"><span class="ovl"></span></button>
-                <button type="button" class="sg-item" style="flex:1.33" data-idx="2" tabindex="-1" aria-label="Enlarge photo: a big group behind the bar"><img src="assets/img/ig/kappa-group.jpg" alt="A big group gathered behind the bar at 24th Street Cigar Lounge" loading="eager" decoding="async"><span class="ovl"></span></button>
-                <button type="button" class="sg-item" style="flex:0.75" data-idx="6" tabindex="-1" aria-label="Enlarge photo: a Perdomo gift box"><img src="assets/img/ig/perdomo-box.jpg" alt="A Perdomo cigar gift box with a red ribbon on the bar" loading="eager" decoding="async"><span class="ovl"></span></button>
-        </div>
-        <div class="sgal-row" style="flex:0.64">
-                <button type="button" class="sg-item" style="flex:0.8" data-idx="3" tabindex="-1" aria-label="Enlarge photo: a La Gloria Cubana cigar on its stand"><img src="assets/img/ig/lagloria.jpg" alt="A La Gloria Cubana cigar resting on its engraved stand" loading="eager" decoding="async"><span class="ovl"></span></button>
-                <button type="button" class="sg-item" style="flex:0.75" data-idx="5" tabindex="-1" aria-label="Enlarge photo: a Java Mint cigar at sunset"><img src="assets/img/ig/javamint.jpg" alt="A Drew Estate Java Mint cigar in hand at sunset" loading="eager" decoding="async"><span class="ovl"></span></button>
-        </div>
-      </div>
-        </div>
-      </div>
-    <div class="sgal-fade top" aria-hidden="true"></div>
-      <div class="sgal-fade bottom" aria-hidden="true"></div>
-      <div class="sgal-fade left" aria-hidden="true"></div>
-      <div class="sgal-fade right" aria-hidden="true"></div>
-    </div>
-    <div style="margin-top:26px">
-      <a class="vidcard" href="https://www.instagram.com/reel/DQSEQP1ki2d/" target="_blank" rel="noopener"><img src="assets/img/guinness-cover.jpg" alt="A freshly poured Guinness held up at 24th Street Cigar Lounge" loading="lazy"><span class="vplay"><i></i></span><span class="vcap">The Guinness Pour — Watch on Instagram</span></a>
-    </div>
-    <p class="ig-line">More photos on Instagram — <a href="https://www.instagram.com/24thstreetcigarlounge" target="_blank" rel="noopener">@24thstreetcigarlounge</a></p>
-  </div>
-</section>
-
-<!-- ============ GUEST WORDS ============ -->
 <section id="words" style="padding-top:0">
   <div class="wrap">
     <div class="vhead">
@@ -508,26 +342,27 @@
     <p class="rating-line"><b>4.1 / 5</b> from 21 reviews on Yelp</p>
   </div>
 </section>
-
-<!-- ============ VISIT ============ -->
 <section id="visit" style="padding-top:0">
   <div class="wrap">
     <div class="vhead">
       <div class="rule"></div>
       <h2 class="vtitle">Visit</h2>
+      <p class="vsub">At the corner of 24th Street and Osborn in Phoenix. Open 7 days.</p>
     </div>
-    <div class="visit">
-      <div>
-        <div class="ph"><img src="assets/img/visit-guests.jpg" alt="Guests smiling around the bar inside 24th Street Cigar Lounge"></div>
-        <div class="visit-actions">
-          <a class="btn btn-silver" href="https://www.google.com/maps/dir/?api=1&amp;destination=3407+N+24th+St+Phoenix+AZ+85016" target="_blank" rel="noopener">Get Directions</a>
-          <a class="btn btn-outline" href="tel:+16022350096">Call the Lounge</a>
-        </div>
+    <div class="visit-photo"><img src="assets/img/visit-guests.jpg" alt="Guests smiling around the bar inside 24th Street Cigar Lounge"></div>
+    <div class="visit-grid">
+      <div class="vcard">
+        <h3>Find Us</h3>
+        <p class="addr">3407 N 24th St, Phoenix, AZ 85016</p>
+        <p>At the corner of 24th Street and Osborn.<br>Lot parking, validated.</p>
       </div>
-      <div>
-        <h3>24th Street Cigar Lounge</h3>
-        <p class="addr">3407 N 24th St, Phoenix, AZ 85016<br><span class="corner">At the corner of 24th Street and Osborn. Lot parking, validated.</span></p>
+      <div class="vcard">
+        <h3>Call Us</h3>
         <a class="phone-big" href="tel:+16022350096">(602) 235-0096</a>
+        <p>Happy hour weekdays, 4 to 6 PM.<br>Guests 21+.</p>
+      </div>
+      <div class="vcard">
+        <h3>Hours</h3>
         <table class="hours" id="hoursTable" aria-label="Opening hours">
           <tr data-day="1"><td>Monday</td><td>3:00 PM – 10:00 PM</td></tr>
           <tr data-day="2"><td>Tuesday</td><td>3:00 PM – 10:00 PM</td></tr>
@@ -539,23 +374,27 @@
         </table>
       </div>
     </div>
+    <div class="visit-big-actions">
+      <a class="btn btn-silver" href="https://www.google.com/maps/dir/?api=1&amp;destination=3407+N+24th+St+Phoenix+AZ+85016" target="_blank" rel="noopener">Get Directions</a>
+      <a class="btn btn-outline" href="tel:+16022350096">Call the Lounge</a>
+    </div>
   </div>
 </section>
-
 <footer>
   <div class="wrap">
     <div class="foot">
       <div>
         <h4>Explore</h4>
-        <a href="#lounge">The Lounge</a>
-        <a href="#bar">The Bar</a>
-        <a href="#events">Events</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#visit">Visit</a>
+        <a href="lounge.html">The Lounge</a>
+        <a href="bar.html">The Bar</a>
+        <a href="events.html">Events</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="guest-words.html">Guest Words</a>
+        <a href="visit.html">Visit</a>
       </div>
       <div class="fbrand">
         <div class="foot-word">24TH STREET</div>
-        <a class="foot-logo" href="#top" aria-label="24th Street Cigar Lounge — home">
+        <a class="foot-logo" href="index.html" aria-label="24th Street Cigar Lounge — home">
           <img src="assets/img/logo-footer.png" alt="24th Street Cigar Lounge logo">
         </a>
         <p>A family-run establishment at the corner of 24th Street and Osborn in Phoenix, Arizona. Co-owned by George Janko.</p>
@@ -576,24 +415,11 @@
     </div>
   </div>
 </footer>
-
 <div class="stickybar">
   <a class="call" href="tel:+16022350096">Call</a>
   <a href="https://www.google.com/maps/dir/?api=1&amp;destination=3407+N+24th+St+Phoenix+AZ+85016" target="_blank" rel="noopener">Directions</a>
-  <a href="#visit">Hours</a>
+  <a href="visit.html">Hours</a>
 </div>
-
-<div class="slb" id="slb" hidden role="dialog" aria-modal="true" aria-label="Photo viewer">
-  <div class="slb-back" id="slbBack"></div>
-  <figure class="slb-box">
-    <img class="slb-img" id="slbImg" src="" alt="">
-    <figcaption class="slb-cap"><span id="slbCap"></span><span class="n" id="slbNum"></span></figcaption>
-  </figure>
-  <button type="button" class="slb-x" id="slbClose" aria-label="Close photo viewer"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2 2l14 14M16 2L2 16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
-  <button type="button" class="slb-nav prev" id="slbPrev" aria-label="Previous photo"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M13 3L6 10l7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-  <button type="button" class="slb-nav next" id="slbNext" aria-label="Next photo"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M7 3l7 7-7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-</div>
-
 <script>
 (function(){
   // Today's row highlight in the Visit hours table, America/Phoenix time.

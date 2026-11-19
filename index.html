@@ -279,6 +279,22 @@
   .visit-big-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:28px}
   .visit-big-actions .btn{padding:18px 34px;font-size:15px}
   nav.main a.active{color:#fff;border-bottom:1px solid var(--silver);padding-bottom:3px}
+  /* ---------- new footer 2026-11-19 ---------- */
+  footer{padding:64px 0 54px}
+  .ftop{text-align:center;max-width:640px;margin:0 auto}
+  .ftop .foot-logo img{width:150px}
+  .ftag{font-family:var(--serif);font-style:italic;font-size:22px;color:var(--silver-hi);margin-top:6px}
+  .fblurb{color:var(--silver-dim);font-size:15.5px;line-height:1.65;margin-top:12px}
+  .fsocial{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:22px}
+  .fsocial a{text-decoration:none;font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#fff;border:1px solid var(--hair);padding:11px 20px}
+  .fsocial a:hover{border-color:var(--silver);color:var(--silver-hi)}
+  .fgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:34px;text-align:center;border-top:1px solid var(--hair);margin-top:44px;padding-top:38px}
+  .fgrid h4{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--silver);margin-bottom:15px}
+  .fgrid a{display:block;color:#fff;text-decoration:none;padding:4px 0;font-size:15px}
+  .fgrid a:hover{color:var(--silver)}
+  .fgrid p{color:var(--silver-dim);font-size:15px;line-height:1.55;padding:4px 0}
+  @media(max-width:900px){.fgrid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.fgrid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -382,7 +398,20 @@
 </section>
 <footer>
   <div class="wrap">
-    <div class="foot">
+    <div class="ftop">
+      <div class="foot-word">24TH STREET</div>
+      <a class="foot-logo" href="index.html" aria-label="24th Street Cigar Lounge — home">
+        <img src="assets/img/logo-footer.png" alt="24th Street Cigar Lounge logo">
+      </a>
+      <p class="ftag">Slow down. Light up.</p>
+      <p class="fblurb">A family-run cigar lounge and full bar at the corner of 24th Street and Osborn in Phoenix, Arizona. Co-owned by George Janko.</p>
+      <div class="fsocial">
+        <a href="https://www.instagram.com/24thstreetcigarlounge" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.facebook.com/274634415740737" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://www.yelp.com/biz/ukFbQtQiIh6yJv3GcyOx6A" target="_blank" rel="noopener">Yelp</a>
+      </div>
+    </div>
+    <div class="fgrid">
       <div>
         <h4>Explore</h4>
         <a href="lounge.html">The Lounge</a>
@@ -392,26 +421,33 @@
         <a href="guest-words.html">Guest Words</a>
         <a href="visit.html">Visit</a>
       </div>
-      <div class="fbrand">
-        <div class="foot-word">24TH STREET</div>
-        <a class="foot-logo" href="index.html" aria-label="24th Street Cigar Lounge — home">
-          <img src="assets/img/logo-footer.png" alt="24th Street Cigar Lounge logo">
-        </a>
-        <p>A family-run establishment at the corner of 24th Street and Osborn in Phoenix, Arizona. Co-owned by George Janko.</p>
-      </div>
       <div>
         <h4>Visit</h4>
         <p>3407 N 24th St<br>Phoenix, AZ 85016</p>
         <a href="tel:+16022350096">(602) 235-0096</a>
-        <a href="https://www.instagram.com/24thstreetcigarlounge" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://www.facebook.com/274634415740737" target="_blank" rel="noopener">Facebook</a>
-        <a href="https://www.yelp.com/biz/ukFbQtQiIh6yJv3GcyOx6A" target="_blank" rel="noopener">Yelp</a>
+        <a href="https://www.google.com/maps/dir/?api=1&amp;destination=3407+N+24th+St+Phoenix+AZ+85016" target="_blank" rel="noopener">Get Directions</a>
+        <a href="visit.html">Hours &amp; Parking</a>
+      </div>
+      <div>
+        <h4>Hours</h4>
+        <p>Mon – Thu · 3 PM – 10 PM</p>
+        <p>Fri – Sat · 3 PM – 12 AM</p>
+        <p>Sunday · 12 PM – 8 PM</p>
+        <p>Happy hour weekdays<br>4 PM – 6 PM</p>
+      </div>
+      <div>
+        <h4>The Lounge</h4>
+        <p>300 cigar options</p>
+        <p>50 premium spirits</p>
+        <p>Full bar &amp; back patio</p>
+        <p>Lot parking, validated</p>
+        <p>Guests 21+</p>
       </div>
     </div>
     <div class="fine">
-      <span>Open 7 days — Mon–Thu 3–10 · Fri–Sat 3–12 · Sun 12–8</span>
-      <span>Happy hour weekdays 4–6 PM</span>
-      <span>Guests 21+</span>
+      <span>Open 7 days</span>
+      <span>24th Street &amp; Osborn, Phoenix</span>
+      <span>Real photos of the lounge only</span>
     </div>
   </div>
 </footer>
